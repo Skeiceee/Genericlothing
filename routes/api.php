@@ -16,3 +16,12 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::get('Productos',function(){
+    return datatables()
+              ->eloquent(genericlothing\Producto::query())
+              ->addColumn('btn','actions')
+              ->rawColumns(['btn'])
+              ->toJson();
+});
