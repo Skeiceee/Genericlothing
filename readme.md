@@ -13,4 +13,4 @@
 <code>$ composer require yajra/laravel-datatables-oracle</code>
 
 
-<img class="spinned latest_stable_version_img" src="https://poser.pugx.org/matthiasmullie/scrapbook/v/stable" style="display: inline;">
+<img class="spinned latest_stable_version_img" style="display: inline;">
