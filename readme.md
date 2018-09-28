@@ -1,4 +1,4 @@
-<p align="center"><h1>Genericlothing</h1></p>
+<p align="center">##Genericlothing</p>
 
 <p align="center">
 <img class="spinned license_img" src="https://poser.pugx.org/matthiasmullie/scrapbook/license" style="display: inline;">
