@@ -23,7 +23,7 @@ Route::post('logout','Auth\LoginController@logout')->name('logout');
 
 
 //Rutas de admin
-Route::get('admin','AdminController@index');
+Route::get('admin','AdminController@index')->name('admin');
 
 Route::resource('admin/tipo-producto','TipoProductoController');
 Route::resource('admin/producto', 'ProductoController');

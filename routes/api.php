@@ -19,9 +19,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::get('Productos',function(){
+  $query = DB::table('producto as e')
+         ->select('e.cod_producto', 'e.nom_producto', 'e.precio_venta', 'd.nombre as nombre_marca', 'j.nombre as nombre_tipo', DB::raw('if(e.estado = 0,\'Activo\',\'Eliminado\') as estado'))
+         ->join('marca as d','e.cod_marca', '=', 'd.cod_marca')
+         ->join('tipo-producto as j', 'e.cod_tipo_producto', '=', 'j.cod_tipo_producto');
+
     return datatables()
-              ->eloquent(genericlothing\Producto::query())
+              ->of($query)
               ->addColumn('btn','actions')
               ->rawColumns(['btn'])
               ->toJson();
+
 });

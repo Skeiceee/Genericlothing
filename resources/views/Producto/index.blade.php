@@ -21,10 +21,10 @@
                     <th>Codigo</th>
                     <th>Nombre</th>
                     <th>Precio de venta</th>
-                    <th>Codigo de marca</th>
-                    <th>Codigo de tipo de producto</th>
+                    <th>Marca</th>
+                    <th>Tipo de producto</th>
                     <th>Estado</th>
-                    <th class="no-sort" style="min-width:100px">Acciones</th>
+                    <th class="no-sort mr-auto">Acciones</th>
                   </tr>
                 </thead>
               </table>
@@ -43,6 +43,7 @@
   <script>
     $(document).ready(function(){
         $('#Productos').DataTable({
+          "bAutoWidth": false,
           "language":{
                "sProcessing":     "Procesando...",
                "sLengthMenu":     "Mostrar _MENU_ registros",
@@ -77,12 +78,12 @@
              "searchable": false,
            }],
            "columns":[
-             {data: 'cod_producto'},
-             {data: 'nom_producto'},
-             {data: 'precio_venta'},
-             {data: 'cod_marca'},
-             {data: 'cod_tipo_producto'},
-             {data: 'estado'},
+             {data: 'cod_producto', name: 'e.cod_producto'},
+             {data: 'nom_producto', name: 'e.nom_producto'},
+             {data: 'precio_venta', name: 'e.precio_venta'},
+             {data: 'nombre_marca', name: 'd.nombre'},
+             {data: 'nombre_tipo', name: 'j.nombre'},
+             {data: 'estado', name: 'e.estado'},
              {data: 'btn'},
            ]
         });

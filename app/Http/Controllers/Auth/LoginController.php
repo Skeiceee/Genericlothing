@@ -21,7 +21,12 @@ class LoginController extends Controller
       ]);
 
       if(Auth::attempt($credentials)){
-          return redirect()->route('home');
+          $estado = auth()->user()->estado;
+          if($estado != 2){
+            return redirect()->route('home');
+          }else{
+            return redirect()->route('admin');
+          }
       };
 
       return back()
