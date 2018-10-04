@@ -7,6 +7,11 @@
 @section('content')
   <section class="container-fluid pt-4">
     <div class="row">
+      <div class="col-lg-3 col-sm-12 col-md-3">
+        <a class="btn btn-primary btn-block" href="{{ route('producto.create') }}">Crear producto</a>
+      </div>
+    </div>
+    <div class="row">
       <div id="mostrar_producto" class="col-lg col-sm col-md mt-4">
         <div class="card ">
             <div class="card-header">

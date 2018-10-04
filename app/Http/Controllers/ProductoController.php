@@ -69,7 +69,7 @@ class ProductoController extends Controller
         $Producto->ruta = $ruta;
         $Producto->save();
 
-        return 'Guardado';
+        return 'guardado';
     }
 
     /**
@@ -90,9 +90,9 @@ class ProductoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Producto $producto)
     {
-        //
+        return $producto;
     }
 
     /**

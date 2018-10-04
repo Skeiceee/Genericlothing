@@ -30,25 +30,25 @@
                          <option value="{{$Marca->cod_marca}}">{{$Marca->nombre}}</option>
                        @endforeach
                      </select>
+                     <button class="btn btn-primary mt-4" type="submit">Ingresar</button>
+                     <a class="btn btn-primary mt-4" href="{{ route('producto.index') }}">Volver</a>
                    </div>
                    <div class="col-lg col-sm col-md">
-                     <div class="card mt-4">
-                       <div class="card-header">
-                         <span>Foto del producto</span>
-                       </div>
-                       <div class="card-body">
-
-                       </div>
-                     </div>
                      <div class="input-group mb-3 mt-4">
                        <div class="custom-file">
                          <input type="file" class="custom-file-input" name="foto_producto" id="foto_producto">
                          <label class="custom-file-label" for="foto_producto">Eliga una imagen</label>
                        </div>
                      </div>
+                     <div class="card mt-4">
+                       <div class="card-header">
+                         <span>Foto del producto</span>
+                       </div>
+                       <div class="card-body" id="imagePreview">
+                       </div>
+                     </div>
                    </div>
                  </div>
-                  <button class="btn btn-primary mt-4" type="submit">Ingresar</button>
                 </div>
               </div>
             </div>
@@ -56,4 +56,33 @@
         </div>
     </div>
   </section>
+@endsection
+@section('script')
+  <script type="text/javascript">
+  (function(){
+      function filePreview(input){
+        if(input.files && input.files[0]){
+          var reader = new FileReader();
+
+          reader.onload = function(e){
+            $('#imagePreview').html("<img id='img1' class='img-fluid'src='"+e.target.result+"'>");
+          }
+          reader.readAsDataURL(input.files[0]);
+        }
+      }
+
+      $('#foto_producto').change(function(){
+        filePreview(this);
+      });
+
+      $('#foto_producto').click(function(){
+        imagen = document.getElementById('img1');
+        	if (imagen){
+        		padre = imagen.parentNode;
+        		padre.removeChild(imagen);
+          }
+      });
+
+    })();
+  </script>
 @endsection
