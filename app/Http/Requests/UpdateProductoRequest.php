@@ -28,6 +28,7 @@ class UpdateProductoRequest extends FormRequest
           'precio_venta' =>'numeric|min: 1',
           'tipo_de_producto' => 'required',
           'marca' => 'required',
+          'detalle_producto' => 'string|max:200',
           'foto_producto' =>  'image',
         ];
     }

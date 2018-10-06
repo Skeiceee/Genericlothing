@@ -62,11 +62,12 @@ class ProductoController extends Controller
         $Producto->cod_marca = $request->input('marca');
         $Producto->nom_producto = $request->input('nombre');
         $Producto->precio_venta = $request->input('precio_venta');
+        $Producto->detalle_producto = $request->input('detalle_producto');
         $Producto->estado = 0;
         $Producto->ruta = $ruta;
         $Producto->save();
 
-        return 'guardado';
+        return redirect()->route('producto.index')->with('status','El producto "'.$Producto->nom_producto.'" a sido creado exitosamente.');
     }
 
     /**
@@ -108,7 +109,8 @@ class ProductoController extends Controller
       $Producto->cod_marca = $request->input('marca');
       $Producto->nom_producto = $request->input('nombre');
       $Producto->precio_venta = $request->input('precio_venta');
-
+      $Producto->detalle_producto = $request->input('detalle_producto');
+      
       rename($Producto->ruta, public_path('img').'\\'.$request->input('nombre'));
       $Producto->ruta = public_path('img').'\\'.$request->input('nombre');
 
@@ -121,7 +123,7 @@ class ProductoController extends Controller
 
       $Producto->save();
 
-      return 'Actualizado';
+        return redirect()->route('producto.show', [$Producto])->with('status','El producto "'.$Producto->nom_producto.'" a sido actualizado exitosamente.');
     }
 
     /**
@@ -134,7 +136,7 @@ class ProductoController extends Controller
     {
       File::deleteDirectory(public_path('img').'\\'.$Producto->nom_producto);
       $Producto->delete();
-      return 'Eliminado';
+      return redirect()->route('producto.index')->with('status','El producto "'.$Producto->nom_producto.'" a sido eliminado exitosamente.');
     }
 
 }

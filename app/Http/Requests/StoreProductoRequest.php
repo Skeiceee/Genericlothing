@@ -28,6 +28,7 @@ class StoreProductoRequest extends FormRequest
             'precio_venta' =>'required|numeric|min: 1',
             'tipo_de_producto' => 'required',
             'marca' => 'required',
+            'detalle_producto' => 'required|string|max:200',
             'foto_producto' =>  'required|image',
         ];
     }
