@@ -7,8 +7,8 @@
 @section('content')
   <section class="container-fluid pt-4">
     <div class="row">
-      <div id="mostrar_producto" class="col-lg col-sm col-md mt-4">
-        <div class="card ">
+      <div id="mostrar_producto" class="col-lg col-sm col-md">
+        <div class="card">
             <div class="card-header">
               <span>Productos</span>
             </div>
@@ -24,11 +24,14 @@
                     <th>Marca</th>
                     <th>Tipo de producto</th>
                     <th>Estado</th>
-                    <th class="no-sort mr-auto">Acciones</th>
+                    <th class="no-sort" width=10  %>Acciones</th>
                   </tr>
                 </thead>
               </table>
               </div>
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-primary" href="{{ route('producto.create') }}">Crear producto</a>
             </div>
         </div>
       </div>

@@ -14,7 +14,7 @@ background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pjwh
 </style>
   <section class="container-fluid pt-4">
     <div class="row">
-      <div id="mostrar_producto" class="col-lg col-sm col-md mt-4">
+      <div id="mostrar_producto" class="col-lg-10 col-sm-12 col-md-10 mb-3 mx-auto">
         <div class="card">
             <div class="card-header">
               <span>{{$Producto->nom_producto}}</span>
@@ -108,11 +108,19 @@ background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pjwh
                             </div>
                         </div>
                       </div>
-                        <a class="btn btn-primary btn-block mt-3" href="{{ route('producto.index') }}">Volver</a>
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
+            <div class="card-footer">
+              <form action="/admin/producto/{{$Producto->cod_producto}}" method="post">
+                <input name="_method" type="hidden" value="DELETE">
+                @method('DELETE')
+                @csrf
+                <button class="btn btn-danger float-left" type="sumbit" name="btnEliminar">Eliminar</button>
+              </form>
+              <a class="btn btn-primary float-right" href="{{ route('producto.index') }}">Volver</a>
             </div>
         </div>
       </div>

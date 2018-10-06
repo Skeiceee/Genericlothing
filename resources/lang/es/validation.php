@@ -53,7 +53,7 @@ return [
         'string'  => 'El campo :attribute debe tener como mínimo :value caracteres.',
         'array'   => 'El campo :attribute debe tener como mínimo :value elementos.',
     ],
-    'image'                => ':attribute debe ser una imagen.',
+    'image'                => 'El campo :attribute debe ser una imagen.',
     'in'                   => ':attribute es inválido.',
     'in_array'             => 'El campo :attribute no existe en :other.',
     'integer'              => ':attribute debe ser un número entero.',
@@ -76,7 +76,7 @@ return [
     'max'                  => [
         'numeric' => ':attribute no debe ser mayor a :max.',
         'file'    => ':attribute no debe ser mayor que :max kilobytes.',
-        'string'  => ':attribute no debe ser mayor que :max caracteres.',
+        'string'  => 'El campo :attribute no debe ser mayor que :max caracteres.',
         'array'   => ':attribute no debe tener más de :max elementos.',
     ],
     'mimes'                => ':attribute debe ser un archivo con formato: :values.',
@@ -89,7 +89,7 @@ return [
     ],
     'not_in'               => ':attribute es inválido.',
     'not_regex'            => 'El formato del campo :attribute no es válido.',
-    'numeric'              => ':attribute debe ser numérico.',
+    'numeric'              => 'El campo :attribute debe ser numérico.',
     'present'              => 'El campo :attribute debe estar presente.',
     'regex'                => 'El formato de :attribute es inválido.',
     'required'             => 'El campo :attribute es obligatorio.',
@@ -145,6 +145,10 @@ return [
 
     'attributes' => [
         'name'                  => 'nombre',
+        'precio_venta'          =>' precio de venta',
+        'tipo_de_producto'      => 'tipo de producto',
+        'marca'                 => 'marca',
+        'foto_producto'         => 'foto del producto',
         'username'              => 'usuario',
         'email'                 => 'correo electrónico',
         'first_name'            => 'nombre',

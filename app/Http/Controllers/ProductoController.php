@@ -6,6 +6,10 @@ use genericlothing\Marca;
 use genericlothing\TipoProducto;
 use genericlothing\Producto;
 use Illuminate\Http\Request;
+use genericlothing\Http\Requests\StoreProductoRequest;
+use genericlothing\Http\Requests\UpdateProductoRequest;
+use File;
+use Illuminate\Filesystem\Filesystem;
 class ProductoController extends Controller
 {
     /**
@@ -43,15 +47,8 @@ class ProductoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProductoRequest $request)
     {
-      //$validateData = $request->validate([
-        //'nombre' => 'required|string|max: 30',
-        //'precio_venta' =>'required|numeric',
-        //'tipo_de_producto' => 'required',
-        //'marca' => 'required',
-        //'foto_producto' =>  'required|image'
-      //]);
 
       if($request->hasFile('foto_producto')){
         $file = $request->file('foto_producto');
@@ -69,7 +66,7 @@ class ProductoController extends Controller
         $Producto->ruta = $ruta;
         $Producto->save();
 
-        return 'Guardado';
+        return 'guardado';
     }
 
     /**
@@ -90,9 +87,11 @@ class ProductoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Producto $Producto)
     {
-        //
+      $TipoProductos = TipoProducto::all();
+      $Marcas = Marca::all();
+      return view('Producto.edit', compact('Producto','Marcas','TipoProductos'));
     }
 
     /**
@@ -102,9 +101,27 @@ class ProductoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateProductoRequest $request, Producto $Producto)
     {
-        //
+
+      $Producto->cod_tipo_producto = $request->input('tipo_de_producto');
+      $Producto->cod_marca = $request->input('marca');
+      $Producto->nom_producto = $request->input('nombre');
+      $Producto->precio_venta = $request->input('precio_venta');
+
+      rename($Producto->ruta, public_path('img').'\\'.$request->input('nombre'));
+      $Producto->ruta = public_path('img').'\\'.$request->input('nombre');
+
+      if($request->hasFile('foto_producto')){
+          $file = $request->file('foto_producto');
+          $name = time().$file->getClientOriginalName();
+          $ruta = public_path('img').'\\'.$request->input('nombre').'\\';
+          $file->move(public_path('img').'\\'.$request->input('nombre').'\\', $name);
+      }
+
+      $Producto->save();
+
+      return 'Actualizado';
     }
 
     /**
@@ -113,8 +130,11 @@ class ProductoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Producto $Producto)
     {
-        //
+      File::deleteDirectory(public_path('img').'\\'.$Producto->nom_producto);
+      $Producto->delete();
+      return 'Eliminado';
     }
+
 }
