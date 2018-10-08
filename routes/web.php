@@ -12,14 +12,15 @@
 */
 
 Route::get('/',function(){
-  return 'Pagina web pulenta, no ahora';
+  return redirect('index');
 });
+
+Route::get('index', 'Auth\LoginController@showIndex')->middleware('guest');
 Route::get('login', 'Auth\LoginController@showLoginForm')->middleware('guest');
 
 Route::get('home','HomeController@index')->name('home');
 Route::post('login','Auth\LoginController@login')->name('login');
 Route::post('logout','Auth\LoginController@logout')->name('logout');
-
 
 
 //Rutas de admin

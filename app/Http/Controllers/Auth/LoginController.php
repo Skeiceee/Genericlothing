@@ -14,6 +14,9 @@ class LoginController extends Controller
   public function showLoginForm(){
     return view('auth.login');
   }
+  public function showIndex(){
+    return view('Index.index');
+  }
   public function login(){
       $credentials = $this->validate(request(),[
         'email' => 'email|required|string',

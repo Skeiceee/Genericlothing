@@ -16,7 +16,16 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="{{url('admin/producto')}}">Productos</a>
+            <div class="btn-group">
+              <a class="btn btn-primary" href="/admin/producto">Productos</a>
+              <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="sr-only">Toggle Dropdown</span>
+              </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="/admin/marca">Marca</a>
+                <a class="dropdown-item" href="/admin/tipo-producto">Tipo de producto</a>
+              </div>
+            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Ventas</a>
@@ -27,6 +36,7 @@
           <li class="nav-item">
             <a class="nav-link" href="#">Clientes</a>
           </li>
+
         </ul>
       </div>
     </nav>
