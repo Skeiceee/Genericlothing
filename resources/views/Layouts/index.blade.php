@@ -19,8 +19,9 @@
             <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <a class="btn btn-primary my-2 my-sm-0" href="login">Iniciar sesión</button></a>
+        <form class="form-inline my-2 my-lg-0" action="{{route('logout')}}" method="post">
+          @csrf
+          <button class="btn btn-danger" type="sumbit" name="button">Cerrar sesion</button>
         </form>
       </div>
     </nav>

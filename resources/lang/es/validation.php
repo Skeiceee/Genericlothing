@@ -149,6 +149,7 @@ return [
         'tipo_de_producto'      => 'tipo de producto',
         'marca'                 => 'marca',
         'foto_producto'         => 'foto del producto',
+        'detalle_producto'      => 'detalle del producto',
         'username'              => 'usuario',
         'email'                 => 'correo electrónico',
         'first_name'            => 'nombre',

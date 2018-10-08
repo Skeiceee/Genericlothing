@@ -15,6 +15,7 @@ background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pjwh
   <section class="container-fluid pt-4">
     <div class="row">
       <div id="mostrar_producto" class="col-lg-10 col-sm-12 col-md-10 mb-3 mx-auto">
+        @include('Common.success')
         <div class="card">
             <div class="card-header">
               <span>{{$Producto->nom_producto}}</span>
@@ -98,6 +99,14 @@ background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pjwh
                       </table>
                       <div class="card">
                         <div class="card-header">
+                          <span>Detalle del producto</span>
+                        </div>
+                        <div class="card-body">
+                          <p>{{$Producto->detalle_producto}}</p>
+                        </div>
+                      </div>
+                      <div class="card mt-3">
+                        <div class="card-header">
                           <span>Ruta de las imagenes:</span>
                         </div>
                         <div class="card-body container-fluid">
@@ -114,11 +123,12 @@ background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pjwh
               </div>
             </div>
             <div class="card-footer">
+              <a class="btn btn-primary float-left" href="{{ route('producto.edit', $Producto->cod_producto) }}">Modificar</a>
               <form action="/admin/producto/{{$Producto->cod_producto}}" method="post">
                 <input name="_method" type="hidden" value="DELETE">
                 @method('DELETE')
                 @csrf
-                <button class="btn btn-danger float-left" type="sumbit" name="btnEliminar">Eliminar</button>
+                <button class="btn btn-danger float-left ml-3" type="sumbit" name="btnEliminar">Eliminar</button>
               </form>
               <a class="btn btn-primary float-right" href="{{ route('producto.index') }}">Volver</a>
             </div>
