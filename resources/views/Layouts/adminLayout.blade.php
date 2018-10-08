@@ -8,28 +8,57 @@
     <title>Genericlothing @yield('title')</title>
   </head>
   <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="{{url('admin')}}">Genericlothing</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="{{url('admin/producto')}}">Productos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Ventas</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Tiendas</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Clientes</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="/admin">Genericlothing</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+
+                  <div class="btn-group" style="margin:5px;">
+                      <a class="btn btn-primary" href="/admin/producto">Productos</a>
+                      <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <span class="sr-only">Toggle Dropdown</span>
+                      </button>
+                      <div class="dropdown-menu">
+                          <a class="dropdown-item" href="/admin/marca">Marcas</a>
+                          <a class="dropdown-item" href="/admin/tipo-producto">Tipos de producto</a>
+                          <a class="dropdown-item" href="/admin/talla">Tallas</a>
+                          <a class="dropdown-item" href="/admin/existencia-producto">Existencia de productos</a>
+                      </div>
+                  </div>
+
+                  <div class="btn-group" style="margin:5px;">
+                      <a class="btn btn-primary" href="/admin/user">Clientes</a>
+                      <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <span class="sr-only">Toggle Dropdown</span>
+                      </button>
+                      <div class="dropdown-menu">
+                          <a class="dropdown-item" href="/admin/pedido">Pedidos</a>
+                          <a class="dropdown-item" href="/admin/venta">Ventas</a>
+                          <a class="dropdown-item" href="/admin/envio">Envíos</a>
+                      </div>
+                  </div>
+
+                  <div class="btn-group" style="margin:5px;">
+                      <a class="btn btn-primary" href="/admin/tienda">Tiendas</a>
+                      <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <span class="sr-only">Toggle Dropdown</span>
+                      </button>
+                      <div class="dropdown-menu">
+                          <a class="dropdown-item" href="/admin/bodega">Bodegas</a>
+                          <a class="dropdown-item" href="/admin/ciudad">Ciudades</a>
+                      </div>
+                  </div>
+
+              </ul>
+          </div>
+      </nav>
+
+
   </header>
   <body>
   @yield('content')

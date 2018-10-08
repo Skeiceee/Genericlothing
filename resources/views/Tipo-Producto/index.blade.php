@@ -15,6 +15,7 @@
                     <th>Codigo</th>
                     <th>Nombre</th>
                     <th>Estado</th>
+                    <th class="no-sort" width=20%>Acciones</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -23,10 +24,17 @@
                       <td>{{$TipoProducto->cod_tipo_producto}}</td>
                       <td>{{$TipoProducto->nombre}}</td>
                       <td>{{$TipoProducto->estado}}</td>
+                      <td>
+                          <a class="btn btn-primary btn-sm" href="#">Editar</a>
+                          <a class="btn btn-primary btn-sm" href="#">Eliminar</a>
+                      </td>
                       </tr>
                     @endforeach
                 </tbody>
               </table>
+              <div class="card-footer">
+                  <a class="btn btn-primary" href="{{ route('tipo-producto.create') }}">Crear tipo de producto</a>
+              </div>
             </div>
         </div>
       </div>

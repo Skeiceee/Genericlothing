@@ -1,27 +1,33 @@
 @extends('Layouts.adminLayout')
-@section('title',' - Ciudades')
+@section('title',' - Tiendas')
 @section('content')
   <section class="container-fluid pt-4">
     <div class="row">
-      <div id="mostrar_ciudad" class="col-lg col-sm col-md mt-4">
+      <div id="mostrar_tienda" class="col-lg col-sm col-md mt-4">
         <div class="card ">
             <div class="card-header">
-              <span>Ciudades</span>
+              <span>Tiendas</span>
             </div>
             <div class="card-body">
-              <table id="mostrar_ciudad" class="table table-bordered table-hover table-striped">
+              <table id="mostrar_tienda" class="table table-bordered table-hover table-striped">
                 <thead class = "theade-danger">
                   <tr>
-                    <th>Codigo</th>
+                    <th>Codigo Tienda</th>
+                    <th>Codigo Ciudad</th>
                     <th>Nombre</th>
+                    <th>Direccion</th>
+                    <th>Estado</th>
                     <th class="no-sort" width=20%>Acciones</th>
                   </tr>
                 </thead>
                 <tbody>
-                    @foreach ($Ciudades as $Ciudad)
+                    @foreach ($Tiendas as $Tienda)
                       <tr>
-                          <td>{{$Ciudad->cod_ciudad}}</td>
-                          <td>{{$Ciudad->nom_ciudad}}</td>
+                          <td>{{$Tienda->cod_tienda}}</td>
+                          <td>{{$Tienda->cod_ciudad}}</td>
+                          <td>{{$Tienda->nom_tienda}}</td>
+                          <td>{{$Tienda->direccion_tienda}}</td>
+                          <td>{{$Tienda->estado}}</td>
                           <td>
                               <a class="btn btn-primary btn-sm" href="#">Editar</a>
                               <a class="btn btn-primary btn-sm" href="#">Eliminar</a>
@@ -31,7 +37,7 @@
                 </tbody>
               </table>
               <div class="card-footer">
-                  <a class="btn btn-primary" href="{{ route('ciudad.create') }}">Crear ciudad</a>
+                  <a class="btn btn-primary" href="{{ route('tienda.create') }}">Crear tienda</a>
               </div>
             </div>
         </div>
