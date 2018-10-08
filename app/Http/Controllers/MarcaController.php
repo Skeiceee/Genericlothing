@@ -4,7 +4,7 @@ namespace genericlothing\Http\Controllers;
 
 use genericlothing\Marca;
 use Illuminate\Http\Request;
-
+use genericlothing\Http\Requests\StoreMarcaRequest;
 class MarcaController extends Controller
 {
     /**
@@ -39,15 +39,14 @@ class MarcaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreMarcaRequest $request)
     {
         $Marca = new Marca();
 
         $Marca->nombre = $request->input('nombre');
         $Marca->estado = 0;
         $Marca->save();
-
-        return 'Guardado';
+        return redirect()->route('marca.index')->with('status','La marca "'.$Marca->nombre.'" a sido creado exitosamente.');
     }
 
     /**

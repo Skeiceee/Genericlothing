@@ -3,7 +3,8 @@
 @section('content')
   <section class="container-fluid pt-4">
     <div class="row">
-      <div id="mostrar_tipo_producto" class="col-lg col-sm col-md mt-4">
+      <div id="mostrar_tipo_producto" class="col-lg col-sm col-md">
+      @include('Common.success')
         <div class="card ">
             <div class="card-header">
               <span>Tipos de productos</span>
@@ -23,7 +24,7 @@
                       <tr>
                       <td>{{$TipoProducto->cod_tipo_producto}}</td>
                       <td>{{$TipoProducto->nombre}}</td>
-                      <td>{{$TipoProducto->estado}}</td>
+                      <td>{{($TipoProducto->estado == 0) ? 'Activo' : 'Eliminado'}}</td>
                       <td>
                           <a class="btn btn-primary btn-sm" href="#">Editar</a>
                           <a class="btn btn-primary btn-sm" href="#">Eliminar</a>

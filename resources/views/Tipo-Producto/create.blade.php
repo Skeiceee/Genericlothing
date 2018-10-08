@@ -4,6 +4,7 @@
   <section class="container-fluid pt-4">
     <div class="row">
       <div id="registrar_tipo_producto" class="col-lg col-sm col-md">
+        @include('Common.errorProducto')
         <form class="form-group" action="/admin/tipo-producto" method="post">
           @csrf
           <div class="form-group">

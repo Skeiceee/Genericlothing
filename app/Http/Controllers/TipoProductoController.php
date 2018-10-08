@@ -4,6 +4,7 @@ namespace genericlothing\Http\Controllers;
 
 use genericlothing\TipoProducto;
 use Illuminate\Http\Request;
+use genericlothing\Http\Requests\StoreTipoProductoRequest;
 
 class TipoProductoController extends Controller
 {
@@ -38,7 +39,7 @@ class TipoProductoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTipoProductoRequest  $request)
     {
         $TipoProducto = new TipoProducto();
 
@@ -46,7 +47,7 @@ class TipoProductoController extends Controller
         $TipoProducto->estado = 0;
         $TipoProducto->save();
 
-        return 'Guardado';
+        return redirect()->route('tipo-producto.index')->with('status','El tipo de producto "'.$TipoProducto->nombre.'" a sido creado exitosamente.');
     }
 
     /**
