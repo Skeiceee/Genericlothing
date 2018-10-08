@@ -5,7 +5,7 @@ namespace genericlothing\Http\Controllers;
 use genericlothing\Envio;
 use Illuminate\Http\Request;
 
-class Envio extends Controller
+class EnvioController extends Controller
 {
     /**
      * Display a listing of the resource.
