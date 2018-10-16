@@ -24,7 +24,7 @@ class UpdateProductoRequest extends FormRequest
     public function rules()
     {
         return [
-          'nombre' => 'string|max: 50',
+          'nombre' => 'string|max:50',
           'precio_venta' =>'numeric|min: 1',
           'tipo_de_producto' => 'required',
           'marca' => 'required',

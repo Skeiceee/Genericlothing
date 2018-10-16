@@ -19,15 +19,36 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::get('Productos',function(){
-  $query = DB::table('producto as e')
-         ->select('e.cod_producto', 'e.nom_producto', 'e.precio_venta', 'd.nombre as nombre_marca', 'j.nombre as nombre_tipo', DB::raw('if(e.estado = 0,\'Activo\',\'Eliminado\') as estado'))
-         ->join('marca as d','e.cod_marca', '=', 'd.cod_marca')
-         ->join('tipo-producto as j', 'e.cod_tipo_producto', '=', 'j.cod_tipo_producto');
+    $query = DB::table('producto as e')
+           ->select('e.cod_producto', 'e.nom_producto', 'e.precio_venta', 'd.nombre as nombre_marca', 'j.nombre as nombre_tipo', DB::raw('if(e.estado = 0,\'Activo\',\'Eliminado\') as estado'))
+           ->join('marca as d','e.cod_marca', '=', 'd.cod_marca')
+           ->join('tipo-producto as j', 'e.cod_tipo_producto', '=', 'j.cod_tipo_producto');
 
     return datatables()
               ->of($query)
-              ->addColumn('btn','actions')
+              ->addColumn('btn','Actions.actionsProducto')
               ->rawColumns(['btn'])
               ->toJson();
+});
 
+Route::get('Marcas',function(){
+    $query = DB::table('marca')
+           ->select('cod_marca','nombre', DB::raw('if(estado = 0,\'Activo\',\'Eliminado\') as estado'));
+
+    return datatables()
+              ->of($query)
+              ->addColumn('btn','Actions.actionsMarca')
+              ->rawColumns(['btn'])
+              ->toJson();
+});
+
+Route::get('TipoProductos',function(){
+    $query = DB::table('tipo-producto')
+           ->select('cod_tipo_producto','nombre', DB::raw('if(estado = 0,\'Activo\',\'Eliminado\') as estado'));
+
+    return datatables()
+              ->of($query)
+              ->addColumn('btn','Actions.actionsTipoProducto')
+              ->rawColumns(['btn'])
+              ->toJson();
 });

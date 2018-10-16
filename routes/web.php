@@ -38,3 +38,6 @@ Route::resource('admin/venta','VentaController');
 Route::resource('admin/pedido','PedidoController');
 Route::resource('admin/existencia-producto','ExistenciaProductoController');
 Route::resource('admin/envio','EnvioController');
+
+Route::get('admin/marca/{Marca}/delete', ['uses' => 'MarcaController@destroy', 'as' => 'Marca.delete']);
+Route::get('admin/tipo-producto/{TipoProducto}/delete', ['uses' => 'TipoProductoController@destroy', 'as' => 'TipoProducto.delete']);

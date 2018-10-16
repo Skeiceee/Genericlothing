@@ -5,7 +5,8 @@ namespace genericlothing\Http\Controllers;
 use genericlothing\TipoProducto;
 use Illuminate\Http\Request;
 use genericlothing\Http\Requests\StoreTipoProductoRequest;
-
+use genericlothing\Http\Requests\UpdateTipoProductoRequest;
+use DB;
 class TipoProductoController extends Controller
 {
     /**
@@ -67,9 +68,9 @@ class TipoProductoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(TipoProducto $TipoProducto)
     {
-        //
+      return view('Tipo-Producto.edit', compact('TipoProducto'));
     }
 
     /**
@@ -79,9 +80,26 @@ class TipoProductoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateTipoProductoRequest $request, TipoProducto $TipoProducto)
     {
-        //
+      $val = DB::table('tipo-producto')
+              ->select(DB::raw('count(*) as nombre'))
+              ->where('nombre', $request->input('nombre'))->value('nombre');
+
+      $estado = $request->input('estado');
+
+      if($val == 0){
+        $TipoProducto->nombre = $request->input('nombre');
+      }else{
+
+      }
+      if($estado != null){
+        $TipoProducto->estado = $estado;
+      }
+
+      $TipoProducto->save();
+
+      return redirect()->route('tipo-producto.index', [$TipoProducto])->with('status','La marca "'.$TipoProducto->nombre.'" a sido actualizado exitosamente.');
     }
 
     /**
@@ -90,8 +108,20 @@ class TipoProductoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(TipoProducto $TipoProducto)
     {
-        //
+      $delete = DB::table('producto')
+              ->select(DB::raw('count(*) as estado'))
+              ->where('cod_tipo_producto', $TipoProducto->cod_tipo_producto)->value('estado');
+
+      if($delete == 0){
+        $TipoProducto->estado = 1;
+        $TipoProducto->save();
+        return redirect()->route('tipo-producto.index')->with('status','El tipo de producto "'.$TipoProducto->nombre.'" a sido eliminado exitosamente.');
+      }else if($delete == 1){
+        return redirect()->route('tipo-producto.index')->with('status','El tipo de producto "'.$TipoProducto->nombre.'" esta asociado a un producto, no puede ser eliminada');
+      }else{
+        return redirect()->route('tipo-producto.index')->with('status','El tipo de producto "'.$TipoProducto->nombre.'" esta asociado a '.$delete.' productos, no puede ser eliminada');
+      }
     }
 }

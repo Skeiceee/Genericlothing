@@ -17,7 +17,7 @@
                     <th>Apellido Paterno</th>
                     <th>Apellido Materno</th>
                     <th>Teléfono</th>
-                    <th>Codigo de ciudad</th>
+                    <th>Ciudad</th>
                     <th>E-mail</th>
                     <th>Password</th>
                     <th>Estado</th>
@@ -32,10 +32,11 @@
                           <td>{{$User->apellido_paterno}}</td>
                           <td>{{$User->apellido_materno}}</td>
                           <td>{{$User->telefono}}</td>
-                          <td>{{$User->cod_ciudad}}</td>
+                          {{ $Nombre = DB::table('ciudad')->where('cod_ciudad',$User->cod_ciudad)->value('nom_ciudad')}}
+                          <td>{{$Nombre}}</td>
                           <td>{{$User->email}}</td>
                           <td>{{$User->password}}</td>
-                          <td>{{$User->estado}}</td>
+                          <td>{{($User->estado == 0) ? 'Activo' : (($User->estado == 1) ? 'Eliminado' : 'Administrador')}}</td>
                           <td>
                               <a class="btn btn-primary btn-sm" style="margin:2px" href="#">Editar</a>
                               <a class="btn btn-primary btn-sm" style="margin:2px" href="#">Eliminar</a>

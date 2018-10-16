@@ -3,7 +3,7 @@
 @section('content')
   <section class="container-fluid pt-4">
     <div class="row">
-      <div id="registrar_tipo_producto" class="col-lg col-sm col-md">
+      <div id="registrar_tipo_producto" class="col-lg-10 col-sm-12 col-md-10 mx-auto">
         @include('Common.errorProducto')
         <form class="form-group" action="/admin/tipo-producto" method="post">
           @csrf
@@ -15,7 +15,10 @@
               <div class="card-body">
                 <label for="nombre">Nombre</label>
                 <input class="form-control" type="text" name="nombre" id="nombre">
-                <button class="btn btn-primary mt-4" type="submit">Ingresar</button>
+              </div>
+              <div class="card-footer">
+                <button class="btn btn-primary" type="submit">Ingresar</button>
+                <a class="btn btn-primary float-right" href="{{ route('tipo-producto.index') }}">Volver</a>
               </div>
             </div>
           </div>

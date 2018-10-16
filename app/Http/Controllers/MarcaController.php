@@ -5,6 +5,8 @@ namespace genericlothing\Http\Controllers;
 use genericlothing\Marca;
 use Illuminate\Http\Request;
 use genericlothing\Http\Requests\StoreMarcaRequest;
+use genericlothing\Http\Requests\UpdateMarcaRequest;
+use DB;
 class MarcaController extends Controller
 {
     /**
@@ -66,9 +68,9 @@ class MarcaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Marca $Marca)
     {
-        //
+      return view('Marca.edit', compact('Marca'));
     }
 
     /**
@@ -78,9 +80,27 @@ class MarcaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateMarcaRequest $request, Marca $Marca)
     {
-        //
+      $val = DB::table('marca')
+              ->select(DB::raw('count(*) as nombre'))
+              ->where('nombre', $request->input('nombre'))->value('nombre');
+
+      $estado = $request->input('estado');
+
+      if($val == 0){
+        $Marca->nombre = $request->input('nombre');
+      }else{
+
+      }
+      if($estado != null){
+        $Marca->estado = $estado;
+      }
+
+      $Marca->save();
+
+      return redirect()->route('marca.index', [$Marca])->with('status','La marca "'.$Marca->nombre.'" a sido actualizado exitosamente.');
+
     }
 
     /**
@@ -89,8 +109,20 @@ class MarcaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Marca $Marca)
     {
-        //
+      $delete = DB::table('producto')
+              ->select(DB::raw('count(*) as estado'))
+              ->where('cod_marca', $Marca->cod_marca)->value('estado');
+
+      if($delete == 0){
+        $Marca->estado = 1;
+        $Marca->save();
+        return redirect()->route('marca.index')->with('status','La marca "'.$Marca->nombre.'" a sido eliminado exitosamente.');
+      }else if($delete == 1){
+        return redirect()->route('marca.index')->with('status','La marca "'.$Marca->nombre.'" esta asociado a un producto, no puede ser eliminada');
+      }else{
+        return redirect()->route('marca.index')->with('status','La marca "'.$Marca->nombre.'" esta asociado a '.$delete.' productos, no puede ser eliminada');
+      }
     }
 }

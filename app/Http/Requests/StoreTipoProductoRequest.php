@@ -24,7 +24,7 @@ class StoreTipoProductoRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'required|string|max:20',
+            'nombre' => 'required|string|max:20|unique:tipo-producto',
         ];
     }
 }

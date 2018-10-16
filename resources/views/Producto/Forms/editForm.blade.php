@@ -14,7 +14,7 @@
            <label for="precio_venta">Precio de venta</label>
            <input class="form-control" type="text" name="precio_venta" id="precio_venta" value="{{$Producto->precio_venta}}">
            <label for="precio_venta">Detalle del producto</label>
-           <input class="form-control" type="text" name="detalle_producto" id="detalle_producto" value="{{$Producto->detalle_producto}}">           
+           <input class="form-control" type="text" name="detalle_producto" id="detalle_producto" value="{{$Producto->detalle_producto}}">
            <label for="tipo_producto">Tipo del producto</label>
            <select class="form-control" name="tipo_de_producto" id="tipo_de_producto">
              @foreach ($TipoProductos as $TipoProducto)
@@ -40,7 +40,7 @@
            <div class="input-group mb-3 mt-4">
              <div class="custom-file">
                <input type="file" class="custom-file-input" name="foto_producto" id="foto_producto">
-               <label class="custom-file-label" for="foto_producto" id="lblfile">Eliga una imagen</label>
+               <label class="custom-file-label" for="foto_producto" id="lblfile">Agregar imagen</label>
              </div>
            </div>
            <div class="card mt-4">

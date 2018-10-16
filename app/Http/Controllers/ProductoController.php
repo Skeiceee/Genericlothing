@@ -110,7 +110,7 @@ class ProductoController extends Controller
       $Producto->nom_producto = $request->input('nombre');
       $Producto->precio_venta = $request->input('precio_venta');
       $Producto->detalle_producto = $request->input('detalle_producto');
-      
+
       rename($Producto->ruta, public_path('img').'\\'.$request->input('nombre'));
       $Producto->ruta = public_path('img').'\\'.$request->input('nombre');
 

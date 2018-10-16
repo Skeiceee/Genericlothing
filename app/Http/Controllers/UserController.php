@@ -1,7 +1,7 @@
 <?php
 
 namespace genericlothing\Http\Controllers;
-
+use genericlothing\Ciudad;
 use genericlothing\User;
 use Illuminate\Http\Request;
 
@@ -18,8 +18,9 @@ class UserController extends Controller
      }
     public function index()
     {
+        $Ciudad = Ciudad::all();
         $Users = User::all();
-        return view('User.index',compact('Users'));
+        return view('User.index',compact('Users','Ciudad'));
     }
 
     /**

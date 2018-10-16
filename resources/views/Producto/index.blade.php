@@ -25,7 +25,7 @@
                     <th>Marca</th>
                     <th>Tipo de producto</th>
                     <th>Estado</th>
-                    <th class="no-sort" width=10  %>Acciones</th>
+                    <th class="no-sort" width=10>Acciones</th>
                   </tr>
                 </thead>
               </table>

@@ -4,7 +4,7 @@ namespace genericlothing\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreMarcaRequest extends FormRequest
+class UpdateTipoProductoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class StoreMarcaRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'required|string|max:20|unique:marca',
+            'nombre' => 'string|max:20',
         ];
     }
 }

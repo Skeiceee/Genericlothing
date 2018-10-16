@@ -24,7 +24,7 @@ class StoreProductoRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'required|string|max:50',
+            'nombre' => 'required|string|max:50|unique:producto,nom_producto',
             'precio_venta' =>'required|numeric|min: 1',
             'tipo_de_producto' => 'required',
             'marca' => 'required',
