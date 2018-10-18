@@ -17,13 +17,17 @@
            <label for="tipo_producto">Tipo del producto</label>
            <select class="form-control" name="tipo_de_producto" id="tipo_de_producto">
              @foreach ($TipoProductos as $TipoProducto)
+               @if ($TipoProducto->estado == 0)
                <option value="{{$TipoProducto->cod_tipo_producto}}">{{$TipoProducto->nombre}}</option>
+               @endif
              @endforeach
            </select>
            <label for="marca">Marca</label>
            <select class="form-control" name="marca" id='marca'>
              @foreach ($Marcas as $Marca)
+               @if ($Marca->estado == 0)
                <option value="{{$Marca->cod_marca}}">{{$Marca->nombre}}</option>
+               @endif
              @endforeach
            </select>
          </div>

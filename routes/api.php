@@ -52,3 +52,14 @@ Route::get('TipoProductos',function(){
               ->rawColumns(['btn'])
               ->toJson();
 });
+
+Route::get('Ciudades',function(){
+    $query = DB::table('ciudad')
+           ->select('cod_ciudad','nom_ciudad');
+
+    return datatables()
+              ->of($query)
+              ->addColumn('btn','Actions.actionsCiudad')
+              ->rawColumns(['btn'])
+              ->toJson();
+});

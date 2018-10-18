@@ -45,7 +45,7 @@ class CiudadController extends Controller
         $Ciudad->nom_ciudad= $request->input('nom_ciudad');
         $Ciudad->save();
 
-        return 'Guardado';
+        return redirect()->route('ciudad.index')->with('status','La ciudad "'.$Ciudad->nom_ciudad.'" a sido creado exitosamente.');
     }
 
     /**
@@ -65,9 +65,9 @@ class CiudadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Ciudad $Ciudad)
     {
-        //
+      return view('ciudad.edit', compact('Ciudad'));
     }
 
     /**
@@ -88,8 +88,8 @@ class CiudadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Ciudad $Ciudad)
     {
-        //
+        return 'eliminado, jaja te la creiste';
     }
 }
