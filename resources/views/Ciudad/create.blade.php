@@ -4,6 +4,7 @@
   <section class="container-fluid pt-4">
     <div class="row">
       <div id="registrar_ciudad" class="col-lg-10 col-sm-12 col-md-10 mx-auto">
+        @include('Common.errorProducto')
         <form class="form-group" action="/admin/ciudad" method="post">
           @csrf
           <div class="form-group">
@@ -23,6 +24,3 @@
     </div>
   </section>
 @endsection
-
-
-<option value=""></option>

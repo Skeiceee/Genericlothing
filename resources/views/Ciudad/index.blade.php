@@ -21,7 +21,7 @@
                   <tr>
                     <th>Codigo</th>
                     <th>Nombre</th>
-                    <th class="no-sort" width=20%>Acciones</th>
+                    <th class="no-sort" width=10>Acciones</th>
                   </tr>
                 </thead>
               </table>

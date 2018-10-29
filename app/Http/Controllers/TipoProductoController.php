@@ -90,16 +90,15 @@ class TipoProductoController extends Controller
 
       if($val == 0){
         $TipoProducto->nombre = $request->input('nombre');
-      }else{
-
       }
+
       if($estado != null){
         $TipoProducto->estado = $estado;
       }
 
       $TipoProducto->save();
+      return redirect()->route('tipo-producto.index', [$TipoProducto])->with('status','El tipo de producto "'.$TipoProducto->nombre.'" a sido actualizado exitosamente.');
 
-      return redirect()->route('tipo-producto.index', [$TipoProducto])->with('status','La marca "'.$TipoProducto->nombre.'" a sido actualizado exitosamente.');
     }
 
     /**

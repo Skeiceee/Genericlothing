@@ -4,7 +4,9 @@ namespace genericlothing\Http\Controllers;
 
 use genericlothing\Ciudad;
 use Illuminate\Http\Request;
-
+use genericlothing\Http\Requests\StoreCiudadRequest;
+use genericlothing\Http\Requests\UpdateCiudadRequest;
+use DB;
 class CiudadController extends Controller
 {
     /**
@@ -38,7 +40,7 @@ class CiudadController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCiudadRequest $request)
     {
         $Ciudad = new Ciudad();
 
@@ -77,9 +79,20 @@ class CiudadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateCiudadRequest $request, Ciudad $Ciudad)
     {
-        //
+      $val = DB::table('ciudad')
+              ->select(DB::raw('count(*) as nom_ciudad'))
+              ->where('nom_ciudad', $request->input('nom_ciudad'))->value('nom_ciudad');
+
+      if($val == 0){
+         $Ciudad->nom_ciudad = $request->input('nom_ciudad');
+      }
+
+      $Ciudad->save();
+
+      return redirect()->route('ciudad.index', [$Ciudad])->with('status','La ciudad "'.$Ciudad->nom_ciudad.'" a sido actualizado exitosamente.');
+
     }
 
     /**

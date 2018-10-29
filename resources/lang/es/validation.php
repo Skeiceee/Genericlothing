@@ -147,6 +147,7 @@ return [
         'name'                  => 'nombre',
         'precio_venta'          =>' precio de venta',
         'tipo_de_producto'      => 'tipo de producto',
+        'nom_ciudad'            => 'nombre',
         'marca'                 => 'marca',
         'foto_producto'         => 'foto del producto',
         'detalle_producto'      => 'detalle del producto',

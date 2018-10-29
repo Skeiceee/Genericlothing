@@ -5,7 +5,8 @@
     <div class="row">
       <div id="registrar_ciudad" class="col-lg-10 col-sm-12 col-md-10 mx-auto">
         @include('Common.errorProducto')
-        <form class="form-group" action="/admin/ciudad" method="post">
+        @include('Common.success')
+        <form class="form-group" action="/admin/ciudad/{{$Ciudad->cod_ciudad}}" method="post">
           @method('PUT')
           @csrf
           <div class="form-group">
