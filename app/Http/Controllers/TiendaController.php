@@ -5,7 +5,7 @@ namespace genericlothing\Http\Controllers;
 use genericlothing\Ciudad;
 use genericlothing\Tienda;
 use Illuminate\Http\Request;
-
+use genericlothing\Http\Requests\StoreTiendaRequest;
 class TiendaController extends Controller
 {
     /**
@@ -18,7 +18,7 @@ class TiendaController extends Controller
           $this->middleware('permisos');
      }
     public function index()
-    {   
+    {
         $Tiendas = Tienda::all();
         return view('Tienda.index',compact('Tiendas'));
     }
@@ -40,7 +40,7 @@ class TiendaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTiendaRequest $request)
     {
         $Tienda = new Tienda();
 
@@ -50,7 +50,7 @@ class TiendaController extends Controller
         $Tienda->estado = 0;
         $Tienda->save();
 
-        return 'Guardado';
+        return redirect()->route('tienda.index')->with('status','La tienda "'.$Tienda->nom_tienda.'" a sido creado exitosamente.');
     }
 
     /**
@@ -70,9 +70,10 @@ class TiendaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Tienda $Tienda)
     {
-        //
+      $Ciudades = Ciudad::all();
+      return view('Tienda.edit', compact('Tienda','Ciudades'));
     }
 
     /**
@@ -95,6 +96,6 @@ class TiendaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return 'te la creiste wei';
     }
 }

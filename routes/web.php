@@ -39,6 +39,8 @@ Route::resource('admin/pedido','PedidoController');
 Route::resource('admin/existencia-producto','ExistenciaProductoController');
 Route::resource('admin/envio','EnvioController');
 
+//Rutas de eliminación
 Route::get('admin/marca/{Marca}/delete', ['uses' => 'MarcaController@destroy', 'as' => 'Marca.delete']);
 Route::get('admin/tipo-producto/{TipoProducto}/delete', ['uses' => 'TipoProductoController@destroy', 'as' => 'TipoProducto.delete']);
 Route::get('admin/ciudad/{Ciudad}/delete', ['uses' => 'CiudadController@destroy', 'as' => 'Ciudad.delete']);
+Route::get('admin/tienda/{Tienda}/delete', ['uses' => 'TiendaController@destroy', 'as' => 'Tienda.delete']);

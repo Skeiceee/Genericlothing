@@ -31,6 +31,19 @@ Route::get('Productos',function(){
               ->toJson();
 });
 
+Route::get('Tiendas',function(){
+
+    $query = DB::table('tienda as e')
+           ->select('e.cod_tienda', 'd.nom_ciudad as nombre_ciudad', 'e.nom_tienda', 'e.direccion_tienda', DB::raw('if(e.estado = 0,\'Activo\',\'Eliminado\') as estado'))
+           ->join('ciudad as d','e.cod_ciudad', '=', 'd.cod_ciudad');
+
+    return datatables()
+              ->of($query)
+              ->addColumn('btn','Actions.actionsTienda')
+              ->rawColumns(['btn'])
+              ->toJson();
+});
+
 Route::get('Marcas',function(){
     $query = DB::table('marca')
            ->select('cod_marca','nombre', DB::raw('if(estado = 0,\'Activo\',\'Eliminado\') as estado'));

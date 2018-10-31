@@ -15,7 +15,10 @@
               <div class="card-body">
                 <label for="nom_ciudad">Nombre</label>
                 <input class="form-control" type="text" name="nom_ciudad" id="nom_ciudad">
-                <button class="btn btn-primary mt-4" type="submit">Ingresar</button>
+              </div>
+              <div class="card-footer">
+                <button class="btn btn-primary" type="submit">Ingresar</button>
+                <a class="btn btn-primary float-right" href="{{ route('ciudad.index') }}">Volver</a>
               </div>
             </div>
           </div>

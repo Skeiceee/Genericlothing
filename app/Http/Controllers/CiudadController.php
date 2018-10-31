@@ -103,6 +103,25 @@ class CiudadController extends Controller
      */
     public function destroy(Ciudad $Ciudad)
     {
-        return 'eliminado, jaja te la creiste';
+      $delete_cli = DB::table('cliente')
+              ->select(DB::raw('count(*) as estado'))
+              ->where('cod_ciudad', $Ciudad->cod_ciudad)->value('estado');
+
+      $delete_env = DB::table('envio')
+              ->select(DB::raw('count(*) as estado'))
+              ->where('cod_ciudad', $Ciudad->cod_ciudad)->value('estado');
+
+      $delete_tnda = DB::table('tienda')
+              ->select(DB::raw('count(*) as estado'))
+              ->where('cod_ciudad', $Ciudad->cod_ciudad)->value('estado');
+
+      if(($delete_cli == 0) && ($delete_env == 0) && ($delete_tnda == 0)){
+        $Ciudad->delete();
+        return redirect()->route('ciudad.index')->with('status','La ciudad "'.$Ciudad->nom_ciudad.'" a sido eliminado exitosamente.');
+      }else {
+        return redirect()->route('ciudad.index')->with('status','La ciudad "'.$Ciudad->nom_ciudad.'" debe estar asociado a un cliente, envio y/o tienda, no puede ser eliminada');
+      }
+
     }
+
 }
