@@ -44,6 +44,32 @@ Route::get('Tiendas',function(){
               ->toJson();
 });
 
+Route::get('Tallas',function(){
+
+    $query = DB::table('talla as e')
+           ->select('e.cod_talla','e.descripcion', DB::raw('if(e.estado = 0,\'Activo\',\'Eliminado\') as estado'));
+
+
+    return datatables()
+              ->of($query)
+              ->addColumn('btn','Actions.actionsTalla')
+              ->rawColumns(['btn'])
+              ->toJson();
+});
+
+Route::get('Bodegas',function(){
+
+    $query = DB::table('bodega as e')
+           ->select('e.cod_bodega', 'd.nom_tienda as nombre_tienda', 'e.direccion_bodega', 'e.estado', DB::raw('if(e.estado = 0,\'Activo\',\'Eliminado\') as estado'))
+           ->join('tienda as d','e.cod_tienda', '=', 'd.cod_tienda');
+
+    return datatables()
+              ->of($query)
+              ->addColumn('btn','Actions.actionsBodega')
+              ->rawColumns(['btn'])
+              ->toJson();
+});
+
 Route::get('Marcas',function(){
     $query = DB::table('marca')
            ->select('cod_marca','nombre', DB::raw('if(estado = 0,\'Activo\',\'Eliminado\') as estado'));

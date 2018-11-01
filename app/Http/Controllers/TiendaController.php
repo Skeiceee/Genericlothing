@@ -6,6 +6,8 @@ use genericlothing\Ciudad;
 use genericlothing\Tienda;
 use Illuminate\Http\Request;
 use genericlothing\Http\Requests\StoreTiendaRequest;
+use genericlothing\Http\Requests\UpdateTiendaRequest;
+use DB;
 class TiendaController extends Controller
 {
     /**
@@ -83,9 +85,19 @@ class TiendaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateTiendaRequest $request, Tienda $Tienda)
     {
-        //
+      $val = DB::table('tienda')
+              ->select(DB::raw('count(*) as cant'))
+              ->where('direccion_tienda', $request->input('direccion_tienda'))->value('cant');
+
+      if($val == 0){
+        $Tienda->direccion_tienda = $request->input('direccion_tienda');
+      }
+
+      $Tienda->save();
+      return redirect()->route('tienda.index', [$Tienda])->with('status','La tienda "'.$Tienda->nom_tienda.'" a sido actualizado exitosamente.');
+
     }
 
     /**

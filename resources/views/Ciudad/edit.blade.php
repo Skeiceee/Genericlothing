@@ -1,5 +1,5 @@
 @extends('Layouts.adminLayout')
-@section('title',' - Crear ciudad')
+@section('title',' - Modificar ciudad')
 @section('content')
   <section class="container-fluid pt-4">
     <div class="row">
@@ -17,7 +17,10 @@
               <div class="card-body">
                 <label for="nom_ciudad">Nombre</label>
                 <input class="form-control" type="text" name="nom_ciudad" id="nom_ciudad" value="{{$Ciudad->nom_ciudad}}">
-                <button class="btn btn-primary mt-4" type="submit">Modificar</button>
+              </div>
+              <div class="card-footer">
+                <button class="btn btn-primary" type="submit">Modificar</button>
+                <a class="btn btn-primary float-right" href="{{ route('ciudad.index') }}">Volver</a>
               </div>
             </div>
           </div>

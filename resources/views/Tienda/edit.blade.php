@@ -16,7 +16,7 @@
               <div class="card-body">
                 <label for="ciudad">Ciudad</label>
                 <select class="form-control" name="ciudad" id="ciudad">
-                    @foreach ($Ciudades as $Ciudad)                      
+                    @foreach ($Ciudades as $Ciudad)
                       @if($Ciudad->cod_ciudad == $Tienda->cod_ciudad)
                         <option selected="true" value="{{$Ciudad->cod_ciudad}}">{{$Ciudad->nom_ciudad}}</option>
                       @else
@@ -26,10 +26,10 @@
                 </select>
 
                 <label for="nom_tienda">Nombre</label>
-                <input class="form-control" type="text" name="nom_tienda" id="nom_tienda">
+                <input class="form-control" type="text" name="nom_tienda" id="nom_tienda" value="{{$Tienda->nom_tienda}}">
 
                 <label for="direccion_tienda">Direccion de la tienda</label>
-                <input class="form-control" type="text" name="direccion_tienda" id="direccion_tienda">
+                <input class="form-control" type="text" name="direccion_tienda" id="direccion_tienda" value="{{$Tienda->direccion_tienda}}">
 
               </div>
               <div class="card-footer">

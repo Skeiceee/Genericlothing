@@ -44,3 +44,5 @@ Route::get('admin/marca/{Marca}/delete', ['uses' => 'MarcaController@destroy', '
 Route::get('admin/tipo-producto/{TipoProducto}/delete', ['uses' => 'TipoProductoController@destroy', 'as' => 'TipoProducto.delete']);
 Route::get('admin/ciudad/{Ciudad}/delete', ['uses' => 'CiudadController@destroy', 'as' => 'Ciudad.delete']);
 Route::get('admin/tienda/{Tienda}/delete', ['uses' => 'TiendaController@destroy', 'as' => 'Tienda.delete']);
+Route::get('admin/tienda/{Bodega}/delete', ['uses' => 'BodegaController@destroy', 'as' => 'Bodega.delete']);
+Route::get('admin/tienda/{Talla}/delete', ['uses' => 'TallaController@destroy', 'as' => 'Talla.delete']);

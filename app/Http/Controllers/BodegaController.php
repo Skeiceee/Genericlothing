@@ -5,7 +5,7 @@ namespace genericlothing\Http\Controllers;
 use genericlothing\Tienda;
 use genericlothing\Bodega;
 use Illuminate\Http\Request;
-
+use genericlothing\Http\Requests\StoreBodegaRequest;
 class BodegaController extends Controller
 {
     /**
@@ -40,7 +40,7 @@ class BodegaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreBodegaRequest $request)
     {
         $Bodega = new Bodega();
 
@@ -49,7 +49,8 @@ class BodegaController extends Controller
         $Bodega->estado = 0;
         $Bodega->save();
 
-        return 'Guardado';
+        return redirect()->route('bodega.index')->with('status','La bodega a sido creada exitosamente.');
+
     }
 
     /**
@@ -69,9 +70,10 @@ class BodegaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Bodega $Bodega)
     {
-        //
+      $Tiendas = Tienda::all();
+      return view('Bodega.edit', compact('Bodega','Tiendas'));
     }
 
     /**

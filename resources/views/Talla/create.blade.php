@@ -12,9 +12,14 @@
                 <span>Registrar talla</span>
               </div>
               <div class="card-body">
+                <label for="nombre">Codigo de la talla</label>
+                <input class="form-control" type="text" name="cod_talla" id="cod_talla" maxlength="3">
                 <label for="nombre">Descripcion</label>
                 <input class="form-control" type="text" name="descripcion" id="descripcion">
-                <button class="btn btn-primary mt-4" type="submit">Ingresar</button>
+              </div>
+              <div class="card-footer">
+                <button class="btn btn-primary" type="submit">Ingresar</button>
+                <a class="btn btn-primary float-right" href="{{ route('talla.index') }}">Volver</a>
               </div>
             </div>
           </div>

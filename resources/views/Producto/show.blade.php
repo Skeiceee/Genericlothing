@@ -2,7 +2,7 @@
 @section('css')
   <link rel="stylesheet" href="/css/showStyle.css">
 @endsection
-@section('title', ' - Productos')
+@section('title', ' - Ver producto')
 @section('content')
 <style>
 .carousel-control-prev-icon {
