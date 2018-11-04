@@ -45,4 +45,4 @@ Route::get('admin/tipo-producto/{TipoProducto}/delete', ['uses' => 'TipoProducto
 Route::get('admin/ciudad/{Ciudad}/delete', ['uses' => 'CiudadController@destroy', 'as' => 'Ciudad.delete']);
 Route::get('admin/tienda/{Tienda}/delete', ['uses' => 'TiendaController@destroy', 'as' => 'Tienda.delete']);
 Route::get('admin/tienda/{Bodega}/delete', ['uses' => 'BodegaController@destroy', 'as' => 'Bodega.delete']);
-Route::get('admin/tienda/{Talla}/delete', ['uses' => 'TallaController@destroy', 'as' => 'Talla.delete']);
+Route::get('admin/talla/{Talla}/delete', ['uses' => 'TallaController@destroy', 'as' => 'Talla.delete']);

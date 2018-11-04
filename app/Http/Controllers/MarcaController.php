@@ -90,9 +90,8 @@ class MarcaController extends Controller
 
       if($val == 0){
         $Marca->nombre = $request->input('nombre');
-      }else{
-
       }
+      
       if($estado != null){
         $Marca->estado = $estado;
       }

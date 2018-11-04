@@ -44,6 +44,7 @@ Route::get('Tiendas',function(){
               ->toJson();
 });
 
+
 Route::get('Tallas',function(){
 
     $query = DB::table('talla as e')
@@ -100,5 +101,16 @@ Route::get('Ciudades',function(){
               ->of($query)
               ->addColumn('btn','Actions.actionsCiudad')
               ->rawColumns(['btn'])
+              ->toJson();
+});
+
+Route::get('Clientes',function(){
+
+    $query = DB::table('cliente as e')
+           ->select('e.rut_cliente', 'e.nom_cliente', 'e.apellido_paterno', 'e.apellido_materno', 'e.telefono', 'd.nom_ciudad as nombre_ciudad', 'e.email', DB::raw('if(e.estado = 0,\'Activo\',if(e.estado = 1,\'Eliminado\',\'Administrador\')) as estado'))
+           ->join('ciudad as d','e.cod_ciudad', '=', 'd.cod_ciudad');
+
+    return datatables()
+              ->of($query)
               ->toJson();
 });

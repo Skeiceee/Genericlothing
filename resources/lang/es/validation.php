@@ -144,6 +144,7 @@ return [
     */
 
     'attributes' => [
+        'cod_talla'             => 'codigo de la talla',
         'name'                  => 'nombre',
         'precio_venta'          =>' precio de venta',
         'tipo_de_producto'      => 'tipo de producto',

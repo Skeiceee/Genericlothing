@@ -4,7 +4,9 @@ namespace genericlothing\Http\Controllers;
 
 use genericlothing\Talla;
 use Illuminate\Http\Request;
-
+use genericlothing\Http\Requests\StoreTallaRequest;
+use genericlothing\Http\Requests\UpdateTallaRequest;
+use DB;
 class TallaController extends Controller
 {
     /**
@@ -38,15 +40,16 @@ class TallaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTallaRequest $request)
     {
         $Talla = new Talla();
 
+        $Talla->cod_talla = strtoupper($request->input('cod_talla'));
         $Talla->descripcion = $request->input('descripcion');
         $Talla->estado = 0;
         $Talla->save();
 
-        return 'Guardado';
+        return redirect()->route('talla.index')->with('status','La talla "'.$Talla->cod_talla.'" a sido creado exitosamente.');
     }
 
     /**
@@ -66,9 +69,9 @@ class TallaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Talla $Talla)
     {
-        //
+      return view('Talla.edit', compact('Talla'));
     }
 
     /**
@@ -78,9 +81,27 @@ class TallaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateTallaRequest $request, Talla $Talla)
     {
-        //
+      $val = DB::table('talla')
+              ->select(DB::raw('count(*) as cant'))
+              ->where('cod_talla', $request->input('cod_talla'))->value('cant');
+
+      $estado = $request->input('estado');
+
+      if($val == 0){
+         $Talla->cod_talla = $request->input('cod_talla');
+      }
+
+      if($estado != null){
+        $Talla->estado = $estado;
+      }
+
+      $Talla->descripcion = $request->input('descripcion');
+
+      $Talla->save();
+
+      return redirect()->route('talla.index', [$Talla])->with('status','La talla "'.$Talla->cod_talla.'" a sido actualizado exitosamente.');
     }
 
     /**
@@ -89,8 +110,19 @@ class TallaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Talla $Talla)
     {
-        //
+      $delete_exi = DB::table('existencia-producto')
+              ->select(DB::raw('count(*) as cant'))
+              ->where('cod_talla', $Talla->cod_talla)->value('cant');
+
+      if($delete_exi == 0){
+        $Talla->estado = 1;
+        $Talla->save();
+        return redirect()->route('talla.index')->with('status','La talla"'.$Talla->cod_talla.'" a sido eliminado exitosamente.');
+      }else {
+        return redirect()->route('talla.index')->with('status','La talla "'.$Talla->cod_talla.'" debe estar asociado a un existencia de un producto');
+      }
+
     }
 }

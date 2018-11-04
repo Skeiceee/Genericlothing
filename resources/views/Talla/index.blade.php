@@ -7,7 +7,8 @@
 @section('content')
   <section class="container-fluid pt-4">
     <div class="row">
-      <div id="mostrar_talla" class="col-lg col-sm col-md mt-4">
+      <div id="mostrar_talla" class="col-lg col-sm col-md">
+        @include('Common.success')
         <div class="card ">
             <div class="card-header">
               <span>Tallas</span>
