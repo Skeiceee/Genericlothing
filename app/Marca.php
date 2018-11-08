@@ -8,5 +8,5 @@ class Marca extends Model
 {
   protected $table = "Marca";
   protected $primaryKey = "cod_marca";
-  public $timestamps = false;
+  public $timestamps = false;  
 }

@@ -14,9 +14,12 @@ class CreateTallasTable extends Migration
     public function up()
     {
         Schema::create('Talla', function (Blueprint $table) {
-            $table->string('cod_talla', 3);
+
+            $table->string('cod_talla', 3)->primary();
+
             $table->string('descripcion');
             $table->string('estado');
+
         });
     }
 
