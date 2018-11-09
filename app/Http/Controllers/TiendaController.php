@@ -63,7 +63,10 @@ class TiendaController extends Controller
      */
     public function show($id)
     {
-        //
+      $Tienda = Tienda::find($id);
+      $Bodegas = Tienda::find($id)->bodegas;
+
+      return view('tienda.show', compact('Tienda','Bodegas'));
     }
 
     /**

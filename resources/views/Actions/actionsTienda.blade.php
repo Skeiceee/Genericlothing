@@ -1,3 +1,4 @@
+<a class="btn btn-primary btn-sm " href="{{ route('tienda.show', $cod_tienda) }}"><i class="far fa-eye"></i></a>
 <a class="btn btn-primary btn-sm " href="{{ route('tienda.edit', $cod_tienda) }}"><i class="fas fa-edit"></i></a>
 <!--Trigger Modal -->
 <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#tienda_{{$cod_tienda}}"><i class="fas fa-trash-alt text-white"></i></a>
