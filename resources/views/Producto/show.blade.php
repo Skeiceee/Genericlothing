@@ -96,6 +96,19 @@ background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pjwh
                           <td>Estado:</td>
                           <td>{{$str}}</td>
                         </tr>
+                        <tr>
+                          <td>Tallas:</td>
+                          <td>
+                            <div class="row">
+                              @php
+                                $tallas = $Producto->tallas;
+                                foreach ($tallas as $talla) {
+                                  echo '<div class="pl-3"><div class="border border-primary rounded-circle text-center" style="height: 30px; width: 30px;"><span>'.$talla->cod_talla.'</span></div></div>';
+                                }
+                              @endphp
+                            </div>
+                          </td>
+                        </tr>
                       </table>
                       <div class="card">
                         <div class="card-header">

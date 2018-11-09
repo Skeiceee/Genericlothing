@@ -22,8 +22,8 @@
                     <th>Nombre</th>
                     <th>Apellido paterno</th>
                     <th>Apellido materno</th>
-                    <th>Teléfono</th>
                     <th>Ciudad</th>
+                    <th>Teléfono</th>
                     <th>E-mail</th>
                     <th>Estado</th>
                   </tr>

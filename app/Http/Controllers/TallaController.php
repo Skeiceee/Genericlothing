@@ -112,7 +112,7 @@ class TallaController extends Controller
      */
     public function destroy(Talla $Talla)
     {
-      $delete_exi = DB::table('existencia-producto')
+      $delete_exi = DB::table('existencia_producto')
               ->select(DB::raw('count(*) as cant'))
               ->where('cod_talla', $Talla->cod_talla)->value('cant');
 
@@ -120,8 +120,10 @@ class TallaController extends Controller
         $Talla->estado = 1;
         $Talla->save();
         return redirect()->route('talla.index')->with('status','La talla"'.$Talla->cod_talla.'" a sido eliminado exitosamente.');
-      }else {
-        return redirect()->route('talla.index')->with('status','La talla "'.$Talla->cod_talla.'" debe estar asociado a un existencia de un producto');
+      }else if($delete_exi == 1){
+        return redirect()->route('talla.index')->with('status','La talla "'.$Talla->cod_talla.'" esta asociado a un existencia de un producto');
+      }else{
+        return redirect()->route('talla.index')->with('status','La talla "'.$Talla->cod_talla.'" esta asociado a existencias de productos');
       }
 
     }
