@@ -31,6 +31,16 @@ Route::get('Productos',function(){
               ->toJson();
 });
 
+Route::get('ExistenciaProductos',function(){
+    $query = DB::table('existencia_producto as e')
+           ->select('e.cod_producto', 'e.cod_talla', 'e.cod_bodega', 'd.nom_tienda as nombre_tienda', 'e.proveedor', 'e.precio_compra','e.cantidad', 'e.created_at', 'e.updated_at')
+           ->join('tienda as d','e.cod_tienda', '=', 'd.cod_tienda');
+
+    return datatables()
+              ->of($query)
+              ->toJson();
+});
+
 Route::get('Tiendas',function(){
 
     $query = DB::table('tienda as e')

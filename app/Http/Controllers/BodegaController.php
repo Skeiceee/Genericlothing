@@ -83,9 +83,18 @@ class BodegaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Bodega $Bodega)
     {
-        //
+      $val = DB::table('bodega')
+              ->select(DB::raw('count(*) as cant'))
+              ->where('direccion_bodega', $request->input('direccion_bodega'))->value('cant');
+
+      if($val == 0){
+        $Bodega->direccion_bodega = $request->input('direccion_bodega');
+      }
+
+      $Bodega->save();
+      return redirect()->route('bodega.index', [$Tienda])->with('status','La bodega "'.$Tienda->nom_tienda.'" a sido actualizado exitosamente.');
     }
 
     /**
@@ -94,7 +103,7 @@ class BodegaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Bodega $Bodega)
     {
         //
     }

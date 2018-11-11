@@ -24,8 +24,8 @@ class StoreTiendaRequest extends FormRequest
     public function rules()
     {
         return [
-          'nom_tienda' => 'required|string|max:30|unique:tienda,nom_tienda',
-          'direccion_tienda' => 'required|string|max:60',
+          'nom_tienda' => 'required|string|max:30',
+          'direccion_tienda' => 'required|string|max:60|unique:tienda,direccion_tienda',
           'ciudad' => 'required',
         ];
     }

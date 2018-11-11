@@ -99,7 +99,12 @@ class TiendaController extends Controller
       }
 
       $Tienda->save();
-      return redirect()->route('tienda.index', [$Tienda])->with('status','La tienda "'.$Tienda->nom_tienda.'" a sido actualizado exitosamente.');
+
+      if($val == 0){
+        return redirect()->route('tienda.index', [$Tienda])->with('status','La tienda "'.$Tienda->nom_tienda.'" a sido actualizado exitosamente.');
+      }else{
+        return redirect()->route('tienda.index', [$Tienda])->with('status','La tienda "'.$Tienda->nom_tienda.'" se le ingreso una direccion repetida, no a sido modificado tal campo.');
+      }
 
     }
 
@@ -109,8 +114,20 @@ class TiendaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Tienda $Tienda)
     {
-        return 'te la creiste wei';
+
+        $delete_bdg = DB::table('Bodega')
+                ->select(DB::raw('count(*) as cant'))
+                ->where('cod_tienda', $Tienda->cod_tienda)->value('cant');
+
+        if($delete_bdg == 0){
+          $Tienda->delete();
+          return redirect()->route('tienda.index')->with('status','La tienda "'.$Tienda->nom_tienda.'" a sido eliminado exitosamente.');
+        }else{
+          return redirect()->route('tienda.index')->with('status','La tienda "'.$Tienda->nom_tienda.'" esta asociada a una bodega, no puede ser eliminada.');
+        }
+
     }
+
 }
