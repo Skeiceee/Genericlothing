@@ -19,7 +19,8 @@ class User extends Authenticatable
     protected $primaryKey = "rut_cliente";
     public $timestamps = false;
     protected $fillable = [
-        'nom_cliente', 'email', 'password',
+        'rut_cliente', 'nom_cliente', 'apellido_paterno', 'apellido_materno',
+        'telefono', 'cod_ciudad', 'email', 'password', 'estado'
     ];
 
     /**

@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
+use genericlothing\Ciudad;
+
 class RegisterController extends Controller
 {
     /*
@@ -40,6 +42,10 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+    public function showRegistrationForm(){
+        $Ciudades = Ciudad::all();
+        return view('Auth.register',compact('Ciudades'));
+    }
     /**
      * Get a validator for an incoming registration request.
      *
@@ -49,9 +55,9 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'email' => 'required|string|email|max:255|unique:cliente,email',
+            'rut' => 'required|string|min:9|max:12|unique:cliente,rut_cliente',
+            'password' => 'required|confirmed|min:6',
         ]);
     }
 
@@ -64,9 +70,15 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
+            'nom_cliente' => $data['nombre'],
+            'apellido_paterno' => $data['apellido_paterno'],
+            'apellido_materno' => $data['apellido_materno'],
+            'rut_cliente' => $data['rut'],
+            'cod_ciudad' => $data['ciudad'],
+            'telefono' => $data['telefono'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'estado' => '0',
         ]);
     }
 }
