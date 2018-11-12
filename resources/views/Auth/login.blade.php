@@ -24,6 +24,7 @@
               </div>
               <button class="btn btn-primary btn-block" type="sumbit" name="button">Acceder</button>
             </form>
+            <span>¿No tiene un usuario? Registrese </span><a href="register">aquí.</a>
           </div>
         </div>
       </div>

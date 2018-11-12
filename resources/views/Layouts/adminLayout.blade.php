@@ -56,6 +56,11 @@
                   </div>
 
               </ul>
+
+              <form class="form-inline my-2 my-lg-0" action="{{route('logout')}}" method="post">
+                @csrf
+                <button class="btn btn-danger" type="sumbit" name="button">Cerrar sesion</button>
+              </form>
           </div>
       </nav>
   </header>
