@@ -6,6 +6,7 @@ use genericlothing\Tienda;
 use genericlothing\Bodega;
 use Illuminate\Http\Request;
 use genericlothing\Http\Requests\StoreBodegaRequest;
+use DB;
 class BodegaController extends Controller
 {
     /**
@@ -105,6 +106,16 @@ class BodegaController extends Controller
      */
     public function destroy(Bodega $Bodega)
     {
-        //
+      $delete_exi = DB::table('existencia_producto')
+              ->select(DB::raw('count(*) as cant'))
+              ->where('cod_bodega', $Bodega->cod_bodega)->value('cant');
+
+      if($delete_exi == 0){
+        $Bodega->delete();
+        return redirect()->route('bodega.index')->with('status','La bodega a sido eliminado exitosamente.');
+      }else{
+        return redirect()->route('bodega.index')->with('status','La bodega esta asociada a una existencia de producto, no puede ser eliminada.');
+      }
+
     }
 }
