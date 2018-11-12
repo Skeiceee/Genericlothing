@@ -1,5 +1,5 @@
 # Genericlothing
-Este sistema fue creado como proyecto final de unviersidad, el sistema trata de gestionar cualquier tienda de ropa ya sea via online o con tiendas fisicas 
+Este sistema fue creado como proyecto final de unviersidad, esta creado en el framework Laravel, el sistema gestiona cualquier tienda de ropa ya sea vía online, con tiendas fisicas o ambas a la vez.
 
 # Instalación en el servidor.
 
