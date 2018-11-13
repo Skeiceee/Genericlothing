@@ -21,16 +21,27 @@
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
-          <a class="btn btn-primary my-2 my-sm-0" href="login">Iniciar sesión</button></a>
+          <a class="btn btn-primary my-2 my-sm-0" href="{{route('login')}}">Iniciar sesión</button></a>
+        </form>
+        <form class="form-inline my-2 my-lg-0">
+          <a class="btn btn-primary my-2 my-sm-0 ml-3" href="{{route('register')}}">Registrarse</button></a>
         </form>
       </div>
     </nav>
   </header>
   <body>
+
     @if (session()->has('flash'))
-      <div class="alert alert-info">
-        {{session('flash')}}
+      <section class="row px-4">
+      <div class="col-sm col-md-12 col-lg-12">
+        <div class="alert alert-success alert-dismissible fade show mt-4 mb-0" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <span>{{session('flash')}}</span>
+        </div>
       </div>
+    </section>
     @endif
     @yield('content')
   </body>
@@ -39,4 +50,5 @@
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  @yield('script')
 </html>

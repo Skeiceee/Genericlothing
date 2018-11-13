@@ -27,6 +27,13 @@ Route::post('logout','Auth\LoginController@logout')->name('logout');
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
 
+//Rutas de reseteo de password
+Route::get('password/reset','Auth\ForgotPasswordController@showLinkRequestForm')->name('reset');
+Route::post('password/email','Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+
+Route::get('reset/{token}','Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('confirmation','Auth\ResetPasswordController@reset')->name('password.send');
+
 //Rutas de admin
 Route::get('admin','AdminController@index')->name('admin');
 

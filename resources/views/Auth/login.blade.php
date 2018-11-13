@@ -24,7 +24,8 @@
               </div>
               <button class="btn btn-primary btn-block" type="sumbit" name="button">Acceder</button>
             </form>
-            <span>¿No tiene un usuario? Registrese </span><a href="register">aquí.</a>
+            <div class="text-center">¿No tiene un usuario? Registrese <a href="{{route('register')}}">aquí.</a></div>
+            <div class="text-center">¿No recuerda su contraseña? Haga click <a href="{{route('reset')}}">aquí.</a></div>
           </div>
         </div>
       </div>

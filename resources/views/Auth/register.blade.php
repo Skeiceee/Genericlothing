@@ -51,7 +51,7 @@
                         <div class="form-group row">
                             <label for="rut" class="col-md-4 col-form-label text-md-right">{{ __('Rut') }}</label>
                             <div class="col-md-6">
-                                <input id="rut" type="text" class="form-control{{ $errors->has('rut') ? ' is-invalid' : '' }}" name="rut" value="{{ old('rut') }}" required autofocus>
+                                <input id="rut" type="text" class="form-control{{ $errors->has('rut') ? ' is-invalid' : '' }}" id="rut" name="rut" required oninput="checkRut(this)" onkeypress="return check(event)" value="{{ old('rut') }}" required autofocus>
 
                                 @if ($errors->has('rut'))
                                     <span class="invalid-feedback" role="alert">
@@ -135,4 +135,8 @@
         </div>
     </div>
 </div>
+@section('script')
+  <script src="{{asset('js/rutvalido.js')}}"></script>
+  <script src="{{asset('js/letrasynumeros.js')}}"></script>
+@endsection
 @endsection
