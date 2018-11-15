@@ -41,6 +41,7 @@ class ProductoController extends Controller
         return view('Producto.create',compact('TipoProductos','Marcas'));
     }
 
+
     /**
      * Store a newly created resource in storage.
      *
@@ -67,7 +68,10 @@ class ProductoController extends Controller
         $Producto->ruta = $ruta;
         $Producto->save();
 
-        return redirect()->route('producto.index')->with('status','El producto "'.$Producto->nom_producto.'" a sido creado exitosamente.');
+        return redirect()->route('producto.index')->with('status','El producto "'.$Producto->nom_producto.'" a sido creado exitosamente.')
+                                                  ->with('modal_existencia','¿Desea agregar la existencia de este producto?')
+                                                  ->with('cod_producto',$Producto->cod_producto)
+                                                  ->with('nom_producto',$Producto->nom_producto);
     }
 
     /**

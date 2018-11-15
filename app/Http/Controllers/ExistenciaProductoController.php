@@ -1,7 +1,9 @@
 <?php
 
 namespace genericlothing\Http\Controllers;
-
+use genericlothing\Producto;
+use genericlothing\Talla;
+use genericlothing\Bodega;
 use genericlothing\ExistenciaProducto;
 use Illuminate\Http\Request;
 
@@ -28,7 +30,11 @@ class ExistenciaProductoController extends Controller
      */
     public function create()
     {
-        //
+        $Producto = NULL;
+        $Tallas = Talla::all();
+        $Bodegas = Bodega::all();
+        $Productos = Producto::all();
+        return view('Existencia-Producto.create',compact('Tallas','Bodegas','Productos','Producto'));
     }
 
     /**
@@ -39,7 +45,7 @@ class ExistenciaProductoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return 'intentar guardar';
     }
 
     /**
@@ -86,4 +92,5 @@ class ExistenciaProductoController extends Controller
     {
         //
     }
+
 }

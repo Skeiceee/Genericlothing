@@ -8,6 +8,7 @@
   <section class="container-fluid pt-4">
     <div class="row">
       <div id="mostrar_producto" class="col-lg col-sm col-md">
+        @include('Common.modal_existencia')
         @include('Common.success')
         <div class="card">
             <div class="card-header">
@@ -38,6 +39,7 @@
       </div>
     </div>
   </section>
+@endsection
 @section('script')
   <script src="//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
@@ -93,5 +95,4 @@
         });
     });
   </script>
-@endsection
 @endsection
