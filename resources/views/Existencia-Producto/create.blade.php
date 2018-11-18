@@ -1,5 +1,7 @@
 @extends('Layouts.adminLayout')
 @section('title',' - Crear ciudad')
+@section('meta')
+@endsection
 @section('content')
   <section class="container-fluid pt-4">
     <div class="row">
@@ -36,13 +38,17 @@
                   @endforeach
                 </select>
 
-                <label for="cod_bodega">Direccion de la bodega</label>
-                <select class="form-control" name="cod_bodega" id="cod_bodega">
-                  @foreach ($Bodegas as $Bodega)
-                    @if ($Bodega->estado == 0)
-                    <option value="{{$Bodega->cod_bodega}}">{{$Bodega->direccion_bodega}}</option>
+                <label for="cod_bodega">Tiendas</label>
+                <select class="form-control" name="cod_tienda" id="cod_tienda">
+                  @foreach ($Tiendas as $Tienda)
+                    @if ($Tienda->estado == 0)
+                    <option value="{{$Tienda_seleccionada = $Tienda->cod_tienda}}">{{$Tienda->nom_tienda}}</option>
                     @endif
                   @endforeach
+                </select>
+
+                <label for="cod_bodega">Direccion de la bodega</label>
+                <select class="form-control" name="cod_bodega" id="cod_bodega">
                 </select>
 
                 <label for="proveedor">Proveedor</label>
@@ -53,11 +59,11 @@
 
                 <label for="cantidad">Cantidad</label>
                 <input class="form-control" type="text" id="cantidad" name="cantidad">
-
               </div>
               <div class="card-footer">
                 <button class="btn btn-primary" type="submit">Ingresar</button>
                 <a class="btn btn-primary float-right" href="{{ route('existencia-producto.index') }}">Volver</a>
+
               </div>
             </div>
           </div>
@@ -65,4 +71,7 @@
       </div>
     </div>
   </section>
+@endsection
+@section('script')
+    <script src="{{asset('js/ajax/ajaxbodegasfind.js')}}"></script>
 @endsection

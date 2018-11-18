@@ -58,5 +58,8 @@ Route::get('admin/tienda/{Tienda}/delete', ['uses' => 'TiendaController@destroy'
 Route::get('admin/bodega/{Bodega}/delete', ['uses' => 'BodegaController@destroy', 'as' => 'Bodega.delete']);
 Route::get('admin/talla/{Talla}/delete', ['uses' => 'TallaController@destroy', 'as' => 'Talla.delete']);
 
-
+//Modal
 Route::get('admin/existencia-producto/{Producto}/create-producto', ['uses' => 'CommonController@createExistenciaProducto', 'as' => 'ExistenciaProducto.create']);
+
+//Ajax
+Route::get('ajax-BodegasFind','AjaxController@ajaxBodegasFind')->name('ajax.bodegasfind');

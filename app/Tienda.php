@@ -11,6 +11,6 @@ class Tienda extends Model
     public $timestamps = false;
 
     public function bodegas(){
-      return $this->hasMany('genericlothing\Bodega','cod_tienda');
+      return $this->hasMany('genericlothing\Bodega','cod_tienda','cod_tienda');
     }
 }

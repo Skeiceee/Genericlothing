@@ -4,6 +4,7 @@ namespace genericlothing\Http\Controllers;
 
 use genericlothing\Talla;
 use genericlothing\Bodega;
+use genericlothing\Tienda;
 use genericlothing\Producto;
 use Illuminate\Http\Request;
 
@@ -17,6 +18,7 @@ class CommonController extends Controller
     {
       $Tallas = Talla::all();
       $Bodegas = Bodega::all();
-      return view('Existencia-Producto.create',compact('Tallas','Bodegas','Producto'));
+      $Tiendas = Tienda::all();
+      return view('Existencia-Producto.create',compact('Tiendas','Tallas','Bodegas','Producto'));
     }
 }

@@ -3,6 +3,7 @@
 namespace genericlothing\Http\Controllers;
 use genericlothing\Producto;
 use genericlothing\Talla;
+use genericlothing\Tienda;
 use genericlothing\Bodega;
 use genericlothing\ExistenciaProducto;
 use Illuminate\Http\Request;
@@ -34,7 +35,8 @@ class ExistenciaProductoController extends Controller
         $Tallas = Talla::all();
         $Bodegas = Bodega::all();
         $Productos = Producto::all();
-        return view('Existencia-Producto.create',compact('Tallas','Bodegas','Productos','Producto'));
+        $Tiendas = Tienda::all();
+        return view('Existencia-Producto.create',compact('Tiendas','Tallas','Bodegas','Productos','Producto'));
     }
 
     /**
@@ -45,7 +47,7 @@ class ExistenciaProductoController extends Controller
      */
     public function store(Request $request)
     {
-        return 'intentar guardar';
+        return $request;
     }
 
     /**
