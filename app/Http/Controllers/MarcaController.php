@@ -48,7 +48,7 @@ class MarcaController extends Controller
         $Marca->nombre = $request->input('nombre');
         $Marca->estado = 0;
         $Marca->save();
-        return redirect()->route('marca.index')->with('status','La marca "'.$Marca->nombre.'" a sido creado exitosamente.');
+        return redirect()->route('marca.index')->with('status','La marca "'.$Marca->nombre.'" ha sido creada exitosamente.');
     }
 
     /**
@@ -91,14 +91,14 @@ class MarcaController extends Controller
       if($val == 0){
         $Marca->nombre = $request->input('nombre');
       }
-      
+
       if($estado != null){
         $Marca->estado = $estado;
       }
 
       $Marca->save();
 
-      return redirect()->route('marca.index', [$Marca])->with('status','La marca "'.$Marca->nombre.'" a sido actualizado exitosamente.');
+      return redirect()->route('marca.index', [$Marca])->with('status','La marca "'.$Marca->nombre.'" ha sido actualizada exitosamente.');
 
     }
 
@@ -117,11 +117,11 @@ class MarcaController extends Controller
       if($delete == 0){
         $Marca->estado = 1;
         $Marca->save();
-        return redirect()->route('marca.index')->with('status','La marca "'.$Marca->nombre.'" a sido eliminado exitosamente.');
+        return redirect()->route('marca.index')->with('status','La marca "'.$Marca->nombre.'" ha sido eliminado exitosamente.');
       }else if($delete == 1){
-        return redirect()->route('marca.index')->with('status','La marca "'.$Marca->nombre.'" esta asociado a un producto, no puede ser eliminada');
+        return redirect()->route('marca.index')->with('status','La marca "'.$Marca->nombre.'" esta asociada a un producto, no puede ser eliminada');
       }else{
-        return redirect()->route('marca.index')->with('status','La marca "'.$Marca->nombre.'" esta asociado a '.$delete.' productos, no puede ser eliminada');
+        return redirect()->route('marca.index')->with('status','La marca "'.$Marca->nombre.'" esta asociada a '.$delete.' productos, no puede ser eliminada');
       }
     }
 }

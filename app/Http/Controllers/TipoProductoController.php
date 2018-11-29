@@ -48,7 +48,7 @@ class TipoProductoController extends Controller
         $TipoProducto->estado = 0;
         $TipoProducto->save();
 
-        return redirect()->route('tipo-producto.index')->with('status','El tipo de producto "'.$TipoProducto->nombre.'" a sido creado exitosamente.');
+        return redirect()->route('tipo-producto.index')->with('status','El tipo de producto "'.$TipoProducto->nombre.'" ha sido creado exitosamente.');
     }
 
     /**
@@ -97,7 +97,7 @@ class TipoProductoController extends Controller
       }
 
       $TipoProducto->save();
-      return redirect()->route('tipo-producto.index', [$TipoProducto])->with('status','El tipo de producto "'.$TipoProducto->nombre.'" a sido actualizado exitosamente.');
+      return redirect()->route('tipo-producto.index', [$TipoProducto])->with('status','El tipo de producto "'.$TipoProducto->nombre.'" ha sido actualizado exitosamente.');
 
     }
 
@@ -116,7 +116,7 @@ class TipoProductoController extends Controller
       if($delete == 0){
         $TipoProducto->estado = 1;
         $TipoProducto->save();
-        return redirect()->route('tipo-producto.index')->with('status','El tipo de producto "'.$TipoProducto->nombre.'" a sido eliminado exitosamente.');
+        return redirect()->route('tipo-producto.index')->with('status','El tipo de producto "'.$TipoProducto->nombre.'" ha sido eliminado exitosamente.');
       }else if($delete == 1){
         return redirect()->route('tipo-producto.index')->with('status','El tipo de producto "'.$TipoProducto->nombre.'" esta asociado a un producto, no puede ser eliminada');
       }else{

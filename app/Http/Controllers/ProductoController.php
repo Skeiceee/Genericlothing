@@ -68,7 +68,7 @@ class ProductoController extends Controller
         $Producto->ruta = $ruta;
         $Producto->save();
 
-        return redirect()->route('producto.index')->with('status','El producto "'.$Producto->nom_producto.'" a sido creado exitosamente.')
+        return redirect()->route('producto.index')->with('status','El producto "'.$Producto->nom_producto.'" ha sido creado exitosamente.')
                                                   ->with('modal_existencia','¿Desea agregar la existencia de este producto?')
                                                   ->with('cod_producto',$Producto->cod_producto)
                                                   ->with('nom_producto',$Producto->nom_producto);
@@ -127,7 +127,7 @@ class ProductoController extends Controller
 
       $Producto->save();
 
-        return redirect()->route('producto.show', [$Producto])->with('status','El producto "'.$Producto->nom_producto.'" a sido actualizado exitosamente.');
+        return redirect()->route('producto.show', [$Producto])->with('status','El producto "'.$Producto->nom_producto.'" ha sido actualizado exitosamente.');
     }
 
     /**
@@ -140,7 +140,7 @@ class ProductoController extends Controller
     {
       File::deleteDirectory(public_path('img').'\\'.$Producto->nom_producto);
       $Producto->delete();
-      return redirect()->route('producto.index')->with('status','El producto "'.$Producto->nom_producto.'" a sido eliminado exitosamente.');
+      return redirect()->route('producto.index')->with('status','El producto "'.$Producto->nom_producto.'" ha sido eliminado exitosamente.');
     }
 
 }

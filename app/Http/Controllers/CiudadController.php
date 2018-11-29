@@ -47,7 +47,7 @@ class CiudadController extends Controller
         $Ciudad->nom_ciudad= $request->input('nom_ciudad');
         $Ciudad->save();
 
-        return redirect()->route('ciudad.index')->with('status','La ciudad "'.$Ciudad->nom_ciudad.'" a sido creado exitosamente.');
+        return redirect()->route('ciudad.index')->with('status','La ciudad "'.$Ciudad->nom_ciudad.'" ha sido creada exitosamente.');
     }
 
     /**
@@ -91,7 +91,7 @@ class CiudadController extends Controller
 
       $Ciudad->save();
 
-      return redirect()->route('ciudad.index', [$Ciudad])->with('status','La ciudad "'.$Ciudad->nom_ciudad.'" a sido actualizado exitosamente.');
+      return redirect()->route('ciudad.index', [$Ciudad])->with('status','La ciudad "'.$Ciudad->nom_ciudad.'" ha sido actualizada exitosamente.');
 
     }
 
@@ -117,9 +117,9 @@ class CiudadController extends Controller
 
       if(($delete_cli == 0) && ($delete_env == 0) && ($delete_tnda == 0)){
         $Ciudad->delete();
-        return redirect()->route('ciudad.index')->with('status','La ciudad "'.$Ciudad->nom_ciudad.'" a sido eliminado exitosamente.');
+        return redirect()->route('ciudad.index')->with('status','La ciudad "'.$Ciudad->nom_ciudad.'" ha sido eliminada exitosamente.');
       }else {
-        return redirect()->route('ciudad.index')->with('status','La ciudad "'.$Ciudad->nom_ciudad.'" debe estar asociado a un cliente, envio y/o tienda, no puede ser eliminada');
+        return redirect()->route('ciudad.index')->with('status','La ciudad "'.$Ciudad->nom_ciudad.'" debe estar asociada a un cliente, envio y/o tienda, no puede ser eliminada');
       }
 
     }

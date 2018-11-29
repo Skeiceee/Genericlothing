@@ -52,7 +52,7 @@ class TiendaController extends Controller
         $Tienda->estado = 0;
         $Tienda->save();
 
-        return redirect()->route('tienda.index')->with('status','La tienda "'.$Tienda->nom_tienda.'" a sido creado exitosamente.');
+        return redirect()->route('tienda.index')->with('status','La tienda "'.$Tienda->nom_tienda.'" ha sido creada exitosamente.');
     }
 
     /**
@@ -101,9 +101,9 @@ class TiendaController extends Controller
       $Tienda->save();
 
       if($val == 0){
-        return redirect()->route('tienda.index', [$Tienda])->with('status','La tienda "'.$Tienda->nom_tienda.'" a sido actualizado exitosamente.');
+        return redirect()->route('tienda.index', [$Tienda])->with('status','La tienda "'.$Tienda->nom_tienda.'" ha sido actualizada exitosamente.');
       }else{
-        return redirect()->route('tienda.index', [$Tienda])->with('status','La tienda "'.$Tienda->nom_tienda.'" se le ingreso una direccion repetida, no a sido modificado tal campo.');
+        return redirect()->route('tienda.index', [$Tienda])->with('status','A la tienda "'.$Tienda->nom_tienda.'" se le ingreso una direccion repetida, no ha sido modificado tal campo.');
       }
 
     }
@@ -123,7 +123,7 @@ class TiendaController extends Controller
 
         if($delete_bdg == 0){
           $Tienda->delete();
-          return redirect()->route('tienda.index')->with('status','La tienda "'.$Tienda->nom_tienda.'" a sido eliminado exitosamente.');
+          return redirect()->route('tienda.index')->with('status','La tienda "'.$Tienda->nom_tienda.'" ha sido eliminada exitosamente.');
         }else{
           return redirect()->route('tienda.index')->with('status','La tienda "'.$Tienda->nom_tienda.'" esta asociada a una bodega, no puede ser eliminada.');
         }

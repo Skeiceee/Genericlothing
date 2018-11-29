@@ -49,7 +49,7 @@ class TallaController extends Controller
         $Talla->estado = 0;
         $Talla->save();
 
-        return redirect()->route('talla.index')->with('status','La talla "'.$Talla->cod_talla.'" a sido creado exitosamente.');
+        return redirect()->route('talla.index')->with('status','La talla "'.$Talla->cod_talla.'" ha sido creada exitosamente.');
     }
 
     /**
@@ -101,7 +101,7 @@ class TallaController extends Controller
 
       $Talla->save();
 
-      return redirect()->route('talla.index', [$Talla])->with('status','La talla "'.$Talla->cod_talla.'" a sido actualizado exitosamente.');
+      return redirect()->route('talla.index', [$Talla])->with('status','La talla "'.$Talla->cod_talla.'" ha sido actualizada exitosamente.');
     }
 
     /**
@@ -119,11 +119,11 @@ class TallaController extends Controller
       if($delete_exi == 0){
         $Talla->estado = 1;
         $Talla->save();
-        return redirect()->route('talla.index')->with('status','La talla"'.$Talla->cod_talla.'" a sido eliminado exitosamente.');
+        return redirect()->route('talla.index')->with('status','La talla"'.$Talla->cod_talla.'" ha sido eliminada exitosamente.');
       }else if($delete_exi == 1){
-        return redirect()->route('talla.index')->with('status','La talla "'.$Talla->cod_talla.'" esta asociado a un existencia de un producto');
+        return redirect()->route('talla.index')->with('status','La talla "'.$Talla->cod_talla.'" esta asociada a un existencia de un producto');
       }else{
-        return redirect()->route('talla.index')->with('status','La talla "'.$Talla->cod_talla.'" esta asociado a existencias de productos');
+        return redirect()->route('talla.index')->with('status','La talla "'.$Talla->cod_talla.'" esta asociada a existencias de productos');
       }
 
     }
