@@ -13,15 +13,15 @@ class Talla extends Model
     public $timestamps = false;
 
     public function bodegas(){
-      return $this->belongsToMany('genericlothing\Bodega','existencia_producto','cod_talla','cod_bodega');
+      return $this->belongsToMany('genericlothing\Bodega','existencia-producto','cod_talla','cod_bodega');
     }
 
     public function productos(){
-      return $this->belongsToMany('genericlothing\Producto','existencia_producto','cod_talla','cod_producto');
+      return $this->belongsToMany('genericlothing\Producto','existencia-producto','cod_talla','cod_producto');
     }
 
     public function tiendas(){
-      return $this->belongsToMany('genericlothing\Tienda','existencia_producto','cod_talla','cod_tienda');
+      return $this->belongsToMany('genericlothing\Tienda','existencia-producto','cod_talla','cod_tienda');
     }
 
 

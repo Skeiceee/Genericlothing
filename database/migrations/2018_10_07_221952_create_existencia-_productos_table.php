@@ -13,13 +13,13 @@ class CreateExistenciaProductosTable extends Migration
      */
     public function up()
     {
-        Schema::create('Existencia_producto', function (Blueprint $table) {
+        Schema::create('Existencia-Producto', function (Blueprint $table) {
             $table->integer('cod_producto')->unsigned();
             $table->string('cod_talla', 3);
-            $table->integer('cod_bodega')->unsigned();
-            $table->integer('cod_tienda')->unsigned();
+            $table->smallInteger('cod_bodega')->unsigned();
+            $table->smallInteger('cod_tienda')->unsigned();
             $table->primary(['cod_producto', 'cod_talla', 'cod_bodega', 'cod_tienda'],  'primaryKeyName');
-            $table->string('proveedor');
+            $table->string('proveedor', 50);
             $table->integer('precio_compra');
             $table->integer('cantidad');
             $table->timestamps();
@@ -33,6 +33,6 @@ class CreateExistenciaProductosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Existencia_producto');
+        Schema::dropIfExists('Existencia-Producto');
     }
 }

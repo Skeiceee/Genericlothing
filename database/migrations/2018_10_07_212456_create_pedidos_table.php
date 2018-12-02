@@ -16,11 +16,10 @@ class CreatePedidosTable extends Migration
         Schema::create('Pedido', function (Blueprint $table) {
             $table->increments('cod_pedido');
             $table->string('rut_cliente');
-            //$table->foreign('rut_cliente')->references('rut_cliente')->on('Cliente');
+            $table->foreign('rut_cliente')->references('rut_cliente')->on('Cliente');
             $table->date('fecha');
             $table->integer('total');
-            $table->string('estado');
-            $table->string('envio');
+            $table->char('estado', 1);
             $table->timestamps();
         });
     }

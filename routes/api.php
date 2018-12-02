@@ -32,7 +32,7 @@ Route::get('Productos',function(){
 });
 
 Route::get('ExistenciaProductos',function(){
-    $query = DB::table('existencia_producto as e')
+    $query = DB::table('existencia-producto as e')
            ->select('e.cod_producto', 'e.cod_talla', 'e.cod_bodega', 'd.nom_tienda as nombre_tienda', 'e.proveedor', 'e.precio_compra','e.cantidad', 'e.created_at', 'e.updated_at')
            ->join('tienda as d','e.cod_tienda', '=', 'd.cod_tienda');
 
@@ -122,5 +122,44 @@ Route::get('Clientes',function(){
 
     return datatables()
               ->of($query)
+              ->toJson();
+});
+
+Route::get('Pedidos',function(){
+
+    $query = DB::table('pedido as e')
+           ->select('e.cod_pedido', 'd.rut_cliente as rut_cliente', 'e.fecha', 'e.total', 'e.estado', DB::raw('if(e.estado = 0,\'Activo\',\'Anulado\') as estado'))
+           ->join('cliente as d','e.rut_cliente', '=', 'd.rut_cliente');
+
+    return datatables()
+              ->of($query)
+              ->addColumn('btn','Actions.actionsPedido')
+              ->rawColumns(['btn'])
+              ->toJson();
+});
+
+Route::get('Ventas',function(){
+
+    $query = DB::table('venta as e')
+           ->select('e.cod_venta', 'd.rut_cliente as rut_cliente', 'e.fecha', 'e.total', 'e.tipo', 'e.estado', 'e.envio', DB::raw('if(e.tipo = 0,\'Boleta\',\'Factura\') as tipo, if(e.estado = 0,\'Activo\',\'Anulada\') as estado, if(e.envio = 0,\'Si\',\'No\') as envio'))
+           ->join('cliente as d','e.rut_cliente', '=', 'd.rut_cliente');
+
+    return datatables()
+              ->of($query)
+              ->addColumn('btn','Actions.actionsVenta')
+              ->rawColumns(['btn'])
+              ->toJson();
+});
+
+Route::get('Envios',function(){
+
+    $query = DB::table('envio as e')
+           ->select('e.cod_venta', 'd.nom_ciudad as nombre_ciudad', 'e.telefono', 'e.precio_envio', 'e.estado', DB::raw('if(e.estado = 0,\'Pendiente\',\'Enviado\') as estado'))
+           ->join('ciudad as d','e.cod_ciudad', '=', 'd.cod_ciudad');
+
+    return datatables()
+              ->of($query)
+              ->addColumn('btn','Actions.actionsEnvio')
+              ->rawColumns(['btn'])
               ->toJson();
 });

@@ -8,6 +8,5 @@ class Envio extends Model
 {
     protected $table = "Envio";
     protected $primaryKey = "cod_venta";
-    //protected $primaryKey = "rut_cliente";
 
 }

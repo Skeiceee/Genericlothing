@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddImageToProductoTable extends Migration
+class AddEnvioForeign extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddImageToProductoTable extends Migration
      */
     public function up()
     {
-        Schema::table('Producto', function (Blueprint $table) {
-          $table->string('ruta');
+        Schema::table('Envio', function (Blueprint $table) {
+            $table->foreign('cod_venta')->references('cod_venta')->on('Venta')->change();
         });
     }
 
@@ -25,8 +25,6 @@ class AddImageToProductoTable extends Migration
      */
     public function down()
     {
-        Schema::table('Producto', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('Envio');
     }
 }

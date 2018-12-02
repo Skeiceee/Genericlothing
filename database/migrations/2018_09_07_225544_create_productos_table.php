@@ -15,13 +15,15 @@ class CreateProductosTable extends Migration
     {
       Schema::create('Producto', function (Blueprint $table){
         $table->increments('cod_producto');
-        $table->integer('cod_tipo_producto')->unsigned();
+        $table->smallInteger('cod_tipo_producto')->unsigned();
         $table->foreign('cod_tipo_producto')->references('cod_tipo_producto')->on('Tipo-Producto');
-        $table->integer('cod_marca')->unsigned();
+        $table->smallInteger('cod_marca')->unsigned();
         $table->foreign('cod_marca')->references('cod_marca')->on('Marca');
-        $table->string('nom_producto');
+        $table->string('nom_producto', 50);
+        $table->string('detalle_producto', 200);
         $table->integer('precio_venta')->unsigned();
-        $table->integer('estado');
+        $table->char('estado', 1);
+        $table->string('ruta', 1000);
       });
     }
 

@@ -15,13 +15,13 @@ class CreateVentasTable extends Migration
     {
         Schema::create('Venta', function (Blueprint $table) {
             $table->increments('cod_venta');
-            $table->string('rut_cliente');
-            //$table->foreign('rut_cliente')->references('rut_cliente')->on('Cliente');
+            $table->string('rut_cliente', 10);
+            $table->foreign('rut_cliente')->references('rut_cliente')->on('Cliente');
             $table->date('fecha');
             $table->integer('total');
-            $table->string('tipo');
-            $table->string('estado');
-            $table->string('envio');
+            $table->char('tipo', 1);
+            $table->char('envio', 1);
+            $table->char('estado', 1);
             $table->timestamps();
         });
     }

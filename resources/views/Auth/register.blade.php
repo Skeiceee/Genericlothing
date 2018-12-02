@@ -83,7 +83,7 @@
                             <div class="form-group">
                             <i class="fab fa-slack-hash"></i>
                                 <label for="rut">{{ __('Rut') }}</label>
-                                    <input id="rut" type="text" class="form-control{{ $errors->has('rut') ? ' is-invalid' : '' }}" id="rut" name="rut" required oninput="checkRut(this)" onkeypress="return check(event)" value="{{ old('rut') }}" required autofocus>
+                                    <input id="rut" type="text" maxlength="10" class="form-control{{ $errors->has('rut') ? ' is-invalid' : '' }}" id="rut" name="rut" required oninput="checkRut(this)" onkeypress="return check(event)" value="{{ old('rut') }}" required autofocus>
                                     @if ($errors->has('rut'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('rut') }}</strong>

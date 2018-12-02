@@ -13,16 +13,11 @@ class AddExistenciaForeign extends Migration
      */
     public function up()
     {
-      Schema::table('Existencia_producto', function (Blueprint $table){
-
-        $table->foreign('cod_bodega')->references('cod_bodega')->on('Bodega')->change();
-
-        $table->foreign('cod_tienda')->references('cod_tienda')->on('Bodega')->change();
-
-        $table->foreign('cod_talla')->references('cod_talla')->on('Talla')->change();
-
-        $table->foreign('cod_producto')->references('cod_producto')->on('Producto')->change();
-
+      Schema::table('Existencia-Producto', function (Blueprint $table){
+          $table->foreign('cod_producto')->references('cod_producto')->on('Producto')->change();
+          $table->foreign('cod_talla')->references('cod_talla')->on('Talla')->change();
+          $table->foreign('cod_bodega')->references('cod_bodega')->on('Bodega')->change();
+          $table->foreign('cod_tienda')->references('cod_tienda')->on('Bodega')->change();
       });
     }
 
@@ -33,6 +28,6 @@ class AddExistenciaForeign extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Existencia_producto');
+        Schema::dropIfExists('Existencia-Producto');
     }
 }

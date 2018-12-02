@@ -106,7 +106,7 @@ class BodegaController extends Controller
      */
     public function destroy(Bodega $Bodega)
     {
-      $delete_exi = DB::table('existencia_producto')
+      $delete_exi = DB::table('existencia-producto')
               ->select(DB::raw('count(*) as cant'))
               ->where('cod_bodega', $Bodega->cod_bodega)->value('cant');
 

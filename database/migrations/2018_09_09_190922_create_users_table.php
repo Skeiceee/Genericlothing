@@ -14,16 +14,17 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('Cliente', function (Blueprint $table) {
-            $table->string('rut_cliente');
-            $table->string('nom_cliente');
-            $table->string('apellido_paterno');
-            $table->string('apellido_materno');
+            $table->string('rut_cliente', 10);
+            $table->primary('rut_cliente');
+            $table->string('email', 25)->unique();
+            $table->string('password');
+            $table->string('nom_cliente', 50);
+            $table->string('apellido_paterno', 20);
+            $table->string('apellido_materno', 20);
             $table->integer('telefono');
             $table->smallInteger('cod_ciudad')->unsigned();
             $table->foreign('cod_ciudad')->references('cod_ciudad')->on('Ciudad');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->integer('estado');
+            $table->char('estado', 1);
             $table->rememberToken();
         });
     }

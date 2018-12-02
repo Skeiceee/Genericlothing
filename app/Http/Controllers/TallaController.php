@@ -112,7 +112,7 @@ class TallaController extends Controller
      */
     public function destroy(Talla $Talla)
     {
-      $delete_exi = DB::table('existencia_producto')
+      $delete_exi = DB::table('existencia-producto')
               ->select(DB::raw('count(*) as cant'))
               ->where('cod_talla', $Talla->cod_talla)->value('cant');
 

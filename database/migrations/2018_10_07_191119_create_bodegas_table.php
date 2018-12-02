@@ -14,11 +14,11 @@ class CreateBodegasTable extends Migration
     public function up()
     {
         Schema::create('Bodega', function (Blueprint $table) {
-            $table->increments('cod_bodega');
-            $table->integer('cod_tienda')->unsigned();
+            $table->smallIncrements('cod_bodega');
+            $table->smallInteger('cod_tienda')->unsigned();
             $table->foreign('cod_tienda')->references('cod_tienda')->on('Tienda');
-            $table->string('direccion_bodega');
-            $table->string('estado');
+            $table->string('direccion_bodega', 50);
+            $table->char('estado', 1);
         });
     }
 

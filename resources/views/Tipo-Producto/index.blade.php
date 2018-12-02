@@ -35,7 +35,8 @@
       </div>
     </div>
   </section>
-  @section('script')
+@endsection
+@section('script')
     <script src="//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
@@ -87,5 +88,4 @@
           });
       });
     </script>
-  @endsection
 @endsection

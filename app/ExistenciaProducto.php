@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ExistenciaProducto extends Model
 {
-    protected $table = "Existencia_producto";
+    protected $table = "Existencia-Producto";
     protected $primaryKey = (
       ["cod_producto",
        "cod_talla",

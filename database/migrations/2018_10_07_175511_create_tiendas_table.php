@@ -14,12 +14,12 @@ class CreateTiendasTable extends Migration
     public function up()
     {
         Schema::create('Tienda', function (Blueprint $table) {
-            $table->increments('cod_tienda');
+            $table->smallIncrements('cod_tienda');
             $table->smallInteger('cod_ciudad')->unsigned();
             $table->foreign('cod_ciudad')->references('cod_ciudad')->on('Ciudad');
-            $table->string('nom_tienda');
-            $table->string('direccion_tienda');
-            $table->string('estado');
+            $table->string('nom_tienda', 50);
+            $table->string('direccion_tienda', 50);
+            $table->char('estado', 1);
 
         });
     }

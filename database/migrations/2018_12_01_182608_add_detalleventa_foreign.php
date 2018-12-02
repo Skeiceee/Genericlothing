@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddDetalleToProductoTable extends Migration
+class AddDetalleventaForeign extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AddDetalleToProductoTable extends Migration
      */
     public function up()
     {
-        Schema::table('Producto', function (Blueprint $table) {
-          $table->string('detalle_producto', 200);
+        Schema::table('Detalle-Venta', function (Blueprint $table) {
+            $table->foreign('cod_venta')->references('cod_venta')->on('Venta')->change();
+            $table->foreign('cod_producto')->references('cod_producto')->on('Producto')->change();
         });
     }
 
@@ -25,8 +26,6 @@ class AddDetalleToProductoTable extends Migration
      */
     public function down()
     {
-        Schema::table('Producto', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('Detalle-Venta');
     }
 }

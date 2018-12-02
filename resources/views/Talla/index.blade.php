@@ -14,6 +14,7 @@
               <span>Tallas</span>
             </div>
             <div class="card-body">
+            <div class="container-fluid table-responsive">
               <table id="Tallas" class="table table-bordered table-hover table-striped dt-responsive display nowrap" cellspacing="0"
                 width="100%">
                 <thead class = "theade-danger">
@@ -26,6 +27,7 @@
                 </thead>
               </table>
             </div>
+            </div>
             <div class="card-footer">
                 <a class="btn btn-primary" href="{{ route('talla.create') }}">Crear talla</a>
             </div>
@@ -33,6 +35,7 @@
       </div>
     </div>
   </section>
+@endsection
 @section('script')
   <script src="//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
@@ -85,5 +88,4 @@
         });
     });
   </script>
-@endsection
 @endsection

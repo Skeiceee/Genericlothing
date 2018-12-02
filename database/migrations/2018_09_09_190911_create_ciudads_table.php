@@ -15,7 +15,7 @@ class CreateCiudadsTable extends Migration
     {
         Schema::create('Ciudad', function (Blueprint $table) {
             $table->smallIncrements('cod_ciudad');
-            $table->string('nom_ciudad');
+            $table->string('nom_ciudad', 50);
         });
     }
 

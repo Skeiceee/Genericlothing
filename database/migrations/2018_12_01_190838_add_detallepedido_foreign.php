@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTallasTable extends Migration
+class AddDetallepedidoForeign extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateTallasTable extends Migration
      */
     public function up()
     {
-        Schema::create('Talla', function (Blueprint $table) {
-            $table->string('cod_talla', 3)->primary();
-            $table->string('descripcion', 100);
-            $table->char('estado', 1);
-
+        Schema::table('Detalle-Pedido', function (Blueprint $table) {
+            $table->foreign('cod_pedido')->references('cod_pedido')->on('Pedido')->change();
+            $table->foreign('cod_producto')->references('cod_producto')->on('Producto')->change();
         });
     }
 
@@ -28,6 +26,6 @@ class CreateTallasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Talla');
+        Schema::dropIfExists('Detalle-Pedido');
     }
 }
