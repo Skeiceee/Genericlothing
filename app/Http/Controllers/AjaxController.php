@@ -11,11 +11,10 @@ class AjaxController extends Controller
       {
         $str = "";
         $Tienda = new Tienda;
-        $Bodegas = $Tienda->find($Request->ctienda)->bodegas;
+        $Bodegas = $Tienda->find($Request->ctienda)->bodegas($Request->ctienda);
 
         foreach($Bodegas as $Bodega){
-
-          if($Bodega->estado == 0){
+          if($Bodega->estado == "0"){
               $str = $str.'<option value="'.$Bodega->cod_bodega.'">'.$Bodega->direccion_bodega.'</option>';
           }
         }

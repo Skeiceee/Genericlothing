@@ -47,8 +47,8 @@
                   @endforeach
                 </select>
 
-                <label for="cod_bodega">Direccion de la bodega</label>
-                <select class="form-control" name="cod_bodega" id="cod_bodega">
+                <label for="direccion_bodega">Direccion de la bodega</label>
+                <select class="form-control" name="direccion_bodega" id="direccion_bodega">
                 </select>
 
                 <label for="proveedor">Proveedor</label>
@@ -73,5 +73,5 @@
   </section>
 @endsection
 @section('script')
-    <script src="{{asset('js/ajax/ajaxbodegasfind.js')}}"></script>
+    <script src="{{asset('js/ajax/ajaxbodegafind.js')}}"></script>
 @endsection

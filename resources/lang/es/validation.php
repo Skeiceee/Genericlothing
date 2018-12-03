@@ -144,6 +144,8 @@ return [
     */
 
     'attributes' => [
+        'direccion_bodega'      => 'direccion de la bodega',
+        'precio_compra'         => 'precio de compra',
         'cod_talla'             => 'codigo de la talla',
         'name'                  => 'nombre',
         'precio_venta'          =>' precio de venta',

@@ -5,9 +5,10 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
 @endsection
 @section('content')
-  <section class="container-fluid pt-4">
+  <section class="container-fluid">
     <div class="row">
       <div id="mostrar_existencia_producto" class="col-lg col-sm col-md mt-4">
+        @include('Common.success')
         <div class="card ">
             <div class="card-header">
               <span>Existencia de Productos</span>
