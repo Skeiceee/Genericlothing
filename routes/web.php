@@ -19,7 +19,6 @@ Route::get('/',function(){
 Route::get('index', 'Auth\LoginController@showIndex')->middleware('guest');
 Route::get('login', 'Auth\LoginController@showLoginForm')->middleware('guest');
 
-Route::get('home','HomeController@index')->name('home');
 Route::post('login','Auth\LoginController@login')->name('login');
 Route::post('logout','Auth\LoginController@logout')->name('logout');
 
@@ -27,7 +26,7 @@ Route::post('logout','Auth\LoginController@logout')->name('logout');
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
 
-//Rutas de reseteo de password
+//Rutas de reseteo de passwordz
 Route::get('password/reset','Auth\ForgotPasswordController@showLinkRequestForm')->name('reset');
 Route::post('password/email','Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 
@@ -49,6 +48,12 @@ Route::resource('admin/venta','VentaController');
 Route::resource('admin/pedido','PedidoController');
 Route::resource('admin/existencia-producto','ExistenciaProductoController');
 Route::resource('admin/envio','EnvioController');
+
+//Rutas de usuario
+Route::get('home','HomeController@index')->name('home');
+
+Route::get('configuracion','HomeController@configuracion_user')->name('configuracion');
+
 
 //Rutas de eliminación
 Route::get('admin/marca/{Marca}/delete', ['uses' => 'MarcaController@destroy', 'as' => 'Marca.delete']);

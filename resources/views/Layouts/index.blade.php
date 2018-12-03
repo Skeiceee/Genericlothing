@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     @yield('css')
     <title>Genericlothing @yield('title')</title>
   </head>
@@ -19,14 +20,29 @@
           <li class="nav-item active">
             <a class="nav-link" href="{{route('home')}}">Inicio<span class="sr-only"></span></a>
           </li>
+          @include('Usuario.Common.navbar')
         </ul>
         @if (auth()->user()->estado == "2")
             <a class="btn btn-primary mr-2" href="{{route('admin')}}">Panel de administración<span class="sr-only"></span></a>
         @endif
-        <form class="form-inline my-2 my-lg-0" action="{{route('logout')}}" method="post">
-          @csrf
-          <button class="btn btn-danger" type="sumbit" name="button">Cerrar sesion</button>
-        </form>
+
+        <a id="car-shop"class="badge badge-pill badge-light mr-2" href="#">
+          <i class="fas fa-shopping-cart"></i> <span id="num-items">0</span>
+          <span class="sr-only">Productos en el carrito</span>
+        </a>
+
+        <div class="nav-item dropdown pr-2">
+                <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {{auth()->user()->nom_cliente.' '.auth()->user()->apellido_paterno}}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="{{route('configuracion')}}">Configuración</a>
+                  <form class="form-inline my-2 my-lg-0" action="{{route('logout')}}" method="post">
+                    @csrf
+                    <button class="dropdown-item" type="sumbit" name="button">Cerrar sesion</button>
+                  </form>
+                </div>
+        </div>
       </div>
     </nav>
   </header>
@@ -45,6 +61,7 @@
     @endif
 
     @yield('content')
+
   </body>
   <footer>
   </footer>

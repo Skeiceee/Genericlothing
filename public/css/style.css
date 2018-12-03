@@ -1,0 +1,31 @@
+html {
+  min-height: 100%;
+  position: relative;
+}
+body {
+  margin: 0;
+  margin-bottom: 200px;
+}
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 190px;
+  font-size: .8em;
+}
+
+.link-color{
+  color: #000;
+}
+.link-color:hover{
+  color: #b7b7b7;
+  text-decoration: none;
+}
+
+#car-shop{
+  font-size: 0.9em;
+  padding-left: 9px;
+  padding-right: 9px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}

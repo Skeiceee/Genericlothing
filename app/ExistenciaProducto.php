@@ -31,6 +31,21 @@ class ExistenciaProducto extends Model
           );
     }
 
+    public function updateEpPc(ExistenciaProducto $EP){
+      DB::table('existencia-producto')
+          ->where('cod_producto', '=',  DB::raw((int)$EP->cod_producto))
+          ->where('cod_talla', '=',  DB::raw('\''.$EP->cod_talla.'\''))
+          ->where('cod_bodega', '=', DB::raw((int)$EP->cod_bodega))
+          ->where('cod_tienda', '=', DB::raw((int)$EP->cod_tienda))
+          ->update(
+            [
+            'cantidad' => $EP->cantidad,
+            'updated_at' => $EP->updated_at,
+            'precio_compra' => $EP->precio_compra
+            ]
+          );
+    }
+
     public function saveEp(ExistenciaProducto $EP){
       DB::table('existencia-producto')->insert(
           [

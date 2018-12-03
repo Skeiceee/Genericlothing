@@ -65,7 +65,22 @@ class ExistenciaProductoController extends Controller
 
          $EP->updateEp($EP);
 
-         return redirect()->route('existencia-producto.index')->with('status','La existencia del producto a sido creada exitosamente.');
+         return redirect()
+          ->route('existencia-producto.index')
+          ->with('status','La existencia del producto a sido creada exitosamente.');
+
+       }else if($EP->precio_compra != $request->precio_compra &&
+                $EP->proveedor == $request->proveedor){
+
+                $EP->cantidad = $EP->cantidad + $request->cantidad;
+                $EP->precio_compra = $request->precio_compra;
+                $EP->updated_at = date('Y-m-d G:i:s');
+
+                $EP->updateEpPc($EP);
+
+                return redirect()
+                 ->route('existencia-producto.index')
+                 ->with('status','La existencia del producto a sido creada exitosamente.');
        }
 
      }else{
@@ -86,7 +101,9 @@ class ExistenciaProductoController extends Controller
 
         $EP->saveEp($EP);
 
-        return redirect()->route('existencia-producto.index')->with('status','La existencia del producto a sido creada exitosamente.');
+        return redirect()
+          ->route('existencia-producto.index')
+          ->with('status','La existencia del producto a sido creada exitosamente.');
      }
     }
 
