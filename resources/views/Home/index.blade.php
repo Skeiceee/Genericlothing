@@ -88,7 +88,7 @@
                       @php
                       (int)$precio = $Producto->precio_venta;
 
-                      echo '<span class="pt-3">$'.number_format($precio, 0, '.',',').'</span>';
+                      echo '<span class="pt-3">$'.number_format($precio, 0, ',','.').'</span>';
                       @endphp
                     </div>
                   </div>
