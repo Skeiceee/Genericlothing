@@ -17,13 +17,16 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{{route('home')}}">Inicio<span class="sr-only"></span></a>
+          </li>
           @include('Usuario.Common.navbar')
         </ul>
         @if (auth()->user()->estado == "2")
             <a class="btn btn-primary mr-2" href="{{route('admin')}}">Panel de administración<span class="sr-only"></span></a>
         @endif
 
-        <a id="car-shop"class="badge badge-pill badge-light mr-2" href="#">
+        <a id="car-shop" class="badge badge-pill badge-light mr-2" href="{{route('carro')}}">
           <i class="fas fa-shopping-cart"></i> <span id="num-items">0</span>
           <span class="sr-only">Productos en el carrito</span>
         </a>

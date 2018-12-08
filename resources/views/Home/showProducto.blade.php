@@ -112,7 +112,6 @@
                     }
                   @endphp
                 </li>
-
                 <button class="btn btn-info btn-block" type="sumbit" name="button">Agregar al carro</button>
               </ul>
             </div>

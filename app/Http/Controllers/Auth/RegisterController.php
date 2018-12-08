@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 use genericlothing\Ciudad;
+use genericlothing\Pedido;
 
 class RegisterController extends Controller
 {
@@ -67,9 +68,8 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \genericlothing\User
      */
-    protected function create(array $data)
-    {
-        return User::create([
+    protected function create(array $data){
+        $User = User::create([
             'nom_cliente' => $data['nombre'],
             'apellido_paterno' => $data['apellido_paterno'],
             'apellido_materno' => $data['apellido_materno'],
@@ -79,6 +79,15 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'estado' => '0',
+        ]);    
+        Pedido::create([
+            'rut_cliente' => $data['rut'],
+            'fecha' => date('Y-m-d G:i:s'),
+            'total' => '0',
+            'estado' => '0',
+            'created_at' => date('Y-m-d G:i:s'),
+            'updated_at' => date('Y-m-d G:i:s'),
         ]);
+        return $User;
     }
 }

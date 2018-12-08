@@ -32,9 +32,6 @@
               </table>
             </div>
             </div>
-            <div class="card-footer">
-                <a class="btn btn-primary" href="">Crear cliente</a>
-            </div>
         </div>
       </div>
     </div>

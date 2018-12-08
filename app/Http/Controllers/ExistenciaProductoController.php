@@ -67,7 +67,7 @@ class ExistenciaProductoController extends Controller
 
          return redirect()
           ->route('existencia-producto.index')
-          ->with('status','La existencia del producto a sido creada exitosamente.');
+          ->with('status','La existencia del producto ha sido creada exitosamente.');
 
        }else if($EP->precio_compra != $request->precio_compra &&
                 $EP->proveedor == $request->proveedor){
@@ -80,7 +80,7 @@ class ExistenciaProductoController extends Controller
 
                 return redirect()
                  ->route('existencia-producto.index')
-                 ->with('status','La existencia del producto a sido creada exitosamente.');
+                 ->with('status','La existencia del producto ha sido creada exitosamente.');
        }
 
      }else{

@@ -4,12 +4,8 @@ namespace genericlothing\Http\Controllers\Usuario;
 
 use Illuminate\Http\Request;
 use genericlothing\Http\Controllers\Controller;
-use genericlothing\TipoProducto;
-use genericlothing\Pedido;
-use genericlothing\DetallePedido;
-use DB;
 
-class PedidoController extends Controller
+class DetallePedidoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,15 +14,7 @@ class PedidoController extends Controller
      */
     public function index()
     {
-        $TipoProductos = TipoProducto::all();
-        $Pedido = Pedido::whereColumn([
-                     ['rut_cliente', '=', DB::raw(auth()->user()->rut_cliente)]
-                     ])->first();
-
-        $DetallesPedido = DB::table('detalle-pedido')->where('cod_pedido', '=', $Pedido->cod_pedido)->get();
-
-        return view('Home.carro', compact('TipoProductos', 'Pedido', 'DetallesPedido'));
-
+        //
     }
 
     /**

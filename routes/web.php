@@ -55,6 +55,7 @@ Route::get('home','HomeController@index')->name('home');
 Route::get('configuracion','HomeController@configuracion_user')->name('configuracion');
 Route::get('show/{Producto}','HomeController@showProducto');
 Route::get('/home/filtro','HomeController@filtrar');
+Route::get('carro','Usuario\PedidoController@index')->name('carro');
 
 //Rutas de eliminación
 Route::get('admin/marca/{Marca}/delete', ['uses' => 'MarcaController@destroy', 'as' => 'Marca.delete']);

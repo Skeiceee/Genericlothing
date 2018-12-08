@@ -4,6 +4,8 @@ namespace genericlothing\Http\Controllers;
 
 use genericlothing\Pedido;
 use Illuminate\Http\Request;
+use genericlothing\DetallePedido;
+use DB;
 
 class PedidoController extends Controller
 {
@@ -50,7 +52,9 @@ class PedidoController extends Controller
      */
     public function show($id)
     {
-        //
+        $Pedido = Pedido::find($id);
+        $DetallesPedido = DB::table('detalle-pedido')->where('cod_pedido', '=', $Pedido->cod_pedido)->get();
+        return view('Pedido.show', compact('Pedido','DetallesPedido'));
     }
 
     /**
