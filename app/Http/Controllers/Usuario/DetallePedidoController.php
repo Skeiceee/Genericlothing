@@ -4,7 +4,8 @@ namespace genericlothing\Http\Controllers\Usuario;
 
 use Illuminate\Http\Request;
 use genericlothing\Http\Controllers\Controller;
-
+use genericlothing\Producto;
+use DB;
 class DetallePedidoController extends Controller
 {
     /**
@@ -35,7 +36,16 @@ class DetallePedidoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      //TODO: Agregar StoreDetallePedidoRequest.php para validar que se haya seleccionado una talla
+      //TODO: Agregar detalle producto.
+
+      $Producto = Producto::find($request->cod_producto);
+      $cod_talla = $request->cod_talla;
+      $rut = auth()->user()->rut_cliente;
+
+
+
+      return dd($Producto, $cod_talla, $rut);
     }
 
     /**
@@ -69,7 +79,7 @@ class DetallePedidoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
     }
 
     /**

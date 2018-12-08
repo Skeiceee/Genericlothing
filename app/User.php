@@ -17,6 +17,7 @@ class User extends Authenticatable
      */
     protected $table = "Cliente";
     protected $primaryKey = "rut_cliente";
+    protected $keyType = 'string';
     public $timestamps = false;
     protected $fillable = [
         'rut_cliente', 'nom_cliente', 'apellido_paterno', 'apellido_materno',

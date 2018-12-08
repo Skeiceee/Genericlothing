@@ -52,7 +52,9 @@
           </div>
         </div>
         <div class="col-lg col-sm col-md mt-4">
-        <form class="form-group" action="#" method="get">
+        <form class="form-group" action="/carro/detalle" method="post">
+          <input type="hidden" name="cod_producto" value="{{$Producto->cod_producto}}">
+          @csrf
           <div class="card mt-2">
             <div class="card-body">
               <ul class="list-group list-group-flush">
@@ -98,7 +100,7 @@
                     }else {
                       foreach($cantidades as $cantidad){
                         echo '<div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="'.$cantidad->getOriginal('pivot_cod_talla').'_'.$i.'" value="option1">
+                          <input class="form-check-input" type="radio" name="cod_talla" id="'.$cantidad->getOriginal('pivot_cod_talla').'_'.$i.'" value="'.$cantidad->getOriginal('pivot_cod_talla').'">
                           <label class="form-check-label" for="'.$cantidad->getOriginal('pivot_cod_talla').'_'.$i.'">'.$cantidad->getOriginal('pivot_cod_talla').'</label>
                         </div>';
                         if((int)$cantidad->getOriginal('pivot_cantidad') > 5){
@@ -112,7 +114,7 @@
                     }
                   @endphp
                 </li>
-                <button class="btn btn-info btn-block" type="sumbit" name="button">Agregar al carro</button>
+                <button class="btn btn-info btn-block" type="submit">Agregar al carro</button>
               </ul>
             </div>
           </div>
