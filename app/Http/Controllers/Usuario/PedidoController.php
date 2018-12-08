@@ -16,16 +16,20 @@ class PedidoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     public function __construct(){
+          $this->middleware('auth');
+     }
     public function index()
     {
         $TipoProductos = TipoProducto::all();
-        $Pedido = Pedido::whereColumn([
-                     ['rut_cliente', '=', DB::raw(auth()->user()->rut_cliente)]
-                     ])->first();
+
+        $Pedido = DB::table('pedido')
+                    ->where('rut_cliente', '=', auth()->user()->rut_cliente)
+                    ->first();
 
         $DetallesPedido = DB::table('detalle-pedido')->where('cod_pedido', '=', $Pedido->cod_pedido)->get();
 
-        return view('Home.carro', compact('TipoProductos', 'Pedido', 'DetallesPedido'));
+        return view('Home.carro', compact('TipoProductos', 'DetallesPedido'));
 
     }
 

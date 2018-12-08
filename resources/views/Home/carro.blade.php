@@ -5,6 +5,7 @@
     $Total = 0;
 @endphp
 <section class="container-fluid pt-4">
+    @include('Common.success')
     <div class="row">
         <div class="col-sm">
             <div class="card">
@@ -16,6 +17,7 @@
                         <thead class="thead-dark">
                             <tr>
                                 <th scope="col">Producto</th>
+                                <th scope="col">Talla</th>
                                 <th scope="col">Cantidad</th>
                                 <th scope="col">Precio</th>
                                 <th scope="col">Subtotal</th>
@@ -32,10 +34,11 @@
                                 @endphp
                                 <tr>
                                     <td>{{$Producto->nom_producto}}</td>
+                                    <td>{{$DetallePedido->cod_talla}}</td>
                                     <td>{{$DetallePedido->cantidad}}</td>
                                     <td>${{$DetallePedido->precio_venta}}</td>
                                     <td>${{$DetallePedido->subtotal}}</td>
-                                    <td><a class="btn btn-primary btn-sm" href=""><i class="fas fa-trash"></i></a></td>
+                                    <td><a class="btn btn-danger btn-sm" href=""><i class="fas fa-trash"></i></a></td>
                                 </tr>
                             @endforeach
                         </tbody>

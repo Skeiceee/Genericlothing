@@ -5,7 +5,11 @@ namespace genericlothing\Http\Controllers\Usuario;
 use Illuminate\Http\Request;
 use genericlothing\Http\Controllers\Controller;
 use genericlothing\Producto;
+use genericlothing\Pedido;
+use genericlothing\DetallePedido;
+use genericlothing\TipoProducto;
 use DB;
+
 class DetallePedidoController extends Controller
 {
     /**
@@ -13,6 +17,9 @@ class DetallePedidoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     public function __construct(){
+          $this->middleware('auth');
+     }
     public function index()
     {
         //
@@ -37,15 +44,39 @@ class DetallePedidoController extends Controller
     public function store(Request $request)
     {
       //TODO: Agregar StoreDetallePedidoRequest.php para validar que se haya seleccionado una talla
-      //TODO: Agregar detalle producto.
 
       $Producto = Producto::find($request->cod_producto);
       $cod_talla = $request->cod_talla;
       $rut = auth()->user()->rut_cliente;
+      $Pedido = DB::table('pedido')->where('rut_cliente', '=', $rut)->first();
 
+      $DP =  DetallePedido::whereColumn([
+                   ['cod_pedido', '=',  DB::raw((int)$Pedido->cod_pedido)],
+                   ['cod_producto', '=', DB::raw((int)$request->cod_producto)]
+                   ])->first();
 
+      if($DP != null){
+          if($DP->cod_talla == $request->cod_talla){
+              $DP->cantidad = $DP->cantidad + 1;
+              $DP->subtotal = $DP->subtotal + $Producto->precio_venta;
 
-      return dd($Producto, $cod_talla, $rut);
+              $DP->updateDp($DP);
+          }//TODO: Poner aca la condicion cuando se agrega el mismo producto pero la talla es distinta.
+      }else{
+          $DP = new DetallePedido();
+
+          $DP->cod_pedido = $Pedido->cod_pedido;
+          $DP->cod_producto = $request->cod_producto;
+          $DP->cantidad = 1;
+          $DP->precio_venta = $Producto->precio_venta;
+          $DP->subtotal = $Producto->precio_venta;
+          $DP->estado = "0";
+          $DP->cod_talla = $request->cod_talla;
+
+          $DP->saveDp($DP);
+      }
+
+      return redirect()->route('carro')->with('status','El producto se ha agregado al carro correctamente.');
     }
 
     /**
