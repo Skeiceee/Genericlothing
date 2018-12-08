@@ -23,7 +23,6 @@ background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pjwh
             <div class="card-body">
               <div class="row">
                 <div class="col-lg-4 col-sm-12 col-md-4">
-
                   <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                   @php

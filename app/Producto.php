@@ -23,6 +23,6 @@ class Producto extends Model
     return $this->belongsToMany('genericlothing\Tienda','existencia-producto','cod_producto','cod_tienda');
   }
   public function existencias(){
-    return $this->belongsToMany('genericlothing\Producto','existencia-producto','cod_producto','cod_producto')->withPivot('proveedor','precio_compra','cantidad','created_at', 'updated_at');
+    return $this->belongsToMany('genericlothing\Producto','existencia-producto','cod_producto','cod_producto')->withPivot('cod_talla','proveedor','precio_compra','cantidad','created_at', 'updated_at');
   }
 }

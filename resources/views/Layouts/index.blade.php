@@ -17,9 +17,6 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="{{route('home')}}">Inicio<span class="sr-only"></span></a>
-          </li>
           @include('Usuario.Common.navbar')
         </ul>
         @if (auth()->user()->estado == "2")
