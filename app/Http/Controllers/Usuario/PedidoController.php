@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use genericlothing\Http\Controllers\Controller;
 use genericlothing\TipoProducto;
 use genericlothing\Pedido;
+use genericlothing\Talla;
+use genericlothing\Marca;
 use genericlothing\DetallePedido;
 use DB;
 
@@ -22,6 +24,8 @@ class PedidoController extends Controller
     public function index()
     {
         $TipoProductos = TipoProducto::all();
+        $Marcas = TipoProducto::all();
+        $Tallas = Talla::all();
 
         $Pedido = DB::table('pedido')
                     ->where('rut_cliente', '=', auth()->user()->rut_cliente)
@@ -29,7 +33,7 @@ class PedidoController extends Controller
 
         $DetallesPedido = DB::table('detalle-pedido')->where('cod_pedido', '=', $Pedido->cod_pedido)->get();
 
-        return view('Home.carro', compact('TipoProductos', 'DetallesPedido'));
+        return view('Home.carro', compact('TipoProductos', 'DetallesPedido','Marcas','Tallas'));
 
     }
 

@@ -36,15 +36,6 @@
                   @endif
                 @endforeach
               </select>
-              <label for="cod_talla">Talla</label>
-              <select class="form-control" name="cod_talla">
-                <option value="{{-1}}">Todas las tallas</option>
-                @foreach ($Tallas as $Talla)
-                  @if ($Talla->estado == 0)
-                  <option value="{{$Talla->cod_talla}}">{{$Talla->cod_talla}}</option>
-                  @endif
-                @endforeach
-              </select>
               <div class="form-grup mt-2">
                 <label for="precio">Precio</label>
                     <input type="text" id="range" value="" name="range" />
@@ -66,7 +57,7 @@
                   // Lee contenidos de la ruta
                   while((($file_name = readdir($dir_handle)) !== false) && ($sw !=  1)){
 
-                    $ext = pathinfo($file_name, PATHINFO_EXTENSION);   
+                    $ext = pathinfo($file_name, PATHINFO_EXTENSION);
 
                     if( $ext === 'png' || $ext === 'jpg' ) {
                       echo('<a href="/show/'.$Producto->cod_producto.'"'.$Producto->nom_producto.'"><img class="d-block w-100" src="/img/'.$Producto->nom_producto.'/'.$file_name.'"></a>');

@@ -24,15 +24,18 @@ class HomeController extends Controller
     }
 
     public function configuracion_user(){
+      $Marcas = Marca::all();
+      $Tallas = Talla::all();
       $TipoProductos = TipoProducto::all();
       $Ciudades = Ciudad::all();
-      return view('Usuario.Common.configuracion_user',compact('Ciudades','TipoProductos'));
+      return view('Usuario.Common.configuracion_user',compact('Ciudades','TipoProductos','Marcas','Tallas'));
     }
 
     public function showProducto(Producto $Producto){
+      $Tallas = Talla::all();
       $TipoProductos = TipoProducto::all();
       $Marcas = Marca::all();
-      return view('Home.showProducto',compact('TipoProductos','Producto','Marcas'));
+      return view('Home.showProducto',compact('TipoProductos','Producto','Marcas','Tallas'));
     }
 
     public function filtrar(Request $Request){
@@ -80,4 +83,45 @@ class HomeController extends Controller
       return view('Home.index',compact('TipoProductos','Productos','Marcas','Tallas'));
     }
 
+    public function filtrarTipoProducto($id){
+        $Tallas = Talla::all();
+        $TipoProductos = TipoProducto::all();
+        $Marcas = Marca::all();
+
+        $TP = TipoProducto::find($id);
+
+        $Productos = DB::table('producto')
+                     ->whereColumn([
+                     ['cod_tipo_producto', '=',  DB::raw((int)$TP->cod_tipo_producto)]
+                     ])->get();
+
+        return view('Home.index',compact('TipoProductos','Productos','Marcas','Tallas'));
+    }
+
+    public function filtrarMarca($id){
+        $Tallas = Talla::all();
+        $TipoProductos = TipoProducto::all();
+        $Marcas = Marca::all();
+
+        $M = Marca::find($id);
+
+        $Productos = DB::table('producto')
+                     ->whereColumn([
+                     ['cod_marca', '=',  DB::raw((int)$M->cod_marca)]
+                     ])->get();
+
+        return view('Home.index',compact('TipoProductos','Productos','Marcas','Tallas'));
+    }
+
+    public function filtrarTalla($id){
+        $Tallas = Talla::all();
+        $TipoProductos = TipoProducto::all();
+        $Marcas = Marca::all();
+
+        $T = Talla::find($id);
+
+        $Productos = $T->productos;
+
+        return view('Home.index',compact('TipoProductos','Productos','Marcas','Tallas'));
+    }
 }
