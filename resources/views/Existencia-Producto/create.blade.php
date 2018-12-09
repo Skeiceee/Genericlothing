@@ -33,7 +33,7 @@
                 <select class="form-control" name="cod_talla" id="cod_talla">
                   @foreach ($Tallas as $Talla)
                     @if ($Talla->estado == 0)
-                    <option value="{{$Talla->cod_talla}}">{{$Talla->cod_talla}}</option>
+                      <option value="{{$Talla->cod_talla}}">{{$Talla->cod_talla}}</option>
                     @endif
                   @endforeach
                 </select>
@@ -42,7 +42,7 @@
                 <select class="form-control" name="cod_tienda" id="cod_tienda">
                   @foreach ($Tiendas as $Tienda)
                     @if ($Tienda->estado == 0)
-                    <option value="{{$Tienda_seleccionada = $Tienda->cod_tienda}}">{{$Tienda->nom_tienda}}</option>
+                      <option value="{{$Tienda_seleccionada = $Tienda->cod_tienda}}">{{$Tienda->nom_tienda}}</option>
                     @endif
                   @endforeach
                 </select>

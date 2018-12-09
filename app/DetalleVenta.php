@@ -9,7 +9,8 @@ class DetalleVenta extends Model
     protected $table = "Detalle-Venta";
     protected $primaryKey = (
       ["cod_venta",
-       "cod_producto"]
+       "cod_producto",
+       "cod_talla"]
     );
     public $incrementing = false;
     public $timestamps = false;

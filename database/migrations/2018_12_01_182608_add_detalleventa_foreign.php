@@ -16,6 +16,7 @@ class AddDetalleventaForeign extends Migration
         Schema::table('Detalle-Venta', function (Blueprint $table) {
             $table->foreign('cod_venta')->references('cod_venta')->on('Venta')->change();
             $table->foreign('cod_producto')->references('cod_producto')->on('Producto')->change();
+            $table->foreign('cod_talla')->references('cod_talla')->on('Talla')->change();
         });
     }
 

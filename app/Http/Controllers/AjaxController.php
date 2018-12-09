@@ -21,4 +21,23 @@ class AjaxController extends Controller
 
         return $str;
       }
+
+      public function ajaxUpdateCarro(Request $Request){
+        $cant = 0;
+        if (auth()->check()) {
+          $cod_pedido = DB::table('pedido')
+                        ->select('cod_pedido')
+                        ->where('rut_cliente', '=', DB::raw('\''.auth()->user()->rut_cliente.'\''))
+                        ->value('cod_pedido');
+
+          $cant = DB::table('detalle-pedido')
+                  ->select( DB::raw('sum(cantidad) as cant'))
+                  ->where('cod_pedido','=', DB::raw((int)$cod_pedido))
+                  ->value('cant');
+          if ($cant == null) {
+            $cant = 0;
+          }
+        }
+        return $cant;
+      }
 }

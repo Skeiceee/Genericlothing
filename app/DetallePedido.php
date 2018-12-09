@@ -10,7 +10,8 @@ class DetallePedido extends Model
     protected $table = "Detalle-Pedido";
     protected $primaryKey = (
       ["cod_pedido",
-       "cod_producto"]
+       "cod_producto",
+       "cod_talla"]
     );
     public $incrementing = false;
     public $timestamps = false;

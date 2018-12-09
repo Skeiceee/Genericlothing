@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-    $('#cod_tienda').ready(function (){
+    $('#num-items').ready(function (){
       var ctienda = $("#cod_tienda").val();
       $.ajax({
         type: 'get',

@@ -16,6 +16,7 @@ class AddDetallepedidoForeign extends Migration
         Schema::table('Detalle-Pedido', function (Blueprint $table) {
             $table->foreign('cod_pedido')->references('cod_pedido')->on('Pedido')->change();
             $table->foreign('cod_producto')->references('cod_producto')->on('Producto')->change();
+            $table->foreign('cod_talla')->references('cod_talla')->on('Talla')->change();
         });
     }
 

@@ -66,10 +66,10 @@
                   // Lee contenidos de la ruta
                   while((($file_name = readdir($dir_handle)) !== false) && ($sw !=  1)){
 
-                    $ext = pathinfo($file_name, PATHINFO_EXTENSION);
+                    $ext = pathinfo($file_name, PATHINFO_EXTENSION);   
 
                     if( $ext === 'png' || $ext === 'jpg' ) {
-                      echo('<a href="show/'.$Producto->cod_producto.'"'.$Producto->nom_producto.'"><img class="d-block w-100" src="/img/'.$Producto->nom_producto.'/'.$file_name.'"></a>');
+                      echo('<a href="/show/'.$Producto->cod_producto.'"'.$Producto->nom_producto.'"><img class="d-block w-100" src="/img/'.$Producto->nom_producto.'/'.$file_name.'"></a>');
                       $sw = 1;
                     }
 

@@ -16,7 +16,8 @@ class CreateDetallePedidosTable extends Migration
         Schema::create('Detalle-Pedido', function (Blueprint $table) {
             $table->integer('cod_pedido')->unsigned();
             $table->integer('cod_producto')->unsigned();
-            $table->primary(['cod_pedido', 'cod_producto'], 'primaryKeyName');
+            $table->string('cod_talla',3);
+            $table->primary(['cod_pedido', 'cod_producto','cod_talla'], 'cod_detalle_pedido');
             $table->smallInteger('cantidad');
             $table->integer('precio_venta');
             $table->integer('subtotal');
