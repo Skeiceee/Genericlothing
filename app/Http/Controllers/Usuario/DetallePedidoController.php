@@ -8,6 +8,7 @@ use genericlothing\Producto;
 use genericlothing\Pedido;
 use genericlothing\DetallePedido;
 use genericlothing\TipoProducto;
+use genericlothing\Http\Requests\StoreDetallePedidoRequest;
 use DB;
 
 class DetallePedidoController extends Controller
@@ -41,37 +42,35 @@ class DetallePedidoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreDetallePedidoRequest $request)
     {
-      //TODO: Agregar StoreDetallePedidoRequest.php para validar que se haya seleccionado una talla
 
       $Producto = Producto::find($request->cod_producto);
-      $cod_talla = $request->cod_talla;
       $rut = auth()->user()->rut_cliente;
       $Pedido = DB::table('pedido')->where('rut_cliente', '=', $rut)->first();
 
       $DP =  DetallePedido::whereColumn([
                    ['cod_pedido', '=',  DB::raw((int)$Pedido->cod_pedido)],
-                   ['cod_producto', '=', DB::raw((int)$request->cod_producto)]
+                   ['cod_producto', '=', DB::raw((int)$request->cod_producto)],
+                   ['cod_talla', '=',  DB::raw('\''.$request->cod_talla.'\'')]
                    ])->first();
 
       if($DP != null){
-          if($DP->cod_talla == $request->cod_talla){
-              $DP->cantidad = $DP->cantidad + 1;
-              $DP->subtotal = $DP->subtotal + $Producto->precio_venta;
+        $DP->cantidad = $DP->cantidad + 1;
+        $DP->subtotal = $DP->subtotal + $Producto->precio_venta;
 
-              $DP->updateDp($DP);
-          }//TODO: Poner aca la condicion cuando se agrega el mismo producto pero la talla es distinta.
+        $DP->updateDp($DP);
+
       }else{
           $DP = new DetallePedido();
 
           $DP->cod_pedido = $Pedido->cod_pedido;
           $DP->cod_producto = $request->cod_producto;
+          $DP->cod_talla = $request->cod_talla;
           $DP->cantidad = 1;
           $DP->precio_venta = $Producto->precio_venta;
           $DP->subtotal = $Producto->precio_venta;
           $DP->estado = "0";
-          $DP->cod_talla = $request->cod_talla;
 
           $DP->saveDp($DP);
       }

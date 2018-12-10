@@ -20,6 +20,7 @@ class DetallePedido extends Model
       DB::table('detalle-pedido')
           ->where('cod_pedido', '=',  DB::raw((int)$DP->cod_pedido))
           ->where('cod_producto', '=', DB::raw((int)$DP->cod_producto))
+          ->where('cod_talla', '=', DB::raw('\''.$DP->cod_talla.'\''))
           ->update(
             [
             'cantidad' => $DP->cantidad,

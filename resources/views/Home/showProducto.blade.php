@@ -10,6 +10,7 @@
 }
 </style>
 <section class="container-fluid pt-4 mx-auto">
+@include('Common.errorProducto')
   <div class="row">
     <div class="col-lg-8 col-sm-12 col-md-8 mx-auto">
       <div class="row">
