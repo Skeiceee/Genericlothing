@@ -39,7 +39,11 @@
                 </tbody>
             </table>
             <h3><span class="float-left badge badge-info mt-4">Total: ${{number_format($Total, 0, ',','.')}}</span></h3>
-            <a class="btn btn-primary float-right mt-4" href="#">Comprar</a>
+            @if (auth()->user()->detallePedidoEmpty(auth()->user()->rut_cliente) == false)
+              <a class="btn btn-primary float-right mt-4" href="#">Comprar</a>
+            @else
+              <a class="btn btn-danger float-right mt-4" href="/home">Agregar productos al carrito</a>
+            @endif
         </div>
     </div>
 </section>

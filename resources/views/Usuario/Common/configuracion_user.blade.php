@@ -5,6 +5,7 @@
     <div class="row">
       <div id="registrar_marca" class="col-lg-6 col-sm-12 col-md-6 mx-auto">
         @include('Common.errorProducto')
+        @include('Common.success')
         <form class="form-group" action="/edit/user" method="post">
           @csrf
           <div class="form-group">
