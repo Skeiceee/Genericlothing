@@ -8,7 +8,10 @@ use genericlothing\TipoProducto;
 use genericlothing\Producto;
 use genericlothing\Marca;
 use genericlothing\Talla;
+use genericlothing\Http\Requests\ConfiguracionUserRequest;
 use DB;
+
+
 class HomeController extends Controller
 {
     public function __construct(){
@@ -123,5 +126,21 @@ class HomeController extends Controller
         $Productos = $T->productos;
 
         return view('Home.index',compact('TipoProductos','Productos','Marcas','Tallas'));
+    }
+
+    public function configurarUser(ConfiguracionUserRequest $request){
+      $rut_cliente = auth()->user()->rut_cliente;
+      DB::table('cliente')
+          ->where('rut_cliente', '=',  DB::raw('\''.$rut_cliente.'\''))
+          ->update(
+            [
+            'nom_cliente' => $request->nom_cliente,
+            'apellido_paterno' =>  $request->apellido_paterno,
+            'apellido_materno' =>  $request->apellido_materno,
+            'telefono' =>  $request->telefono,
+            'cod_ciudad' =>  $request->ciudad
+            ]
+          );
+      return redirect()->route('configuracion')->with('status','Se ha configurado correctamente su cuenta.');
     }
 }

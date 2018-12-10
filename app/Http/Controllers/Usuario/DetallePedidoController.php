@@ -75,7 +75,7 @@ class DetallePedidoController extends Controller
           $DP->saveDp($DP);
       }
 
-      return redirect()->route('carro')->with('status','El producto se ha agregado al carro correctamente.');
+      return redirect()->route('home');
     }
 
     /**
@@ -130,6 +130,6 @@ class DetallePedidoController extends Controller
                      ])->first();
 
         $DP->deleteDp($DP);
-        return redirect()->route('carro')->with('status','El producto se ha eliminado del carro correctamente.');
+        return redirect()->route('carro');
     }
 }

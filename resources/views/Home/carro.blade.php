@@ -5,7 +5,6 @@
     $Total = 0;
 @endphp
 <section class="container-fluid pt-4">
-    @include('Common.success')
     <div class="row">
         <div class="col-sm">
             <h2 class="text-center">Carro de compras</h2>
