@@ -5,9 +5,9 @@ namespace genericlothing\Http\Controllers\Usuario;
 use Illuminate\Http\Request;
 use genericlothing\Http\Controllers\Controller;
 use genericlothing\TipoProducto;
-use genericlothing\Pedido;
 use genericlothing\Talla;
 use genericlothing\Marca;
+use genericlothing\Pedido;
 use genericlothing\DetallePedido;
 use DB;
 
@@ -27,11 +27,8 @@ class PedidoController extends Controller
         $Marcas = TipoProducto::all();
         $Tallas = Talla::all();
 
-        $Pedido = DB::table('pedido')
-                    ->where('rut_cliente', '=', auth()->user()->rut_cliente)
-                    ->first();
-
-        $DetallesPedido = DB::table('detalle-pedido')->where('cod_pedido', '=', $Pedido->cod_pedido)->get();
+        $cod_pedido = auth()->user()->getCodPedido(auth()->user()->rut_cliente);
+        $DetallesPedido = DB::table('detalle-pedido')->where('cod_pedido', '=', $cod_pedido)->get();
 
         return view('Home.carro', compact('TipoProductos', 'DetallesPedido','Marcas','Tallas'));
 

@@ -52,6 +52,9 @@ Route::resource('admin/envio','EnvioController');
 //Rutas de usuario
 Route::get('home','HomeController@index')->name('home');
 Route::post('edit/user','HomeController@configurarUser');
+Route::get('pago', 'Usuario\PagoController@index');
+
+Route::resource('venta', 'Usuario\VentaController');
 
 Route::get('configuracion','HomeController@configuracion_user')->name('configuracion');
 Route::get('show/{Producto}','HomeController@showProducto');

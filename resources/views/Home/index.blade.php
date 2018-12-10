@@ -7,6 +7,7 @@
   @endsection
   @section('content')
   <section class="container-fluid mt-4 pl-4">
+      @include('Common.success')
     <div class="row mx-auto pl-4">
       <div class="col-lg-3 col-sm-12 col-md-3">
         @include('Common.error')

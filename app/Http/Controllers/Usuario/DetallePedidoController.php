@@ -46,12 +46,10 @@ class DetallePedidoController extends Controller
     {
 
       $Producto = Producto::find($request->cod_producto);
-      $rut = auth()->user()->rut_cliente;
-      $Pedido = DB::table('pedido')->where('rut_cliente', '=', $rut)->first();
-
+      $cod_pedido = auth()->user()->getCodPedido(auth()->user()->rut_cliente);
 
       $DP =  DetallePedido::whereColumn([
-                   ['cod_pedido', '=',  DB::raw((int)$Pedido->cod_pedido)],
+                   ['cod_pedido', '=',  DB::raw((int)$cod_pedido)],
                    ['cod_producto', '=', DB::raw((int)$request->cod_producto)],
                    ['cod_talla', '=',  DB::raw('\''.$request->cod_talla.'\'')]
                    ])->first();
@@ -65,7 +63,7 @@ class DetallePedidoController extends Controller
       }else{
           $DP = new DetallePedido();
 
-          $DP->cod_pedido = $Pedido->cod_pedido;
+          $DP->cod_pedido = $cod_pedido;
           $DP->cod_producto = $request->cod_producto;
           $DP->cod_talla = $request->cod_talla;
           $DP->cantidad = 1;
@@ -78,14 +76,14 @@ class DetallePedidoController extends Controller
 
       $sumProductos =  DB::table('detalle-pedido')
                     ->select(DB::raw('sum(subtotal) as total'))
-                    ->where('cod_pedido', '=', DB::raw((int)$Pedido->cod_pedido))->value('total');
+                    ->where('cod_pedido', '=', DB::raw((int)$cod_pedido))->value('total');
 
       if ($sumProductos == null) {
         $sumProductos = 0;
       }
 
       DB::table('pedido')
-          ->where('cod_pedido', '=',  DB::raw((int)$Pedido->cod_pedido))
+          ->where('cod_pedido', '=',  DB::raw((int)$cod_pedido))
           ->update(
             [
             'total' => $sumProductos,
@@ -137,11 +135,10 @@ class DetallePedidoController extends Controller
      */
     public function destroy($cod_producto, $cod_talla)
     {
-        $rut = auth()->user()->rut_cliente;
-        $Pedido = DB::table('pedido')->where('rut_cliente', '=', $rut)->first();
+        $cod_pedido = auth()->user()->getCodPedido(auth()->user()->rut_cliente);
 
         $DP =  DetallePedido::whereColumn([
-                     ['cod_pedido', '=',  DB::raw((int)$Pedido->cod_pedido)],
+                     ['cod_pedido', '=',  DB::raw((int)$cod_pedido)],
                      ['cod_producto', '=', DB::raw((int)$cod_producto)],
                      ['cod_talla', '=',  DB::raw('\''.$cod_talla.'\'')]
                      ])->first();
@@ -150,14 +147,14 @@ class DetallePedidoController extends Controller
 
         $sumProductos =  DB::table('detalle-pedido')
                       ->select(DB::raw('sum(subtotal) as total'))
-                      ->where('cod_pedido', '=', DB::raw('\''.$Pedido->cod_pedido.'\''))->value('total');
+                      ->where('cod_pedido', '=', DB::raw('\''.$cod_pedido.'\''))->value('total');
 
         if ($sumProductos == null) {
           $sumProductos = 0;
         }
 
         DB::table('pedido')
-            ->where('cod_pedido', '=',  DB::raw((int)$Pedido->cod_pedido))
+            ->where('cod_pedido', '=',  DB::raw((int)$cod_pedido))
             ->update(
               [
               'total' => $sumProductos,

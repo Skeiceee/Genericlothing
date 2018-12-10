@@ -34,11 +34,11 @@ class DetallePedido extends Model
           [
             'cod_pedido' => $DP->cod_pedido,
             'cod_producto' => $DP->cod_producto,
+            'cod_talla' => $DP->cod_talla,
             'cantidad' => $DP->cantidad,
             'precio_venta' => $DP->precio_venta,
             'subtotal' => $DP->subtotal,
-            'estado' => $DP->estado,
-            'cod_talla' => $DP->cod_talla
+            'estado' => $DP->estado
           ]
         );
     }

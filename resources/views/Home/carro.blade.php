@@ -40,7 +40,7 @@
               </table>
               <h3><span class="float-left badge badge-info mt-4">Total: ${{number_format($Total, 0, ',','.')}}</span></h3>
               @if (auth()->user()->detallePedidoEmpty(auth()->user()->rut_cliente) == false)
-                <a class="btn btn-info float-right mt-4" href="#">Comprar</a>
+                <a class="btn btn-info float-right mt-4" href="pago">Comprar</a>
               @else
                 <a class="btn btn-danger float-right mt-4" href="/home">Agregar productos al carrito</a>
               @endif
