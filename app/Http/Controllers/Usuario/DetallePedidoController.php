@@ -118,8 +118,18 @@ class DetallePedidoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($cod_producto, $cod_talla)
     {
-        //
+        $rut = auth()->user()->rut_cliente;
+        $Pedido = DB::table('pedido')->where('rut_cliente', '=', $rut)->first();
+
+        $DP =  DetallePedido::whereColumn([
+                     ['cod_pedido', '=',  DB::raw((int)$Pedido->cod_pedido)],
+                     ['cod_producto', '=', DB::raw((int)$cod_producto)],
+                     ['cod_talla', '=',  DB::raw('\''.$cod_talla.'\'')]
+                     ])->first();
+
+        $DP->deleteDp($DP);
+        return redirect()->route('carro')->with('status','El producto se ha eliminado del carro correctamente.');
     }
 }

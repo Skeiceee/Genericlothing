@@ -34,7 +34,7 @@
                             <td>{{$DetallePedido->cantidad}}</td>
                             <td>${{ number_format($DetallePedido->precio_venta, 0, ',','.') }}</td>
                             <td>${{ number_format($DetallePedido->subtotal, 0, ',','.') }}</td>
-                            <td><a class="btn btn-danger btn-sm" href=""><i class="fas fa-trash"></i></a></td>
+                            <td><a class="btn btn-danger btn-sm" href="eliminardetalle/{{$DetallePedido->cod_producto}}/{{$DetallePedido->cod_talla}}"><i class="fas fa-trash"></i></a></td>
                         </tr>
                     @endforeach
                 </tbody>

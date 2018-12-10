@@ -71,6 +71,9 @@ Route::get('admin/talla/{Talla}/delete', ['uses' => 'TallaController@destroy', '
 //Agregar al carro
 Route::resource('carro/detalle', 'Usuario\DetallePedidoController');
 
+//Eliminar del carro
+Route::get('eliminardetalle/{Producto}/{Talla}', 'Usuario\DetallePedidoController@destroy');
+
 //Modal
 Route::get('admin/existencia-producto/{Producto}/create-producto', ['uses' => 'CommonController@createExistenciaProducto', 'as' => 'ExistenciaProducto.create']);
 
