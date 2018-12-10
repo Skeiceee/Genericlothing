@@ -32,6 +32,9 @@
                     <label for="ciudad">Ciudad</label>
                     <select class="form-control" name="ciudad" id="ciudad">
                         @foreach ($Ciudades as $Ciudad)
+                            @if($Ciudad->cod_ciudad == auth()->user()->cod_ciudad)
+                            <option selected value="{{$Ciudad->cod_ciudad}}">{{$Ciudad->nom_ciudad}}</option>
+                            @endif
                             <option value="{{$Ciudad->cod_ciudad}}">{{$Ciudad->nom_ciudad}}</option>
                         @endforeach
                     </select>

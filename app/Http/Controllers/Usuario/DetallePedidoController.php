@@ -49,6 +49,7 @@ class DetallePedidoController extends Controller
       $rut = auth()->user()->rut_cliente;
       $Pedido = DB::table('pedido')->where('rut_cliente', '=', $rut)->first();
 
+
       $DP =  DetallePedido::whereColumn([
                    ['cod_pedido', '=',  DB::raw((int)$Pedido->cod_pedido)],
                    ['cod_producto', '=', DB::raw((int)$request->cod_producto)],
@@ -74,6 +75,22 @@ class DetallePedidoController extends Controller
 
           $DP->saveDp($DP);
       }
+
+      $sumProductos =  DB::table('detalle-pedido')
+                    ->select(DB::raw('sum(subtotal) as total'))
+                    ->where('cod_pedido', '=', DB::raw((int)$Pedido->cod_pedido))->value('total');
+
+      if ($sumProductos == null) {
+        $sumProductos = 0;
+      }
+
+      DB::table('pedido')
+          ->where('cod_pedido', '=',  DB::raw((int)$Pedido->cod_pedido))
+          ->update(
+            [
+            'total' => $sumProductos,
+            ]
+      );
 
       return redirect()->route('home');
     }
@@ -130,6 +147,23 @@ class DetallePedidoController extends Controller
                      ])->first();
 
         $DP->deleteDp($DP);
+
+        $sumProductos =  DB::table('detalle-pedido')
+                      ->select(DB::raw('sum(subtotal) as total'))
+                      ->where('cod_pedido', '=', DB::raw('\''.$Pedido->cod_pedido.'\''))->value('total');
+
+        if ($sumProductos == null) {
+          $sumProductos = 0;
+        }
+
+        DB::table('pedido')
+            ->where('cod_pedido', '=',  DB::raw((int)$Pedido->cod_pedido))
+            ->update(
+              [
+              'total' => $sumProductos,
+              ]
+        );
+
         return redirect()->route('carro');
     }
 }
