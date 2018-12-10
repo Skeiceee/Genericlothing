@@ -20,6 +20,7 @@
             <div class="carousel-inner">
           @php
             $sw = 0;
+            $i = 1;
             // Abrir el directorio
             $dir_handle = opendir($Producto->ruta);
             // Lee contenidos de la ruta
@@ -31,10 +32,11 @@
                   echo('<div class="carousel-item active">');
                   $sw = 1;
                 }else{
-                  echo('<div class="carousel-item">');
+                  echo('<div id="mainimage" class="carousel-item">');
                 }
-                echo('<img class="d-block w-100" src="/img/'.$Producto->nom_producto.'/'.$file_name.'">');
+                echo('<img id="img_'.$i.'" class="d-block w-100" src="/img/'.$Producto->nom_producto.'/'.$file_name.'" data-zoom-image="/img/'.$Producto->nom_producto.'/'.$file_name.'"/>');
                 echo('</div>');
+                $i++;
               }
 
             }
@@ -125,4 +127,49 @@
     </div>
   </div>
 </section>
+@endsection
+@section('script')
+<script src="{{asset('js\jquery.elevatezoom.js')}}"></script>
+  <script>
+  $('.carousel').carousel({
+      interval: false
+  });
+  var image = $('#img_1');
+  var image2 = $('#img_2');
+  var zoomConfig = {zoomType: "inner", cursor: "crosshair"};
+  var zoomActive = false;
+
+  image.on('click', function(){
+
+      zoomActive = !zoomActive;
+
+      if(zoomActive)
+      {
+           image.elevateZoom(zoomConfig);//initialise zoom
+      }
+      else
+      {
+          $.removeData(image, 'elevateZoom');//remove zoom instance from image
+
+          $('.zoomContainer').remove();// remove zoom container from DOM
+      }
+  });
+
+  image2.on('click', function(){
+
+      zoomActive = !zoomActive;
+
+      if(zoomActive)
+      {
+           image2.elevateZoom(zoomConfig);//initialise zoom
+      }
+      else
+      {
+          $.removeData(image, 'elevateZoom');//remove zoom instance from image
+
+          $('.zoomContainer').remove();// remove zoom container from DOM
+      }
+  });
+
+  </script>
 @endsection

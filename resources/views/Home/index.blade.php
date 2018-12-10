@@ -107,7 +107,6 @@
                 prefix: "$",
                 grid: true
             });
-
         });
     </script>
   @endsection
