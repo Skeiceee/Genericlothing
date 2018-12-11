@@ -1,4 +1,4 @@
-@extends('Layouts.app')
+@extends('Layouts.sinnavbar')
 @section('title',' - Registro de usuario')
 @section('content')
 <div class="container pt-4">
@@ -15,6 +15,7 @@
 
                         <div class="row">
                           <div class="col-sm col-md-6 col-lg-6">
+                            @include('Common.error')
                             <div class="form-group">
                             <i class="fas fa-user-edit"></i>
                                 <label for="nombre">{{ __('Nombre') }}</label>

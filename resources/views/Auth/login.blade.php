@@ -1,9 +1,10 @@
-@extends('Layouts.app')
+@extends('Layouts.sinnavbar')
 @section('title',' - Iniciar sesion')
 @section('content')
   <section class="container-fluid pt-4">
     <div class="row">
       <div class="col-md-4 mx-auto">
+        @include('Common.success')
         <div class="card">
           <div class="card-header">
             <i class="fas fa-user pr-1"></i>

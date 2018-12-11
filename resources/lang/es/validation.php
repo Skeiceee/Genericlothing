@@ -144,6 +144,8 @@ return [
     */
 
     'attributes' => [
+        'nroTarjeta'            => 'numero de tarjeta',
+        'nom_cliente'           => 'nombre',
         'direccion_bodega'      => 'direccion de la bodega',
         'precio_compra'         => 'precio de compra',
         'cod_talla'             => 'codigo de la talla',

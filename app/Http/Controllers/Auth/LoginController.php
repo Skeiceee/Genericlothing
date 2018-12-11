@@ -4,6 +4,9 @@ namespace genericlothing\Http\Controllers\Auth;
 
 use Illuminate\Support\Facades\Auth;
 use genericlothing\Http\Controllers\Controller;
+use genericlothing\TipoProducto;
+use genericlothing\Marca;
+use genericlothing\Talla;
 use Session;
 class LoginController extends Controller
 {
@@ -12,10 +15,14 @@ class LoginController extends Controller
   }
 
   public function showLoginForm(){
-    return view('auth.login');
+    $Tallas = Talla::all();
+    $TipoProductos = TipoProducto::all();
+    $Marcas = Marca::all();
+
+    return view('auth.login', compact('TipoProductos','Marcas','Tallas'));
   }
   public function showIndex(){
-    return view('Index.index');
+    return redirect()->route('guest');
   }
   public function login(){
       $credentials = $this->validate(request(),[

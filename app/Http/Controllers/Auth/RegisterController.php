@@ -10,7 +10,9 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 
 use genericlothing\Ciudad;
 use genericlothing\Pedido;
-
+use genericlothing\TipoProducto;
+use genericlothing\Marca;
+use genericlothing\Talla;
 class RegisterController extends Controller
 {
     /*
@@ -45,7 +47,11 @@ class RegisterController extends Controller
 
     public function showRegistrationForm(){
         $Ciudades = Ciudad::all();
-        return view('Auth.register',compact('Ciudades'));
+        $Tallas = Talla::all();
+        $TipoProductos = TipoProducto::all();
+        $Marcas = Marca::all();
+
+        return view('Auth.register',compact('Ciudades','TipoProductos','Marcas','Tallas'));
     }
     /**
      * Get a validator for an incoming registration request.
@@ -79,7 +85,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'estado' => '0',
-        ]);    
+        ]);
         Pedido::create([
             'rut_cliente' => $data['rut'],
             'fecha' => date('Y-m-d G:i:s'),
@@ -88,6 +94,8 @@ class RegisterController extends Controller
             'created_at' => date('Y-m-d G:i:s'),
             'updated_at' => date('Y-m-d G:i:s'),
         ]);
+
+
         return $User;
     }
 }

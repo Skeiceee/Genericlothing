@@ -4,7 +4,7 @@ namespace genericlothing\Http\Controllers;
 
 use genericlothing\Venta;
 use Illuminate\Http\Request;
-
+use DB;
 class VentaController extends Controller
 {
     /**
@@ -50,7 +50,9 @@ class VentaController extends Controller
      */
     public function show($id)
     {
-        //
+      $Venta = Venta::find($id);
+      $DetallesVentas = DB::table('detalle-venta')->where('cod_venta', '=', $Venta->cod_venta)->get();
+      return view('Venta.show', compact('Venta','DetallesVentas'));
     }
 
     /**

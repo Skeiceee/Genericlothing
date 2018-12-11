@@ -16,7 +16,6 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          @include('Index.Common.navbar')
         </ul>
         <form class="form-inline my-2 my-lg-0">
           <a class="btn btn-primary my-2 my-sm-0" href="{{route('login')}}">Iniciar sesión</button></a>

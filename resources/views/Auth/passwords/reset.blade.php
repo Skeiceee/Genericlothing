@@ -1,4 +1,4 @@
-@extends('Layouts.app')
+@extends('Layouts.sinnavbar')
 @section('title',' - Resetear contraseña')
 @section('content')
   <section class="container-fluid pt-4">

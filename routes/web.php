@@ -49,11 +49,16 @@ Route::resource('admin/pedido','PedidoController');
 Route::resource('admin/existencia-producto','ExistenciaProductoController');
 Route::resource('admin/envio','EnvioController');
 
+Route::get('venta/{Venta}','VentaController@show');
+
+
+
 //Rutas de usuario
 Route::get('home','HomeController@index')->name('home');
 Route::post('edit/user','HomeController@configurarUser');
 Route::get('pago', 'Usuario\PagoController@index');
 
+//Ruta venta
 Route::resource('venta', 'Usuario\VentaController');
 
 Route::get('configuracion','HomeController@configuracion_user')->name('configuracion');
@@ -63,6 +68,17 @@ Route::get('carro','Usuario\PedidoController@index')->name('carro');
 Route::get('filtro/tipo/{TipoProducto}','HomeController@filtrarTipoProducto');
 Route::get('filtro/marca/{Marca}','HomeController@filtrarMarca');
 Route::get('/filtro/talla/{Talla}','HomeController@filtrarTalla');
+
+//Rutas Guest
+Route::get('guest','GuestController@index')->name('guest');
+
+Route::get('guest/show/{Producto}','GuestController@showProducto');
+
+Route::get('/guest/filtro','GuestController@filtrar');
+Route::get('guest/filtro/tipo/{TipoProducto}','GuestController@filtrarTipoProducto');
+Route::get('guest/filtro/marca/{Marca}','GuestController@filtrarMarca');
+Route::get('guest/filtro/talla/{Talla}','GuestController@filtrarTalla');
+Route::get('guest/register','GuestController@redirectRegister')->name('guest?register');
 
 //Rutas de eliminación
 Route::get('admin/marca/{Marca}/delete', ['uses' => 'MarcaController@destroy', 'as' => 'Marca.delete']);

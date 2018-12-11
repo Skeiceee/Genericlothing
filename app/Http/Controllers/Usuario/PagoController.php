@@ -7,6 +7,7 @@ use genericlothing\Http\Controllers\Controller;
 use genericlothing\TipoProducto;
 use genericlothing\Talla;
 use genericlothing\Marca;
+use genericlothing\Ciudad;
 
 class PagoController extends Controller
 {
@@ -19,7 +20,7 @@ class PagoController extends Controller
         $TipoProductos = TipoProducto::all();
         $Marcas = TipoProducto::all();
         $Tallas = Talla::all();
-
-        return view('Home.pago', compact('TipoProductos', 'DetallesPedido','Marcas','Tallas'));
+        $Ciudades = Ciudad::all();
+        return view('Home.pago', compact('TipoProductos','DetallesPedido','Marcas','Tallas','Ciudades'));
     }
 }

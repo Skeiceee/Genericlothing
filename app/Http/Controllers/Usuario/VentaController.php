@@ -3,11 +3,14 @@
 namespace genericlothing\Http\Controllers\Usuario;
 
 use Illuminate\Http\Request;
+use genericlothing\Http\Requests\StoreVentaRequest;
 use genericlothing\Http\Controllers\Controller;
 use genericlothing\Venta;
 use genericlothing\DetalleVenta;
 use genericlothing\DetallePedido;
 use genericlothing\ExistenciaProducto;
+use genericlothing\Envio;
+
 use DB;
 
 class VentaController extends Controller
@@ -38,13 +41,19 @@ class VentaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreVentaRequest $request)
     {
+        $precio_envio = rand(5000,10000);
         $rut_cliente = auth()->user()->rut_cliente;
+
+        $maxCod = DB::table('venta')->select(DB::raw('max(cod_venta) as maxCod'))->value('maxCod');
+        $maxCod++;
+
         $Pedido = DB::table('pedido')->where('rut_cliente', '=', $rut_cliente)->first();
 
         //Crear Venta
         $Venta = new Venta();
+        $Venta->cod_venta = $maxCod;
         $Venta->rut_cliente = $rut_cliente;
         $Venta->fecha = date('Y-m-d G:i:s');
         $Venta->total = $Pedido->total;
@@ -90,6 +99,15 @@ class VentaController extends Controller
 
             $DP->deleteDp($DP);
         }
+
+        $Envio = new Envio();
+        $Envio->cod_venta = $maxCod;
+        $Envio->cod_ciudad = $request->cod_ciudad;
+        $Envio->telefono = auth()->user()->telefono;
+        $Envio->precio_envio = $precio_envio;
+        $Envio->estado = '0';
+
+        $Envio->save();
 
         return redirect()->route('home')->with('status', 'La compra se ha realizado con éxito.');
     }
