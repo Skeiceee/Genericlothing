@@ -10,6 +10,7 @@ use genericlothing\Http\Requests\StoreProductoRequest;
 use genericlothing\Http\Requests\UpdateProductoRequest;
 use File;
 use Illuminate\Filesystem\Filesystem;
+use DB;
 class ProductoController extends Controller
 {
     /**
@@ -138,9 +139,37 @@ class ProductoController extends Controller
      */
     public function destroy(Producto $Producto)
     {
-      File::deleteDirectory(public_path('img').'\\'.$Producto->nom_producto);
-      $Producto->delete();
-      return redirect()->route('producto.index')->with('status','El producto "'.$Producto->nom_producto.'" ha sido eliminado exitosamente.');
+
+      $delete_exi = DB::table('existencia-producto')
+              ->select(DB::raw('count(*) as suma'))
+              ->where('cod_producto', '=', $Producto->cod_producto)->value('cant');
+
+      $descontinuar = DB::table('existencia-producto')
+              ->select(DB::raw('sum(cantidad)'))
+              ->where('cod_producto','=',$Producto->cod_producto)->value('suma');
+
+      if ($descontinuar == 0 && $delete_exi >= 1) {
+
+        $Producto->estado = 2;
+        $Producto->save();
+        return redirect()->route('producto.index')->with('status','El producto "'.$Producto->nom_producto.'" ha sido descontinuado exitosamente.');
+
+      }else if($delete_exi == 0){
+
+        File::deleteDirectory(public_path('img').'\\'.$Producto->nom_producto);
+        $Producto->delete();
+        return redirect()->route('producto.index')->with('status','El producto "'.$Producto->nom_producto.'" ha sido eliminado exitosamente.');
+
+      }else if($delete_exi == 1){
+
+        return redirect()->route('producto.index')->with('status_error','La producto "'.$Producto->nom_producto.'" esta asociada a un existencia de un producto.');
+
+      }else{
+
+        return redirect()->route('producto.index')->with('status_error','La producto "'.$Producto->nom_producto.'" esta asociada a existencias de productos.');
+
+      }
+
     }
 
 }

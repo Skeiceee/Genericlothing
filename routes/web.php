@@ -100,3 +100,4 @@ Route::get('admin/existencia-producto/{Producto}/create-producto', ['uses' => 'C
 //Ajax
 Route::get('ajax-BodegasFind','AjaxController@ajaxBodegasFind')->name('ajax.bodegasfind');
 Route::get('ajax-UpdateCarro','AjaxController@ajaxUpdateCarro')->name('ajax.updatecarro');
+Route::get('ajax-PecioProductoFind','AjaxController@ajaxPecioProductoFind')->name('ajax.precioproductofind');

@@ -15,7 +15,7 @@ class Talla extends Model
     public function bodegas(){
       return $this->belongsToMany('genericlothing\Bodega','existencia-producto','cod_talla','cod_bodega');
     }
-
+    
     public function productos(){
       return $this->belongsToMany('genericlothing\Producto','existencia-producto','cod_talla','cod_producto');
     }

@@ -4,12 +4,17 @@ namespace genericlothing;
 
 use ExistenciaProducto;
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class Producto extends Model
 {
   protected $table = "Producto";
   protected $primaryKey = "cod_producto";
   public $timestamps = false;
+
+  public function allProductos(){
+    return DB::table('producto')->where('estado', '=', '0')->get();
+  }
 
   public function tallas(){
     return $this->belongsToMany('genericlothing\Talla','existencia-producto','cod_producto','cod_talla');

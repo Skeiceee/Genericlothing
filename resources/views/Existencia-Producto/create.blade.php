@@ -55,7 +55,8 @@
                 <input class="form-control" type="text" id="proveedor" name="proveedor">
 
                 <label for="precio_compra">Precio de compra</label>
-                <input class="form-control" type="text" id="precio_compra" name="precio_compra">
+                <div id="divPrecioCompra">
+                </div>
 
                 <label for="cantidad">Cantidad</label>
                 <input class="form-control" type="text" id="cantidad" name="cantidad">
@@ -63,7 +64,6 @@
               <div class="card-footer">
                 <button class="btn btn-primary" type="submit">Ingresar</button>
                 <a class="btn btn-primary float-right" href="{{ route('existencia-producto.index') }}">Volver</a>
-
               </div>
             </div>
           </div>
@@ -74,4 +74,5 @@
 @endsection
 @section('script')
     <script src="{{asset('js/ajax/ajaxbodegafind.js')}}"></script>
+    <script src="{{asset('js/ajax/ajaxprecioproductofind.js')}}"></script>
 @endsection

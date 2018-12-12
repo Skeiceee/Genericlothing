@@ -20,9 +20,12 @@ class HomeController extends Controller
 
     public function index(){
       $Tallas = Talla::all();
-      $Productos = Producto::all();
       $TipoProductos = TipoProducto::all();
       $Marcas = Marca::all();
+
+      $Productos =  new Producto;
+      $Productos = $Productos->allProductos();
+
       return view('Home.index',compact('TipoProductos','Productos','Marcas','Tallas'));
     }
 
@@ -31,6 +34,7 @@ class HomeController extends Controller
       $Tallas = Talla::all();
       $TipoProductos = TipoProducto::all();
       $Ciudades = Ciudad::all();
+
       return view('Usuario.Common.configuracion_user',compact('Ciudades','TipoProductos','Marcas','Tallas'));
     }
 
@@ -38,6 +42,7 @@ class HomeController extends Controller
       $Tallas = Talla::all();
       $TipoProductos = TipoProducto::all();
       $Marcas = Marca::all();
+
       return view('Home.showProducto',compact('TipoProductos','Producto','Marcas','Tallas'));
     }
 
@@ -53,7 +58,8 @@ class HomeController extends Controller
                      ->whereColumn([
                      ['cod_marca', '=',  DB::raw('\''.$Request->cod_marca.'\'')],
                      ['precio_venta', '<=', DB::raw((int)$maxPrice)],
-                     ['precio_venta', '>=', DB::raw((int)$minPrice)]
+                     ['precio_venta', '>=', DB::raw((int)$minPrice)],
+                     ['estado','=', DB::raw((int)0)]
                      ])->get();
 
       }else if( $Request->cod_marca == -1 && $Request->cod_de_tipo != -1) {
@@ -61,13 +67,15 @@ class HomeController extends Controller
                      ->whereColumn([
                      ['cod_tipo_producto', '=',  DB::raw((int)$Request->cod_de_tipo)],
                      ['precio_venta', '<=', DB::raw((int)$maxPrice)],
-                     ['precio_venta', '>=', DB::raw((int)$minPrice)]
+                     ['precio_venta', '>=', DB::raw((int)$minPrice)],
+                     ['estado','=', DB::raw((int)0)]
                      ])->get();
       }else if( ($Request->cod_de_tipo == -1) && ($Request->cod_marca == -1) ) {
         $Productos = DB::table('producto')
                      ->whereColumn([
                      ['precio_venta', '<=', DB::raw((int)$maxPrice)],
-                     ['precio_venta', '>=', DB::raw((int)$minPrice)]
+                     ['precio_venta', '>=', DB::raw((int)$minPrice)],
+                     ['estado','=', DB::raw((int)0)]
                      ])->get();
       }else{
         $Productos = DB::table('producto')
@@ -75,7 +83,8 @@ class HomeController extends Controller
                      ['cod_tipo_producto', '=',  DB::raw((int)$Request->cod_de_tipo)],
                      ['cod_marca', '=',  DB::raw('\''.$Request->cod_marca.'\'')],
                      ['precio_venta', '<=', DB::raw((int)$maxPrice)],
-                     ['precio_venta', '>=', DB::raw((int)$minPrice)]
+                     ['precio_venta', '>=', DB::raw((int)$minPrice)],
+                     ['estado','=', DB::raw((int)0)]
                      ])->get();
 
       }
@@ -95,7 +104,8 @@ class HomeController extends Controller
 
         $Productos = DB::table('producto')
                      ->whereColumn([
-                     ['cod_tipo_producto', '=',  DB::raw((int)$TP->cod_tipo_producto)]
+                     ['cod_tipo_producto', '=',  DB::raw((int)$TP->cod_tipo_producto)],
+                     ['estado','=', DB::raw((int)0)]
                      ])->get();
 
         return view('Home.index',compact('TipoProductos','Productos','Marcas','Tallas'));
@@ -110,7 +120,8 @@ class HomeController extends Controller
 
         $Productos = DB::table('producto')
                      ->whereColumn([
-                     ['cod_marca', '=',  DB::raw((int)$M->cod_marca)]
+                     ['cod_marca', '=',  DB::raw((int)$M->cod_marca)],
+                     ['estado','=', DB::raw((int)0)]
                      ])->get();
 
         return view('Home.index',compact('TipoProductos','Productos','Marcas','Tallas'));
@@ -124,7 +135,10 @@ class HomeController extends Controller
         $T = Talla::find($id);
 
         $Productos = $T->productos;
-
+        $Productos = $Productos->filter(function ($value, $key) {
+            return $value->estado == 0;
+        });
+        
         return view('Home.index',compact('TipoProductos','Productos','Marcas','Tallas'));
     }
 
@@ -141,6 +155,7 @@ class HomeController extends Controller
             'cod_ciudad' =>  $request->ciudad
             ]
           );
+
       return redirect()->route('configuracion')->with('status','Se ha configurado correctamente su cuenta.');
     }
 }

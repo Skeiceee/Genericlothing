@@ -4,6 +4,7 @@ namespace genericlothing\Http\Controllers;
 
 use Illuminate\Http\Request;
 use genericlothing\Tienda;
+use genericlothing\Producto;
 use DB;
 class AjaxController extends Controller
 {
@@ -39,5 +40,11 @@ class AjaxController extends Controller
           }
         }
         return $cant;
+      }
+
+      public function ajaxPecioProductoFind(Request $Request){
+        $Producto = Producto::find($Request->codProducto);
+        $precio_compra = '<input class="form-control" type="number" id="precio_compra" name="precio_compra" min="1" max="'.(int)$Producto->precio_venta.'" value="1">';
+        return $precio_compra;
       }
 }

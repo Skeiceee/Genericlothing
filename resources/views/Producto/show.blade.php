@@ -72,6 +72,10 @@ background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pjwh
                           $str = 'Activo';
                         }else if($Producto->estado == 1){
                           $str = 'Eliminado';
+                        }else if ($Producto->estado == 2){
+                          $str = 'Descontinuado';
+                        }else{
+                          $str = '?';
                         }
                       @endphp
                       <table class="table table-bordered table-hover table-striped">

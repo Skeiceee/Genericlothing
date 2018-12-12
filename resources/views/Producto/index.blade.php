@@ -10,6 +10,7 @@
       <div id="mostrar_producto" class="col-lg col-sm col-md">
         @include('Common.modal_existencia')
         @include('Common.success')
+        @include('Common.error')
         <div class="card">
             <div class="card-header">
               <span>Productos</span>

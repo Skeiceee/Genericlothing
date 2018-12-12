@@ -17,7 +17,9 @@ class GuestController extends Controller
     $TipoProductos = TipoProducto::all();
     $Marcas = Marca::all();
 
-    $Productos = Producto::all();
+    $Productos =  new Producto;
+    $Productos = $Productos->allProductos();
+
     return view('Index.index',compact('TipoProductos','Productos','Marcas','Tallas'));
   }
 
@@ -25,6 +27,7 @@ class GuestController extends Controller
     $Tallas = Talla::all();
     $TipoProductos = TipoProducto::all();
     $Marcas = Marca::all();
+
     return view('Index.showProducto', compact('TipoProductos','Marcas','Tallas','Producto'));
   }
 
@@ -37,7 +40,8 @@ class GuestController extends Controller
 
       $Productos = DB::table('producto')
                    ->whereColumn([
-                   ['cod_tipo_producto', '=',  DB::raw((int)$TP->cod_tipo_producto)]
+                   ['cod_tipo_producto', '=',  DB::raw((int)$TP->cod_tipo_producto)],
+                   ['estado','=', DB::raw((int)0)]
                    ])->get();
 
       return view('Index.index',compact('TipoProductos','Productos','Marcas','Tallas'));
@@ -52,7 +56,8 @@ class GuestController extends Controller
 
       $Productos = DB::table('producto')
                    ->whereColumn([
-                   ['cod_marca', '=',  DB::raw((int)$M->cod_marca)]
+                   ['cod_marca', '=',  DB::raw((int)$M->cod_marca)],
+                   ['estado','=', DB::raw((int)0)]
                    ])->get();
 
       return view('Index.index',compact('TipoProductos','Productos','Marcas','Tallas'));
@@ -66,6 +71,9 @@ class GuestController extends Controller
       $T = Talla::find($id);
 
       $Productos = $T->productos;
+      $Productos = $Productos->filter(function ($value, $key) {
+          return $value->estado == 0;
+      });
 
       return view('Index.index',compact('TipoProductos','Productos','Marcas','Tallas'));
   }
@@ -82,7 +90,8 @@ class GuestController extends Controller
                    ->whereColumn([
                    ['cod_marca', '=',  DB::raw('\''.$Request->cod_marca.'\'')],
                    ['precio_venta', '<=', DB::raw((int)$maxPrice)],
-                   ['precio_venta', '>=', DB::raw((int)$minPrice)]
+                   ['precio_venta', '>=', DB::raw((int)$minPrice)],
+                   ['estado','=', DB::raw((int)0)]
                    ])->get();
 
     }else if( $Request->cod_marca == -1 && $Request->cod_de_tipo != -1) {
@@ -90,13 +99,15 @@ class GuestController extends Controller
                    ->whereColumn([
                    ['cod_tipo_producto', '=',  DB::raw((int)$Request->cod_de_tipo)],
                    ['precio_venta', '<=', DB::raw((int)$maxPrice)],
-                   ['precio_venta', '>=', DB::raw((int)$minPrice)]
+                   ['precio_venta', '>=', DB::raw((int)$minPrice)],
+                   ['estado','=', DB::raw((int)0)]
                    ])->get();
     }else if( ($Request->cod_de_tipo == -1) && ($Request->cod_marca == -1) ) {
       $Productos = DB::table('producto')
                    ->whereColumn([
                    ['precio_venta', '<=', DB::raw((int)$maxPrice)],
-                   ['precio_venta', '>=', DB::raw((int)$minPrice)]
+                   ['precio_venta', '>=', DB::raw((int)$minPrice)],
+                   ['estado','=', DB::raw((int)0)]
                    ])->get();
     }else{
       $Productos = DB::table('producto')
@@ -104,18 +115,23 @@ class GuestController extends Controller
                    ['cod_tipo_producto', '=',  DB::raw((int)$Request->cod_de_tipo)],
                    ['cod_marca', '=',  DB::raw('\''.$Request->cod_marca.'\'')],
                    ['precio_venta', '<=', DB::raw((int)$maxPrice)],
-                   ['precio_venta', '>=', DB::raw((int)$minPrice)]
+                   ['precio_venta', '>=', DB::raw((int)$minPrice)],
+                   ['estado','=', DB::raw((int)0)]
                    ])->get();
 
     }
     if ($Productos->isEmpty()) {
+
       return  redirect()->route('guest')->with('status_error','La buscada no ha sido exitosa, no se encontro ningún productos con esas caracteristicas.');
+
     }
 
     return view('Index.index', compact('TipoProductos','Productos','Marcas','Tallas'));
   }
 
   public function redirectRegister(){
+
     return redirect()->route('register')->with('status_error','Usted no esta registrado, para poder agregar productos necesita una cuenta.');
+
   }
 }

@@ -117,13 +117,19 @@ class TallaController extends Controller
               ->where('cod_talla', $Talla->cod_talla)->value('cant');
 
       if($delete_exi == 0){
+
         $Talla->estado = 1;
         $Talla->save();
         return redirect()->route('talla.index')->with('status','La talla"'.$Talla->cod_talla.'" ha sido eliminada exitosamente.');
+
       }else if($delete_exi == 1){
-        return redirect()->route('talla.index')->with('status','La talla "'.$Talla->cod_talla.'" esta asociada a un existencia de un producto');
+
+        return redirect()->route('talla.index')->with('status_error','La talla "'.$Talla->cod_talla.'" esta asociada a un existencia de un producto');
+
       }else{
-        return redirect()->route('talla.index')->with('status','La talla "'.$Talla->cod_talla.'" esta asociada a existencias de productos');
+
+        return redirect()->route('talla.index')->with('status_error','La talla "'.$Talla->cod_talla.'" esta asociada a existencias de productos');
+        
       }
 
     }

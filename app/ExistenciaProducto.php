@@ -62,5 +62,4 @@ class ExistenciaProducto extends Model
         );
     }
 
-
 }

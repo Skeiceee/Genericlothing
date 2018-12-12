@@ -9,6 +9,7 @@
     <div class="row">
       <div id="mostrar_talla" class="col-lg col-sm col-md">
         @include('Common.success')
+        @include('Common.error')
         <div class="card ">
             <div class="card-header">
               <span>Tallas</span>
