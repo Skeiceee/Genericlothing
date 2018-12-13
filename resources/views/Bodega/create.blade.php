@@ -16,12 +16,12 @@
                 <label for="tienda">Tienda</label>
                 <select class="form-control" name="tienda" id="tienda">
                     @foreach ($Tiendas as $Tienda)
-                        <option value="{{$Tienda->cod_tienda}}">{{$Tienda->nom_tienda}}</option>
+                        <option value="{{$Tienda->cod_tienda}}" {{ old('tienda') == $Tienda->cod_tienda ? "selected" : " " }} >{{$Tienda->nom_tienda}}</option>
                     @endforeach
                 </select>
 
                 <label for="direccion_tienda">Direccion de la bodega</label>
-                <input class="form-control" type="text" name="direccion_bodega" id="direccion_bodega">
+                <input class="form-control" type="text" name="direccion_bodega" id="direccion_bodega" value="{{ old('direccion_bodega') }}">
 
               </div>
               <div class="card-footer">

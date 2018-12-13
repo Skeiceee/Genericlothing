@@ -25,7 +25,7 @@
         @endif
 
         <a id="car-shop" class="badge badge-pill badge-light mr-2" href="{{route('carro')}}">
-          <i class="fas fa-shopping-cart"></i> <span id="num-items"></span>
+          <i class="fas fa-shopping-cart"></i><span id="num-items"></span>
           <span class="sr-only">Productos en el carrito</span>
         </a>
 
@@ -57,9 +57,7 @@
       </div>
     </section>
     @endif
-
     @yield('content')
-
   </body>
   <footer>
   </footer>

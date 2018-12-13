@@ -9,16 +9,16 @@
        <div class="row">
          <div class="col-lg-8 col-sm-12 col-md-8">
            <label for="nombre">Nombre</label>
-           <input class="form-control" type="text" name="nombre" id="nombre">
+           <input class="form-control" type="text" name="nombre" id="nombre" value="{{ old('nombre') }}">
            <label for="precio_venta">Precio de venta</label>
-           <input class="form-control" type="text" name="precio_venta" id="precio_venta">
+           <input class="form-control" type="text" name="precio_venta" id="precio_venta" value="{{ old('precio_venta') }}">
            <label for="precio_venta">Detalle del producto</label>
-           <input class="form-control" type="text" name="detalle_producto" id="detalle_producto">
+           <input class="form-control" type="text" name="detalle_producto" id="detalle_producto" value="{{ old('detalle_producto') }}">
            <label for="tipo_producto">Tipo del producto</label>
            <select class="form-control" name="tipo_de_producto" id="tipo_de_producto">
              @foreach ($TipoProductos as $TipoProducto)
                @if ($TipoProducto->estado == 0)
-               <option value="{{$TipoProducto->cod_tipo_producto}}">{{$TipoProducto->nombre}}</option>
+                 <option value="{{$TipoProducto->cod_tipo_producto}}" {{ old('tipo_de_producto') == $TipoProducto->cod_tipo_producto ? "selected" : " " }}>{{$TipoProducto->nombre}}</option>
                @endif
              @endforeach
            </select>
@@ -26,7 +26,7 @@
            <select class="form-control" name="marca" id='marca'>
              @foreach ($Marcas as $Marca)
                @if ($Marca->estado == 0)
-               <option value="{{$Marca->cod_marca}}">{{$Marca->nombre}}</option>
+                 <option value="{{$Marca->cod_marca}}" {{ old('marca') == $Marca->cod_marca ? "selected" : " " }}>{{$Marca->nombre}}</option>
                @endif
              @endforeach
            </select>

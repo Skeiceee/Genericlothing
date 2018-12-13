@@ -23,7 +23,7 @@
                 @else
                   @foreach ($Productos as $Producto)
                     @if ($Producto->estado == 0)
-                    <option value="{{$Producto->cod_producto}}">{{$Producto->nom_producto}}</option>
+                    <option value="{{$Producto->cod_producto}}" {{ old('cod_producto') == $Producto->cod_producto ? "selected" : " " }}>{{$Producto->nom_producto}}</option>
                     @endif
                   @endforeach
                 @endif
@@ -33,7 +33,7 @@
                 <select class="form-control" name="cod_talla" id="cod_talla">
                   @foreach ($Tallas as $Talla)
                     @if ($Talla->estado == 0)
-                      <option value="{{$Talla->cod_talla}}">{{$Talla->cod_talla}}</option>
+                      <option value="{{$Talla->cod_talla}}" {{ old('cod_talla') == $Talla->cod_talla ? "selected" : " " }}>{{$Talla->cod_talla}}</option>
                     @endif
                   @endforeach
                 </select>
@@ -42,7 +42,7 @@
                 <select class="form-control" name="cod_tienda" id="cod_tienda">
                   @foreach ($Tiendas as $Tienda)
                     @if ($Tienda->estado == 0)
-                      <option value="{{$Tienda_seleccionada = $Tienda->cod_tienda}}">{{$Tienda->nom_tienda}}</option>
+                      <option value="{{$Tienda_seleccionada = $Tienda->cod_tienda}}" {{ old('cod_tienda') == $Tienda->cod_tienda ? "selected" : " " }}>{{$Tienda->nom_tienda}}</option>
                     @endif
                   @endforeach
                 </select>
@@ -52,14 +52,14 @@
                 </select>
 
                 <label for="proveedor">Proveedor</label>
-                <input class="form-control" type="text" id="proveedor" name="proveedor">
+                <input class="form-control" type="text" id="proveedor" name="proveedor" value="{{ old('proveedor') }}">
 
                 <label for="precio_compra">Precio de compra</label>
                 <div id="divPrecioCompra">
                 </div>
 
                 <label for="cantidad">Cantidad</label>
-                <input class="form-control" type="text" id="cantidad" name="cantidad">
+                <input class="form-control" type="text" id="cantidad" name="cantidad" value="{{ old('cantidad') }}">
               </div>
               <div class="card-footer">
                 <button class="btn btn-primary" type="submit">Ingresar</button>

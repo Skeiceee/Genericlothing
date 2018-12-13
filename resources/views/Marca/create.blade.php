@@ -14,7 +14,7 @@
               </div>
               <div class="card-body">
                 <label for="nombre">Nombre</label>
-                <input class="form-control" type="text" name="nombre" id="nombre">
+                <input class="form-control" type="text" name="nombre" id="nombre"z>
               </div>
               <div class="card-footer">
                 <button class="btn btn-primary" type="submit">Ingresar</button>

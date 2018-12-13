@@ -24,7 +24,8 @@ class StoreBodegaRequest extends FormRequest
     public function rules()
     {
         return [
-
+          'tienda' => 'required',
+          'direccion_bodega' => 'required|string|max:50'
         ];
     }
 }
