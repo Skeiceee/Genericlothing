@@ -32,7 +32,12 @@ class LoginController extends Controller
 
       if(Auth::attempt($credentials)){
           $estado = auth()->user()->estado;
-          if($estado != 2){
+          if($estado == 1){
+            Auth::logout();
+            return back()
+                ->withErrors(['email' => trans('auth.failed')])
+                ->withInput(request(['email']));
+          }else if($estado != 2){
             return redirect()->route('home');
           }else{
             return redirect()->route('admin');

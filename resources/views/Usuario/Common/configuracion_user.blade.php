@@ -45,6 +45,30 @@
                 <a class="btn btn-info mt-4 float-right" href="{{route('home')}}">Volver</a>
               </div>
             </div>
+
+            <!-- Modal de eliminar cuenta -->
+
+              <a class="text-danger float-right" data-toggle="modal" data-target="#exampleModal" href="#">Eliminar cuenta</a>
+
+              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header" style="border-bottom: 0px">
+                      <h5 class="modal-title" id="exampleModalLabel">¿Estas seguro que quieres eliminar tu cuenta?</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-footer" style="border-top: 0px">
+                      <button type="button" class="btn btn-info" data-dismiss="modal">Cancelar</button>
+                      <a class="btn btn-danger" href="{{ route('deleteUser') }}">Eliminar</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            <!---->
+
           </div>
         </form>
       </div>
