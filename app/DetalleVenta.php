@@ -29,4 +29,16 @@ class DetalleVenta extends Model
           ]
         );
     }
+
+    public function anularDv(DetalleVenta $DV){
+      DB::table('detalle-venta')
+          ->where('cod_venta', '=',  DB::raw((int)$DV->cod_venta))
+          ->where('cod_producto', '=', DB::raw((int)$DV->cod_producto))
+          ->where('cod_talla', '=', DB::raw('\''.$DV->cod_talla.'\''))
+          ->update(
+            [
+            'estado' => $DV->estado
+            ]
+          );
+    }
 }

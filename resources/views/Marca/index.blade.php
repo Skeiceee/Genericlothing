@@ -9,6 +9,7 @@
     <div class="row">
       <div id="mostrar_marca" class="col-lg col-sm col-md">
         @include('Common.success')
+        @include('Common.error')
         <div class="card ">
             <div class="card-header">
               <span>Marcas</span>
@@ -35,7 +36,7 @@
       </div>
     </div>
   </section>
-@endsection  
+@endsection
 @section('script')
       <script src="//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"></script>
       <script src="https://code.jquery.com/jquery-3.3.1.js"></script>

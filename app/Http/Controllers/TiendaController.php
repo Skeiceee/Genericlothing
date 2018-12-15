@@ -64,7 +64,7 @@ class TiendaController extends Controller
     public function show($id)
     {
       $Tienda = Tienda::find($id);
-      $Bodegas = Tienda::find($id)->bodegas;
+      $Bodegas = Tienda::find($id)->bodegas($id);
 
       return view('tienda.show', compact('Tienda','Bodegas'));
     }
@@ -125,7 +125,7 @@ class TiendaController extends Controller
           $Tienda->delete();
           return redirect()->route('tienda.index')->with('status','La tienda "'.$Tienda->nom_tienda.'" ha sido eliminada exitosamente.');
         }else{
-          return redirect()->route('tienda.index')->with('status','La tienda "'.$Tienda->nom_tienda.'" esta asociada a una bodega, no puede ser eliminada.');
+          return redirect()->route('tienda.index')->with('status_error','La tienda "'.$Tienda->nom_tienda.'" esta asociada a una bodega, no puede ser eliminada.');
         }
 
     }

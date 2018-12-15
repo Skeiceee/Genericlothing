@@ -1,5 +1,5 @@
 @extends('Layouts.index')
-@section('title',' - Configuración de usuario')
+@section('title',' - Detalles de mi compra')
 @section('content')
 @php
     $Total = 0;
@@ -23,7 +23,7 @@
           <div class="col-md-12 col-sm-12 col-lg-12">
             <div class="card mt-3">
               <div class="card-body">
-                <span>Productos de la venta</span>
+                <span style="font-weight: bold;">Productos de la venta</span>
               </div>
               <ul class="list-group list-group-flush">
                 <li class="list-group-item">
@@ -43,8 +43,10 @@
                     <div class="col">
                       Subtotal
                     </div>
-                    <div class="col-1 col-md-1 col-sm-1 col-lg-1">
-                    </div>
+                    @if ($Venta->estado == '0')
+                        <div class="col-1 col-md-1 col-sm-1 col-lg-1">
+                        </div>
+                    @endif
                   </div>
                 </li>
                 @php
@@ -76,9 +78,11 @@
                       <div class="col">
                         ${{ number_format($DetalleVenta->subtotal, 0, ',','.') }}
                       </div>
-                      <div class="col-1 col-md-1 col-sm-1 col-lg-1">
-                        <a class="btn btn-danger btn-sm" href="#"><i class="fas fa-trash"></i></a>
-                      </div>
+                      @if ($Venta->estado == '0')
+                          <div class="col-1 col-md-1 col-sm-1 col-lg-1">
+                            <a class="btn btn-danger btn-sm" href="/compras/detalle/{{$DetalleVenta->cod_venta}}/{{$DetalleVenta->cod_producto}}/{{$DetalleVenta->cod_talla}}/anular"><i class="fas fa-trash"></i></a>
+                          </div>
+                      @endif
                     </div>
                   </li>
                   @endif
@@ -90,7 +94,7 @@
           <div class="col-md-12 col-sm-12 col-lg-12 mt-4">
             <div class="card">
               <div class="card-body">
-              <span>Productos anulados</span>
+              <span style="font-weight: bold;">Productos anulados</span>
               </div>
               <ul class="list-group list-group-flush">
 
@@ -133,7 +137,7 @@
           </div>
 
           <div class="col-12 mt-4 text-center">
-            <a class="btn btn-info btn-block" href="{{route('misCompras')}}">Volver a comprar</a>
+            <a class="btn btn-info btn-block" href="{{route('misCompras')}}">Volver a Mis Compras</a>
           </div>
 
         </div>

@@ -20,6 +20,9 @@ class VentaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     public function __construct(){
+          $this->middleware('auth');
+     }
     public function index()
     {
         //
@@ -152,8 +155,25 @@ class VentaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($cod_venta)
     {
-        //
+        $Venta = Venta::find($cod_venta);
+        $Venta->estado = '2';
+        $Venta->save();
+
+        $DetallesVenta = DB::table('detalle-venta')->where('cod_venta', '=', $cod_venta)->get();
+
+        foreach ($DetallesVenta as $DetalleVenta) {
+            $DV =  DetalleVenta::whereColumn([
+                        ['cod_venta', '=',  DB::raw((int)$cod_venta)],
+                        ['estado', '=', DB::raw("0")]
+                        ])->first();
+            if ($DV != null) {
+                $DV->estado = "1";
+                $DV->anularDv($DV);
+            }
+        }
+
+        return redirect()->route('misCompras')->with('status', 'La compra se ha anulado con éxito.');
     }
 }

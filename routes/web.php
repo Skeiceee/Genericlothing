@@ -51,19 +51,21 @@ Route::resource('admin/envio','EnvioController');
 
 Route::get('venta/{Venta}','VentaController@show');
 
-
-
 //Rutas de usuario
 Route::get('home','HomeController@index')->name('home');
 Route::post('edit/user','HomeController@configurarUser');
 Route::get('pago', 'Usuario\PagoController@index');
 Route::get('home/delete','DeleteUserController@deleteCliente')->name('deleteUser');
 
-//Ruta venta
+//Rutas venta
 Route::resource('venta', 'Usuario\VentaController');
 Route::get('compras','HomeController@misCompras')->name('misCompras');
 Route::get('compras/detalle/{Venta}','HomeController@detalleCompra')->name('detalleCompra');
 
+Route::get('compras/{Venta}/anular', ['uses' => 'Usuario\VentaController@destroy']);
+Route::get('compras/detalle/{Venta}/{Producto}/{Talla}/anular', ['uses' => 'Usuario\DetalleVentaController@destroy']);
+
+//Rutas Home
 Route::get('configuracion','HomeController@configuracion_user')->name('configuracion');
 Route::get('show/{Producto}','HomeController@showProducto');
 Route::get('/home/filtro','HomeController@filtrar');
@@ -90,7 +92,6 @@ Route::get('admin/ciudad/{Ciudad}/delete', ['uses' => 'CiudadController@destroy'
 Route::get('admin/tienda/{Tienda}/delete', ['uses' => 'TiendaController@destroy', 'as' => 'Tienda.delete']);
 Route::get('admin/bodega/{Bodega}/delete', ['uses' => 'BodegaController@destroy', 'as' => 'Bodega.delete']);
 Route::get('admin/talla/{Talla}/delete', ['uses' => 'TallaController@destroy', 'as' => 'Talla.delete']);
-
 
 //Agregar al carro
 Route::resource('carro/detalle', 'Usuario\DetallePedidoController');

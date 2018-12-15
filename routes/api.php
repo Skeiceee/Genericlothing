@@ -141,7 +141,7 @@ Route::get('Pedidos',function(){
 Route::get('Ventas',function(){
 
     $query = DB::table('venta as e')
-           ->select('e.cod_venta', 'd.rut_cliente as rut_cliente', 'e.fecha', 'e.total', 'e.tipo', 'e.estado', 'e.envio', DB::raw('if(e.tipo = 0,\'Boleta\',\'Factura\') as tipo, if(e.estado = 0,\'Activo\',\'Anulada\') as estado, if(e.envio = 0,\'Si\',\'No\') as envio'))
+           ->select('e.cod_venta', 'd.rut_cliente as rut_cliente', 'e.fecha', 'e.total', 'e.tipo', 'e.estado', 'e.envio', DB::raw('if(e.tipo = 0,\'Boleta\',\'Factura\') as tipo, if(e.estado = 0,\'En curso\',if(e.estado = 1,\'Concretada\',\'Anulada\')) as estado, if(e.envio = 0,\'Si\',\'No\') as envio'))
            ->join('cliente as d','e.rut_cliente', '=', 'd.rut_cliente');
 
     return datatables()

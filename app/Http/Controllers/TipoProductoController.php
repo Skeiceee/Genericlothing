@@ -118,9 +118,9 @@ class TipoProductoController extends Controller
         $TipoProducto->save();
         return redirect()->route('tipo-producto.index')->with('status','El tipo de producto "'.$TipoProducto->nombre.'" ha sido eliminado exitosamente.');
       }else if($delete == 1){
-        return redirect()->route('tipo-producto.index')->with('status','El tipo de producto "'.$TipoProducto->nombre.'" esta asociado a un producto, no puede ser eliminada');
+        return redirect()->route('tipo-producto.index')->with('status_error','El tipo de producto "'.$TipoProducto->nombre.'" esta asociado a un producto, no puede ser eliminada');
       }else{
-        return redirect()->route('tipo-producto.index')->with('status','El tipo de producto "'.$TipoProducto->nombre.'" esta asociado a '.$delete.' productos, no puede ser eliminada');
+        return redirect()->route('tipo-producto.index')->with('status_error','El tipo de producto "'.$TipoProducto->nombre.'" esta asociado a '.$delete.' productos, no puede ser eliminada');
       }
     }
 }

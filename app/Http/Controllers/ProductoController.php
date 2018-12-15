@@ -162,11 +162,11 @@ class ProductoController extends Controller
 
       }else if($delete_exi == 1){
 
-        return redirect()->route('producto.index')->with('status_error','La producto "'.$Producto->nom_producto.'" esta asociada a un existencia de un producto.');
+        return redirect()->route('producto.index')->with('status_error','El producto "'.$Producto->nom_producto.'" esta asociado a una existencia de producto.');
 
       }else{
 
-        return redirect()->route('producto.index')->with('status_error','La producto "'.$Producto->nom_producto.'" esta asociada a existencias de productos.');
+        return redirect()->route('producto.index')->with('status_error','El producto "'.$Producto->nom_producto.'" esta asociado a existencias de productos.');
 
       }
 

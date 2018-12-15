@@ -6,7 +6,6 @@
         ->where('rut_cliente', '=', $Venta->rut_cliente)
         ->first();
 @endphp
-<section cla
 @section('content')
   <section class="container-fluid pt-4">
     <div class="row">
@@ -14,7 +13,7 @@
           <div class="form-group">
             <div class="card">
               <div class="card-header">
-                  <span>Detalle de la venta {{$Usuario->nom_cliente}} {{$Usuario->apellido_paterno}}</span>
+                  <span>Detalle de la venta {{$Venta->cod_venta}} de {{$Usuario->nom_cliente}} {{$Usuario->apellido_paterno}}</span>
               </div>
               <div class="card-body pb-1">
                 <table class="table">

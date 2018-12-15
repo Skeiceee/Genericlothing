@@ -119,9 +119,9 @@ class MarcaController extends Controller
         $Marca->save();
         return redirect()->route('marca.index')->with('status','La marca "'.$Marca->nombre.'" ha sido eliminado exitosamente.');
       }else if($delete == 1){
-        return redirect()->route('marca.index')->with('status','La marca "'.$Marca->nombre.'" esta asociada a un producto, no puede ser eliminada');
+        return redirect()->route('marca.index')->with('status_error','La marca "'.$Marca->nombre.'" esta asociada a un producto, no puede ser eliminada');
       }else{
-        return redirect()->route('marca.index')->with('status','La marca "'.$Marca->nombre.'" esta asociada a '.$delete.' productos, no puede ser eliminada');
+        return redirect()->route('marca.index')->with('status_error','La marca "'.$Marca->nombre.'" esta asociada a '.$delete.' productos, no puede ser eliminada');
       }
     }
 }

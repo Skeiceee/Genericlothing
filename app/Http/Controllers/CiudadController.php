@@ -119,7 +119,7 @@ class CiudadController extends Controller
         $Ciudad->delete();
         return redirect()->route('ciudad.index')->with('status','La ciudad "'.$Ciudad->nom_ciudad.'" ha sido eliminada exitosamente.');
       }else {
-        return redirect()->route('ciudad.index')->with('status','La ciudad "'.$Ciudad->nom_ciudad.'" debe estar asociada a un cliente, envio y/o tienda, no puede ser eliminada');
+        return redirect()->route('ciudad.index')->with('status_error','La ciudad "'.$Ciudad->nom_ciudad.'" debe estar asociada a un cliente, envio y/o tienda, no puede ser eliminada');
       }
 
     }
