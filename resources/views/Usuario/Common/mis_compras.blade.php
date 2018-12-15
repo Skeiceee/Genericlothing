@@ -30,8 +30,8 @@
                           $inicio = strftime("%d de %B del %Y", strtotime($fecha));
                           echo '<span>Compra del '.$inicio.'</span>';
                         @endphp
-                      <a class="btn btn-danger float-right mr-2" href="#">Anular</a>
-                      <a class="btn btn-info float-right mr-2" href="#">Ver detalles</a>
+                        <a class="btn btn-danger float-right" href="#"><i class="fas fa-trash"></i></a>
+                      <a class="btn btn-info float-right mr-2" href="/compras/detalle/{{$venta->cod_venta}}">Ver detalles</a>
                       <span class="float-right mr-4">Total: {{$venta->total}}</span>
                     </li>
                   @else
@@ -67,7 +67,7 @@
                         $inicio = strftime("%d de %B del %Y", strtotime($fecha));
                         echo '<span>Compra del '.$inicio.'</span>';
                       @endphp
-                      <a class="btn btn-info float-right mr-2" href="#">Ver detalles</a>
+                      <a class="btn btn-info float-right mr-2" href="{{route('detalleCompra', $venta->cod_venta)}}">Ver detalles</a>
                       <span class="float-right mr-4"> Total: {{$venta->total}}</span>
                     </li>
                   @else
@@ -118,6 +118,10 @@
                 @endforeach
               </ul>
             </div>
+          </div>
+
+          <div class="col-12 mt-4 text-center">
+            <a class="btn btn-info btn-block" href="{{route('home')}}">Volver a comprar</a>
           </div>
 
         </div>

@@ -8,9 +8,9 @@ use genericlothing\TipoProducto;
 use genericlothing\Producto;
 use genericlothing\Marca;
 use genericlothing\Talla;
+use genericlothing\Venta;
 use genericlothing\Http\Requests\ConfiguracionUserRequest;
 use DB;
-
 
 class HomeController extends Controller
 {
@@ -160,16 +160,41 @@ class HomeController extends Controller
     }
 
     public function misCompras(){
+      $Tallas = Talla::all();
+      $TipoProductos = TipoProducto::all();
+      $Marcas = Marca::all();
+
       $rut = auth()->user()->rut_cliente;
 
       $Ventas = DB::table('venta')->select('*')
             ->where('rut_cliente', '=', DB::raw('\''.$rut.'\''))->get();
 
+      return view('Usuario.Common.mis_compras',compact('TipoProductos','Marcas','Tallas','Ventas'));
+    }
+
+    public function detalleCompra(Venta $Venta){
+
+      $rut = auth()->user()->rut_cliente;
+
+      $validations = DB::table('venta')->select('cod_venta')
+            ->where('rut_cliente', '=', DB::raw('\''.$rut.'\''))->get();
+
+
       $Tallas = Talla::all();
       $TipoProductos = TipoProducto::all();
       $Marcas = Marca::all();
 
-      return view('Usuario.Common.mis_compras',compact('TipoProductos','Marcas','Tallas','Ventas'));
+      $DetallesVenta = DB::table('detalle-venta')->select('*')
+            ->where('cod_venta', '=', DB::raw((int)$Venta->cod_venta))->get();
+      
+      foreach ($validations as $validation) {
+        if ($Venta->cod_venta == $validation->cod_venta) {
+          return view('Usuario.Common.detalle_de_mis_compras',compact('TipoProductos','Marcas','Tallas','Venta','DetallesVenta'));
+        }
+      }
+
+      return abort(404);
+
     }
 
 }
