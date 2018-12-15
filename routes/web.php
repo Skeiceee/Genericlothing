@@ -61,6 +61,7 @@ Route::get('home/delete','DeleteUserController@deleteCliente')->name('deleteUser
 
 //Ruta venta
 Route::resource('venta', 'Usuario\VentaController');
+Route::get('compras','HomeController@misCompras')->name('misCompras');
 
 Route::get('configuracion','HomeController@configuracion_user')->name('configuracion');
 Route::get('show/{Producto}','HomeController@showProducto');

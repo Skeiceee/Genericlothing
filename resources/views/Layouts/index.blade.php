@@ -35,6 +35,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="{{route('configuracion')}}">Configuración</a>
+                  <a class="dropdown-item" href="{{route('misCompras')}}">Mis compras</a>
                   <form class="form-inline my-2 my-lg-0" action="{{route('logout')}}" method="post">
                     @csrf
                     <button class="dropdown-item" type="sumbit" name="button">Cerrar sesion</button>

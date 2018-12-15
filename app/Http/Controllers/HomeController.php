@@ -138,7 +138,7 @@ class HomeController extends Controller
         $Productos = $Productos->filter(function ($value, $key) {
             return $value->estado == 0;
         });
-        
+
         return view('Home.index',compact('TipoProductos','Productos','Marcas','Tallas'));
     }
 
@@ -158,4 +158,18 @@ class HomeController extends Controller
 
       return redirect()->route('configuracion')->with('status','Se ha configurado correctamente su cuenta.');
     }
+
+    public function misCompras(){
+      $rut = auth()->user()->rut_cliente;
+
+      $Ventas = DB::table('venta')->select('*')
+            ->where('rut_cliente', '=', DB::raw('\''.$rut.'\''))->get();
+
+      $Tallas = Talla::all();
+      $TipoProductos = TipoProducto::all();
+      $Marcas = Marca::all();
+
+      return view('Usuario.Common.mis_compras',compact('TipoProductos','Marcas','Tallas','Ventas'));
+    }
+
 }
