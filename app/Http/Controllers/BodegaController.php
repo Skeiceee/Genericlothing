@@ -32,7 +32,7 @@ class BodegaController extends Controller
     public function create()
     {
         $Tiendas = Tienda::all();
-        return view('Bodega.create',compact('Tiendas'));
+        return view('Bodega.create', compact('Tiendas'));
     }
 
     /**
@@ -73,6 +73,7 @@ class BodegaController extends Controller
      */
     public function edit(Bodega $Bodega)
     {
+
       $Tiendas = Tienda::all();
       return view('Bodega.edit', compact('Bodega','Tiendas'));
     }

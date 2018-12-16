@@ -8,10 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Bodega extends Model
 {
     protected $table = "Bodega";
-    protected $primaryKey = (
-      ["cod_bodega",
-       "cod_tienda"]
-    );
+    protected $primaryKey = "cod_bodega";
     public $timestamps = false;
 
     public function productos(){
@@ -23,5 +20,4 @@ class Bodega extends Model
     public function tiendas(){
       return $this->belongsToMany('genericlothing\Tienda','existencia-producto','cod_bodega','cod_tienda');
     }
-
 }
