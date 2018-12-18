@@ -9,6 +9,7 @@ class Bodega extends Model
 {
     protected $table = "Bodega";
     protected $primaryKey = "cod_bodega";
+    
     public $timestamps = false;
 
     public function productos(){

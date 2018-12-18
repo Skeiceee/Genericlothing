@@ -23,7 +23,6 @@
                     <th>Rut cliente</th>
                     <th>Fecha</th>
                     <th>Total</th>
-                    <th>Estado</th>
                     <th class="no-sort" width=10>Acciones</th>
                   </tr>
                 </thead>
@@ -83,7 +82,6 @@
                  {data: 'rut_cliente', name: 'd.rut_cliente'},
                  {data: 'fecha', name: 'e.fecha'},
                  {data: 'total', name: 'e.total'},
-                 {data: 'estado', name: 'e.estado'},
                  {data: 'btn'},
                ]
             });

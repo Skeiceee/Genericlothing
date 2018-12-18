@@ -128,7 +128,7 @@ Route::get('Clientes',function(){
 Route::get('Pedidos',function(){
 
     $query = DB::table('pedido as e')
-           ->select('e.cod_pedido', 'd.rut_cliente as rut_cliente', 'e.fecha', 'e.total', 'e.estado', DB::raw('if(e.estado = 0,\'Activo\',\'Anulado\') as estado'))
+           ->select('e.cod_pedido', 'd.rut_cliente as rut_cliente', 'e.fecha', 'e.total')
            ->join('cliente as d','e.rut_cliente', '=', 'd.rut_cliente');
 
     return datatables()
