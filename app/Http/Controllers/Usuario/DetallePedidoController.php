@@ -69,7 +69,6 @@ class DetallePedidoController extends Controller
           $DP->cantidad = 1;
           $DP->precio_venta = $Producto->precio_venta;
           $DP->subtotal = $Producto->precio_venta;
-          $DP->estado = "0";
 
           $DP->saveDp($DP);
       }

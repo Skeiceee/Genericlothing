@@ -165,10 +165,7 @@ class RegisterController extends Controller
         Pedido::create([
             'rut_cliente' => $data['rut'],
             'fecha' => date('Y-m-d G:i:s'),
-            'total' => '0',
-            'estado' => '0',
-            'created_at' => date('Y-m-d G:i:s'),
-            'updated_at' => date('Y-m-d G:i:s'),
+            'total' => '0'
         ]);
         return $User;
     }

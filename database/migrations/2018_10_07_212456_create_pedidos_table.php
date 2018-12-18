@@ -19,8 +19,6 @@ class CreatePedidosTable extends Migration
             $table->foreign('rut_cliente')->references('rut_cliente')->on('Cliente');
             $table->date('fecha');
             $table->integer('total');
-            $table->char('estado', 1);
-            $table->timestamps();
         });
     }
 

@@ -38,7 +38,6 @@ class DetallePedido extends Model
             'cantidad' => $DP->cantidad,
             'precio_venta' => $DP->precio_venta,
             'subtotal' => $DP->subtotal,
-            'estado' => $DP->estado
           ]
         );
     }

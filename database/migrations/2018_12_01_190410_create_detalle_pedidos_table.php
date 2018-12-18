@@ -21,7 +21,6 @@ class CreateDetallePedidosTable extends Migration
             $table->smallInteger('cantidad');
             $table->integer('precio_venta');
             $table->integer('subtotal');
-            $table->char('estado', 1);
         });
     }
 
