@@ -96,7 +96,7 @@ class BodegaController extends Controller
       }
 
       $Bodega->save();
-      return redirect()->route('bodega.index', [$Tienda])->with('status','La bodega "'.$Tienda->nom_tienda.'" ha sido actualizada exitosamente.');
+      return redirect()->route('bodega.index')->with('status','La bodega '.$Bodega->cod_bodega.' ha sido actualizada exitosamente.');
     }
 
     /**
@@ -115,7 +115,7 @@ class BodegaController extends Controller
         $Bodega->delete();
         return redirect()->route('bodega.index')->with('status','La bodega ha sido eliminada exitosamente.');
       }else{
-        return redirect()->route('bodega.index')->with('status','La bodega esta asociada a una existencia de producto, no puede ser eliminada.');
+        return redirect()->route('bodega.index')->with('status_error','La bodega esta asociada a una existencia de producto, no puede ser eliminada.');
       }
 
     }
