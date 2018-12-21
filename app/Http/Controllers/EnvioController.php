@@ -3,6 +3,7 @@
 namespace genericlothing\Http\Controllers;
 
 use genericlothing\Envio;
+use genericlothing\Venta;
 use Illuminate\Http\Request;
 use DB;
 class EnvioController extends Controller
@@ -103,8 +104,16 @@ class EnvioController extends Controller
     }
 
     public function destroy(Envio $Envio){
+
+      $Venta = Venta::whereColumn([
+                   ['cod_venta', '=',  DB::raw((int)$Envio->cod_venta)]
+                   ])->first();
+                   
+      $Venta->estado = 1;
+      $Venta->save();
       $Envio->estado = 1;
       $Envio->save();
+
       return redirect()->route('envio.index')->with('status','El envio a sido concretado exitosamente.');
     }
 }
