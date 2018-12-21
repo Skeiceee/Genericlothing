@@ -26,7 +26,7 @@ Route::post('logout','Auth\LoginController@logout')->name('logout');
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
 
-//Rutas de reseteo de passwordz
+//Rutas de reseteo de passwords
 Route::get('password/reset','Auth\ForgotPasswordController@showLinkRequestForm')->name('reset');
 Route::post('password/email','Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 
@@ -92,6 +92,10 @@ Route::get('admin/ciudad/{Ciudad}/delete', ['uses' => 'CiudadController@destroy'
 Route::get('admin/tienda/{Tienda}/delete', ['uses' => 'TiendaController@destroy', 'as' => 'Tienda.delete']);
 Route::get('admin/bodega/{Bodega}/delete', ['uses' => 'BodegaController@destroy', 'as' => 'Bodega.delete']);
 Route::get('admin/talla/{Talla}/delete', ['uses' => 'TallaController@destroy', 'as' => 'Talla.delete']);
+Route::get('admin/Envio/{Envio}/delete', ['uses' => 'EnvioController@destroy', 'as' => 'Envio.delete']);
+
+//Vista confimarcion de envio
+Route::get('admin/Envio/{Envio}/confirmation', ['uses' => 'EnvioController@confirmationEnvio', 'as' => 'Envio.confirmation']);
 
 //Agregar al carro
 Route::resource('carro/detalle', 'Usuario\DetallePedidoController');

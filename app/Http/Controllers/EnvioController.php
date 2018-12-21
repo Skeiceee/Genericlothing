@@ -85,8 +85,26 @@ class EnvioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+
+    public function confirmationEnvio(Envio $Envio){
+      $nomCiudad = DB::table('ciudad')
+                      ->select('nom_ciudad')
+                      ->where('cod_ciudad', '=', $Envio->cod_ciudad)->value('nom_ciudad');
+
+      $Venta = DB::table('venta')
+              ->where('cod_venta', '=', $Envio->cod_venta)
+              ->first();
+
+      $DetallesVentas = DB::table('detalle-venta')
+                          ->select('cod_producto', 'cod_talla', 'precio_venta', 'subtotal', 'cantidad')
+                          ->where('cod_venta', '=', $Envio->cod_venta)->get();
+
+      return view('Envio.envio', compact('Envio', 'DetallesVentas', 'nomCiudad','Venta'));
+    }
+
+    public function destroy(Envio $Envio){
+      $Envio->estado = 1;
+      $Envio->save();
+      return redirect()->route('envio.index')->with('status','El envio a sido concretado exitosamente.');
     }
 }

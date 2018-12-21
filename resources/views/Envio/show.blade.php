@@ -3,7 +3,6 @@
 @php
     $Total = 0;
 @endphp
-<section cla
 @section('content')
   <section class="container-fluid pt-4">
     <div class="row">

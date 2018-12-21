@@ -10,6 +10,7 @@ use genericlothing\DetalleVenta;
 use genericlothing\DetallePedido;
 use genericlothing\ExistenciaProducto;
 use genericlothing\Envio;
+use genericlothing\Pedido;
 
 use DB;
 
@@ -111,6 +112,13 @@ class VentaController extends Controller
         $Envio->estado = '0';
 
         $Envio->save();
+
+        //Limpiando pedido
+        $P = Pedido::whereColumn([
+                          ['cod_pedido', '=',  DB::raw((int)$Pedido->cod_pedido)],
+                          ])->first();
+        $P->total = 0;
+        $P->save();
 
         return redirect()->route('home')->with('status', 'La compra se ha realizado con éxito.');
     }
