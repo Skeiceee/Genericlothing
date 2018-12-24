@@ -2,7 +2,7 @@
 @section('title',' - Pagar')
 @section('content')
     <section class="container-fluid pt-4">
-          <form class="form-group" action="/venta" method="post">
+          <form class="form-group" action="/compra" method="post">
             @csrf
             <div class="container mx-auto">
               @include('Common.errorProducto')

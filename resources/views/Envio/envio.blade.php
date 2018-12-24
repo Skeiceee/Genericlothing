@@ -33,8 +33,8 @@
                          <td>{{$Producto->nom_producto}}</td>
                          <td>{{$DetallesVenta->cod_talla}}</td>
                          <td>{{$DetallesVenta->cantidad}}</td>
-                         <td>${{$DetallesVenta->precio_venta}}</td>
-                         <td>${{$DetallesVenta->subtotal}}</td>
+                         <td>${{ number_format($DetallesVenta->precio_venta, 0, ',','.') }}</td>
+                         <td>${{ number_format($DetallesVenta->subtotal, 0, ',','.') }}</td>
                      </tr>
                  @endforeach
                </tbody>
@@ -42,7 +42,7 @@
             <table class="table table-bordered">
               <thead class="thead">
                   <tr>
-                      <th>Nombre</th>
+                      <th>Nombre del cliente</th>
                       <th>Rut</th>
                       <th>Total</th>
                       <th>Ciudad de envio</th>
@@ -52,7 +52,7 @@
                 <tr>
                   <td> {{$nombre_usuario}} </td>
                   <td> {{$Venta->rut_cliente}} </td>
-                  <td> {{$Total}} </td>
+                  <td> ${{ number_format($Total, 0, ',','.') }}</td>
                   <td> {{$nomCiudad}} </td>
                 </tr>
               </tbody>

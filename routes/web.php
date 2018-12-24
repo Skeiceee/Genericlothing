@@ -49,7 +49,6 @@ Route::resource('admin/pedido','PedidoController');
 Route::resource('admin/existencia-producto','ExistenciaProductoController');
 Route::resource('admin/envio','EnvioController');
 
-Route::get('venta/{Venta}','VentaController@show');
 
 //Rutas de usuario
 Route::get('home','HomeController@index')->name('home');
@@ -61,8 +60,9 @@ Route::get('politicas_de_privacidad','HomeController@politicaDePrivacidad')->nam
 //FeedBack
 Route::get('/sendemail','SendEmailController@index')->name('sendemail');
 Route::post('/sendemail/send','SendEmailController@send');
+
 //Rutas venta
-Route::resource('venta', 'Usuario\VentaController');
+Route::resource('compra', 'Usuario\VentaController');
 Route::get('compras','HomeController@misCompras')->name('misCompras');
 Route::get('compras/detalle/{Venta}','HomeController@detalleCompra')->name('detalleCompra');
 
@@ -99,7 +99,10 @@ Route::get('admin/talla/{Talla}/delete', ['uses' => 'TallaController@destroy', '
 Route::get('admin/Envio/{Envio}/delete', ['uses' => 'EnvioController@destroy', 'as' => 'Envio.delete']);
 
 //Vista confimarcion de envio
-Route::get('admin/Envio/{Envio}/confirmation', ['uses' => 'EnvioController@confirmationEnvio', 'as' => 'Envio.confirmation']);
+Route::get('admin/envio/{Envio}/confirmation', ['uses' => 'EnvioController@confirmationEnvio', 'as' => 'Envio.confirmation']);
+
+//Vista de confirmacion de venta
+Route::get('admin/venta/{Venta}/confirmation', ['uses' => 'VentaController@confirmationVenta', 'as' => 'Venta.confirmation']);
 
 //Agregar al carro
 Route::resource('carro/detalle', 'Usuario\DetallePedidoController');

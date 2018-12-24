@@ -1,1 +1,1 @@
-<a class="btn btn-primary btn-sm " href="{{'venta/'.$cod_venta}}"><i class="far fa-eye"></i></a>
+<a class="btn btn-success btn-sm " href="{{ route('Venta.confirmation', $cod_venta) }}"><i class="fas fa-dollar-sign"></i>

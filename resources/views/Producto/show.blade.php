@@ -85,7 +85,7 @@ background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pjwh
                         </tr>
                         <tr>
                           <td>Precio de venta:</td>
-                          <td>{{$Producto->precio_venta}}</td>
+                          <td>${{ number_format($Producto->precio_venta, 0, ',','.') }}</td>
                         </tr>
                         <tr>
                           <td>Marca:</td>

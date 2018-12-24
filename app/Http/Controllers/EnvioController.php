@@ -51,10 +51,7 @@ class EnvioController extends Controller
      */
     public function show($id)
     {
-        $Envio = Envio::find($id);
-
-        $DetallesVentas = DB::table('detalle-venta')->where('cod_venta', '=', $Envio->cod_venta)->get();
-        return view('Envio.show', compact('Envio','DetallesVentas'));
+        //
     }
 
     /**

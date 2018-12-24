@@ -32,7 +32,7 @@
                         @endphp
                         <a class="btn btn-danger float-right" href="/compras/{{$venta->cod_venta}}/anular"><i class="fas fa-trash"></i></a>
                       <a class="btn btn-info float-right mr-2" href="/compras/detalle/{{$venta->cod_venta}}">Ver detalles</a>
-                      <span class="float-right mr-4">Total: {{$venta->total}}</span>
+                      <span class="float-right mr-4">Total: ${{ number_format($venta->total, 0, ',','.') }}</span>
                     </li>
                   @endif
                 @endforeach
@@ -65,7 +65,7 @@
                         echo '<span>Compra del '.$inicio.'</span>';
                       @endphp
                       <a class="btn btn-info float-right mr-2" href="{{route('detalleCompra', $venta->cod_venta)}}">Ver detalles</a>
-                      <span class="float-right mr-4"> Total: {{$venta->total}}</span>
+                      <span class="float-right mr-4"> Total: ${{ number_format($venta->total, 0, ',','.') }}</span>
                     </li>
                   @endif
                 @endforeach
@@ -97,7 +97,7 @@
                         $inicio = strftime("%d de %B del %Y", strtotime($fecha));
                         echo '<span>Compra del '.$inicio.'</span>';
                       @endphp
-                      <span class="float-right mr-4"> Total: {{$venta->total}}</span>
+                      <span class="float-right mr-4"> Total: ${{ number_format($venta->total, 0, ',','.') }}</span>
                     </li>
                   @endif
                 @endforeach

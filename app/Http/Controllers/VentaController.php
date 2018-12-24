@@ -50,9 +50,7 @@ class VentaController extends Controller
      */
     public function show($id)
     {
-      $Venta = Venta::find($id);
-      $DetallesVentas = DB::table('detalle-venta')->where('cod_venta', '=', $Venta->cod_venta)->get();
-      return view('Venta.show', compact('Venta','DetallesVentas'));
+        //
     }
 
     /**
@@ -87,5 +85,9 @@ class VentaController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function confirmationVenta(Venta $Venta){
+        $DetallesVentas = DB::table('detalle-venta')->where('cod_venta', '=', $Venta->cod_venta)->get();
+        return view('Venta.venta', compact('Venta','DetallesVentas'));
     }
 }
