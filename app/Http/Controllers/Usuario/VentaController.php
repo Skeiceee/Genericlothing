@@ -169,6 +169,10 @@ class VentaController extends Controller
         $Venta->estado = '2';
         $Venta->save();
 
+        $Envio = Envio::find($cod_venta);
+        $Envio->estado = '2';
+        $Envio->save();
+        
         $DetallesVenta = DB::table('detalle-venta')->where('cod_venta', '=', $cod_venta)->get();
 
         foreach ($DetallesVenta as $DetalleVenta) {

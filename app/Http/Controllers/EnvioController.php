@@ -108,12 +108,12 @@ class EnvioController extends Controller
       $Venta = Venta::whereColumn([
                    ['cod_venta', '=',  DB::raw((int)$Envio->cod_venta)]
                    ])->first();
-                   
+
       $Venta->estado = 1;
       $Venta->save();
       $Envio->estado = 1;
       $Envio->save();
 
-      return redirect()->route('envio.index')->with('status','El envio a sido concretado exitosamente.');
+      return redirect()->route('envio.index')->with('status','El envio ha sido concretado exitosamente.');
     }
 }

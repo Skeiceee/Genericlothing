@@ -154,7 +154,7 @@ Route::get('Ventas',function(){
 Route::get('Envios',function(){
 
     $query = DB::table('envio as e')
-           ->select('e.cod_venta', 'd.nom_ciudad as nombre_ciudad', 'e.telefono', 'e.precio_envio', 'e.estado', DB::raw('if(e.estado = 0,\'Pendiente\',\'Enviado\') as estado'))
+           ->select('e.cod_venta', 'd.nom_ciudad as nombre_ciudad', 'e.telefono', 'e.precio_envio', 'e.estado', DB::raw('if(e.estado = 0,\'Pendiente\',if(e.estado = 1,\'Enviado\',\'Anulado\')) as estado'))
            ->join('ciudad as d','e.cod_ciudad', '=', 'd.cod_ciudad');
 
     return datatables()

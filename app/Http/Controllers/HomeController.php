@@ -9,6 +9,7 @@ use genericlothing\Producto;
 use genericlothing\Marca;
 use genericlothing\Talla;
 use genericlothing\Venta;
+use genericlothing\Envio;
 use genericlothing\Http\Requests\ConfiguracionUserRequest;
 use DB;
 
@@ -187,9 +188,11 @@ class HomeController extends Controller
       $DetallesVenta = DB::table('detalle-venta')->select('*')
             ->where('cod_venta', '=', DB::raw((int)$Venta->cod_venta))->get();
 
+      $Envio = Envio::find($Venta->cod_venta);
+
       foreach ($validations as $validation) {
         if ($Venta->cod_venta == $validation->cod_venta) {
-          return view('Usuario.Common.detalle_de_mis_compras',compact('TipoProductos','Marcas','Tallas','Venta','DetallesVenta'));
+          return view('Usuario.Common.detalle_de_mis_compras',compact('TipoProductos','Marcas','Tallas','Venta','DetallesVenta','Envio'));
         }
       }
 

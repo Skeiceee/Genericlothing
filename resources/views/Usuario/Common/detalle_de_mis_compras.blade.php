@@ -91,16 +91,60 @@
             </div>
           </div>
 
+          @if ($Venta->envio == '0')
+              <div class="col-md-12 col-sm-12 col-lg-12 mt-4">
+                  <div class="card">
+                      <div class="card-body">
+                          <span style="font-weight: bold;">Detalles del envío</span>
+                      </div>
+                      @php
+                        $NomCiudad = DB::table('ciudad')
+                            ->select('nom_ciudad')
+                            ->where('cod_ciudad', '=', $Envio->cod_ciudad)
+                            ->value('nom_ciudad');
+                      @endphp
+                      <ul class="list-group list-group-flush">
+                          <li class="list-group-item">Ciudad de envío: {{$NomCiudad}}</li>
+                          <li class="list-group-item">Costo del envío: ${{ number_format($Envio->precio_envio, 0, ',','.') }}</li>
+                          <li class="list-group-item">Estado del envío:
+                              @if ($Envio->estado == '0')
+                                  Pendiente
+                              @elseif ($Envio->estado == '1')
+                                  Enviado
+                              @elseif ($Envio->estado == '2')
+                                  Anulado
+                              @endif
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+          @endif
+
+          @if ($Venta->envio == '1')
+              <div class="col-md-12 col-sm-12 col-lg-12 mt-4">
+                  <div class="card">
+                      <div class="card-header">
+                          <span style="font-weight: bold;">Detalles del Retiro en tienda</span>
+                      </div>
+                      <div class="card-body">
+                      </div>
+                  </div>
+              </div>
+          @endif
+
           <div class="col-md-12 col-sm-12 col-lg-12 mt-4">
             <div class="card">
               <div class="card-body">
               <span style="font-weight: bold;">Productos anulados</span>
               </div>
               <ul class="list-group list-group-flush">
-
+                @php
+                    $sw = 0;
+                @endphp
                 @foreach ($DetallesVenta as $DetalleVenta)
                   @if ($DetalleVenta->estado == 1)
                     @php
+                      $sw = 1;
                       $NomProducto = DB::table('producto')
                           ->select('nom_producto')
                           ->where('cod_producto', '=', $DetalleVenta->cod_producto)
@@ -133,6 +177,11 @@
                 @endforeach
 
               </ul>
+              @if ($sw == 0)
+                <li class="list-group-item text-center">
+                  <span class="text-black-50">No tiene productos de la venta anulados</span>
+                </li>
+              @endif
             </div>
           </div>
 

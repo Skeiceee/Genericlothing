@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use genericlothing\Http\Controllers\Controller;
 use genericlothing\Venta;
 use genericlothing\DetalleVenta;
+use genericlothing\Envio;
 use DB;
 
 class DetalleVentaController extends Controller
@@ -101,6 +102,10 @@ class DetalleVentaController extends Controller
             $Venta = Venta::find($cod_venta);
             $Venta->estado = '2';
             $Venta->save();
+
+            $Envio = Envio::find($cod_venta);
+            $Envio->estado = '2';
+            $Envio->save();
 
             return redirect()->route('misCompras')->with('status', 'La compra se ha anulado con éxito.');
         } else {
