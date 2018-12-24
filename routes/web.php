@@ -56,7 +56,11 @@ Route::get('home','HomeController@index')->name('home');
 Route::post('edit/user','HomeController@configurarUser');
 Route::get('pago', 'Usuario\PagoController@index');
 Route::get('home/delete','DeleteUserController@deleteCliente')->name('deleteUser');
+Route::get('politicas_de_privacidad','HomeController@politicaDePrivacidad')->name('politicas');
 
+//FeedBack
+Route::get('/sendemail','SendEmailController@index')->name('sendemail');
+Route::post('/sendemail/send','SendEmailController@send');
 //Rutas venta
 Route::resource('venta', 'Usuario\VentaController');
 Route::get('compras','HomeController@misCompras')->name('misCompras');

@@ -91,6 +91,16 @@
       </div>
     </div>
   </section>
+  <footer>
+    <div class="text-center mt-4">
+      <span class="small">&copy; Genericlothing 2018, Todos los derechos reservados.</span>
+    </div>
+    <div class="text-center mb-4">
+      <span class="small">
+       <a class="text-dark" href="{{ route('sendemail') }}">Contacto</a> · <a class="text-dark" href="{{ route('politicas' )}}">Politicas de privacidad</a>
+      </span>
+    </div>
+  </footer>
   @endsection
   @section('script')
     <script src="{{asset('js/ion.rangeSlider.js')}}"></script>

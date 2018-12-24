@@ -186,7 +186,7 @@ class HomeController extends Controller
 
       $DetallesVenta = DB::table('detalle-venta')->select('*')
             ->where('cod_venta', '=', DB::raw((int)$Venta->cod_venta))->get();
-      
+
       foreach ($validations as $validation) {
         if ($Venta->cod_venta == $validation->cod_venta) {
           return view('Usuario.Common.detalle_de_mis_compras',compact('TipoProductos','Marcas','Tallas','Venta','DetallesVenta'));
@@ -196,5 +196,12 @@ class HomeController extends Controller
       return abort(404);
 
     }
+  public function politicaDePrivacidad(){
 
+    $Tallas = Talla::all();
+    $TipoProductos = TipoProducto::all();
+    $Marcas = Marca::all();
+
+    return view('Home.politicasprivacidad',compact('TipoProductos','Marcas','Tallas'));
+  }
 }
