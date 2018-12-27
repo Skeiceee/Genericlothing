@@ -47,6 +47,22 @@ class VentaController extends Controller
      */
     public function store(StoreVentaRequest $request)
     {
+        // Si $request->eor es igual a 1 es envio
+        // Si $request->eor es igual a 2 es retiro en tienda
+        
+        /**
+        * Logica para crear una venta ya sea envio o retiro en tienda.
+        * $tipoVenta = $request->eor
+        *   //Codigo igual entre los dos si existe.
+        * if ($tipoVenta == 1){
+        *   //Codigo de creacion de envio.
+        * }else if($tipoVenta == 2){
+        *   //Codigo de creacion de retiro en tienda.
+        * }
+        *   //Codigo igual entre los dos si existe.
+        */
+
+
         $precio_envio = rand(5000,10000);
         $rut_cliente = auth()->user()->rut_cliente;
 
@@ -172,7 +188,7 @@ class VentaController extends Controller
         $Envio = Envio::find($cod_venta);
         $Envio->estado = '2';
         $Envio->save();
-        
+
         $DetallesVenta = DB::table('detalle-venta')->where('cod_venta', '=', $cod_venta)->get();
 
         foreach ($DetallesVenta as $DetalleVenta) {

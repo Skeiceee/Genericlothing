@@ -23,6 +23,11 @@
                           <option value="{{$Ciudad->cod_ciudad}}">{{$Ciudad->nom_ciudad}}</option>
                       @endforeach
                     </select>
+                    <label for="eor">¿Envio o retiro en tienda?</label>
+                    <select class="form-control" name="eor">
+                      <option value="1">Envio</option>
+                      <option value="2">Retiro en tienda</option>
+                    </select>
                   </div>
                 </div>
                 <div class="col-lg col-sm col-lg">
