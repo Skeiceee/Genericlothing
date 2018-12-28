@@ -123,11 +123,18 @@
           @if ($Venta->envio == '1')
               <div class="col-md-12 col-sm-12 col-lg-12 mt-4">
                   <div class="card">
-                      <div class="card-header">
-                          <span style="font-weight: bold;">Detalles del Retiro en tienda</span>
-                      </div>
                       <div class="card-body">
+                          <span style="font-weight: bold;">Detalles del retiro en Tienda</span>
                       </div>
+                      @php
+                        $NomTienda = DB::table('tienda')
+                            ->select('nom_tienda')
+                            ->where('cod_tienda', '=', $Venta->cod_tienda)
+                            ->value('nom_tienda');
+                      @endphp
+                      <ul class="list-group list-group-flush">
+                          <li class="list-group-item">Tienda de retiro: {{$NomTienda}}</li>
+                      </ul>
                   </div>
               </div>
           @endif

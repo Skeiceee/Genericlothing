@@ -17,7 +17,7 @@
                     </ul>
                   </div>
                   <div class="form-group pl-3">
-                    <label for="cod_ciudad">Ciudad de envio</label>
+                    <label for="cod_ciudad">Ciudad de envio/retiro</label>
                     <select class="form-control" name="cod_ciudad">
                       @foreach ($Ciudades as $Ciudad)
                           <option value="{{$Ciudad->cod_ciudad}}">{{$Ciudad->nom_ciudad}}</option>
