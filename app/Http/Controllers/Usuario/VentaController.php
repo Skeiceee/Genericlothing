@@ -259,6 +259,40 @@ class VentaController extends Controller
                 $DV->estado = "1";
                 $DV->anularDv($DV);
             }
+
+            //Aumentar Existencia luego de anular
+            if ($Venta->envio == 0) {
+                $EP =  ExistenciaProducto::whereColumn([
+                            ['cod_producto', '=',  DB::raw((int)$DetalleVenta->cod_producto)],
+                            ['cod_talla', '=',  DB::raw('\''.$DetalleVenta->cod_talla.'\'')]
+                            //['cod_bodega', '=', DB::raw((int)$request->direccion_bodega)],
+                            //['cod_tienda', '=', DB::raw((int)$request->cod_tienda)]
+                            ])->first();
+                $EP->cantidad = ($EP->cantidad) + ($DetalleVenta->cantidad);
+                $EP->updated_at = date('Y-m-d G:i:s');
+                $EP->updateEp($EP);
+            }
+            elseif ($Venta->envio == 1) {
+                $EP =  ExistenciaProducto::whereColumn([
+                            ['cod_producto', '=',  DB::raw((int)$DetalleVenta->cod_producto)],
+                            ['cod_talla', '=',  DB::raw('\''.$DetalleVenta->cod_talla.'\'')],
+                            //['cod_bodega', '=', DB::raw((int)$request->direccion_bodega)],
+                            ['cod_tienda', '=', DB::raw((int)$Venta->cod_tienda)]
+                            ])->first();
+
+                if ($EP == null) {
+                    $EP =  ExistenciaProducto::whereColumn([
+                                ['cod_producto', '=',  DB::raw((int)$DetalleVenta->cod_producto)],
+                                ['cod_talla', '=',  DB::raw('\''.$DetalleVenta->cod_talla.'\'')]
+                                //['cod_bodega', '=', DB::raw((int)$request->direccion_bodega)],
+                                //['cod_tienda', '=', DB::raw((int)$TiendaRetiro->cod_tienda)]
+                                ])->first();
+                }
+
+                $EP->cantidad = ($EP->cantidad) + ($DetalleVenta->cantidad);
+                $EP->updated_at = date('Y-m-d G:i:s');
+                $EP->updateEp($EP);
+            }
         }
 
         return redirect()->route('misCompras')->with('status', 'La compra se ha anulado con éxito.');

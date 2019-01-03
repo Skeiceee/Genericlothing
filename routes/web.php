@@ -97,6 +97,7 @@ Route::get('admin/tienda/{Tienda}/delete', ['uses' => 'TiendaController@destroy'
 Route::get('admin/bodega/{Bodega}/delete', ['uses' => 'BodegaController@destroy', 'as' => 'Bodega.delete']);
 Route::get('admin/talla/{Talla}/delete', ['uses' => 'TallaController@destroy', 'as' => 'Talla.delete']);
 Route::get('admin/Envio/{Envio}/delete', ['uses' => 'EnvioController@destroy', 'as' => 'Envio.delete']);
+Route::get('admin/Venta/{Venta}/delete', ['uses' => 'VentaController@destroy', 'as' => 'Venta.delete']);
 
 //Vista confimarcion de envio
 Route::get('admin/envio/{Envio}/confirmation', ['uses' => 'EnvioController@confirmationEnvio', 'as' => 'Envio.confirmation']);

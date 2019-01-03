@@ -7,6 +7,7 @@ use genericlothing\Http\Controllers\Controller;
 use genericlothing\Venta;
 use genericlothing\DetalleVenta;
 use genericlothing\Envio;
+use genericlothing\ExistenciaProducto;
 use DB;
 
 class DetalleVentaController extends Controller
@@ -93,6 +94,41 @@ class DetalleVentaController extends Controller
         $DV->estado = "1";
         $DV->anularDv($DV);
 
+        //Aumentar Existencia luego de anular
+        $Venta = Venta::find($cod_venta);
+        if ($Venta->envio == 0) {
+            $EP =  ExistenciaProducto::whereColumn([
+                        ['cod_producto', '=',  DB::raw((int)$DV->cod_producto)],
+                        ['cod_talla', '=',  DB::raw('\''.$DV->cod_talla.'\'')]
+                        //['cod_bodega', '=', DB::raw((int)$request->direccion_bodega)],
+                        //['cod_tienda', '=', DB::raw((int)$request->cod_tienda)]
+                        ])->first();
+            $EP->cantidad = ($EP->cantidad) + ($DV->cantidad);
+            $EP->updated_at = date('Y-m-d G:i:s');
+            $EP->updateEp($EP);
+        }
+        elseif ($Venta->envio == 1) {
+            $EP =  ExistenciaProducto::whereColumn([
+                        ['cod_producto', '=',  DB::raw((int)$DV->cod_producto)],
+                        ['cod_talla', '=',  DB::raw('\''.$DV->cod_talla.'\'')],
+                        //['cod_bodega', '=', DB::raw((int)$request->direccion_bodega)],
+                        ['cod_tienda', '=', DB::raw((int)$Venta->cod_tienda)]
+                        ])->first();
+
+            if ($EP == null) {
+                $EP =  ExistenciaProducto::whereColumn([
+                            ['cod_producto', '=',  DB::raw((int)$DV->cod_producto)],
+                            ['cod_talla', '=',  DB::raw('\''.$DV->cod_talla.'\'')]
+                            //['cod_bodega', '=', DB::raw((int)$request->direccion_bodega)],
+                            //['cod_tienda', '=', DB::raw((int)$TiendaRetiro->cod_tienda)]
+                            ])->first();
+            }
+
+            $EP->cantidad = ($EP->cantidad) + ($DV->cantidad);
+            $EP->updated_at = date('Y-m-d G:i:s');
+            $EP->updateEp($EP);
+        }
+
         $DV =  DetalleVenta::whereColumn([
                     ['cod_venta', '=',  DB::raw((int)$cod_venta)],
                     ['estado', '=', DB::raw("0")]
@@ -103,9 +139,11 @@ class DetalleVentaController extends Controller
             $Venta->estado = '2';
             $Venta->save();
 
-            $Envio = Envio::find($cod_venta);
-            $Envio->estado = '2';
-            $Envio->save();
+            if ($Venta->envio == 0) {
+                $Envio = Envio::find($cod_venta);
+                $Envio->estado = '2';
+                $Envio->save();
+            }
 
             return redirect()->route('misCompras')->with('status', 'La compra se ha anulado con éxito.');
         } else {

@@ -82,10 +82,18 @@ class VentaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Venta $Venta)
     {
-        //
+        $Venta = Venta::whereColumn([
+                     ['cod_venta', '=',  DB::raw((int)$Venta->cod_venta)]
+                     ])->first();
+
+        $Venta->estado = 1;
+        $Venta->save();
+
+        return redirect()->route('venta.index')->with('status','La venta ha sido concretada exitosamente.');
     }
+
     public function confirmationVenta(Venta $Venta){
         $DetallesVentas = DB::table('detalle-venta')->where('cod_venta', '=', $Venta->cod_venta)->get();
         return view('Venta.venta', compact('Venta','DetallesVentas'));

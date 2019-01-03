@@ -1,5 +1,5 @@
 @extends('Layouts.adminLayout')
-@section('title',' - Confirmar de envio')
+@section('title',' - Confirmar envío')
 @php
     $Total = 0;
     $Usuario = DB::table('cliente')
