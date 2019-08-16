@@ -26,5 +26,6 @@ DB_PASSWORD='Contraseña'
 ![Alt Text](http://oi68.tinypic.com/2rmkxo7.jpg)
 
 En caso de que se quiera usar hay que:
+
     * Agregar un control de proveedores
     * Agregar un sistema de pago
