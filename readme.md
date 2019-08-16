@@ -27,5 +27,5 @@ DB_PASSWORD='Contraseña'
 
 En caso de que se quiera usar hay que:
 
-    * Agregar un control de proveedores
-    * Agregar un sistema de pago
+* Agregar un control de proveedores
+* Agregar un sistema de pago
