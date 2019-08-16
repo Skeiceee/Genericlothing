@@ -1,4 +1,4 @@
-# Genericlothing
+# Genericlothing 
 Este sistema fue creado como proyecto final de unviersidad, esta creado en el framework Laravel, el sistema gestiona cualquier tienda de ropa ya sea vía online, con tiendas fisicas o ambas a la vez.
 
 # Instalación en el servidor.
@@ -24,3 +24,7 @@ DB_PASSWORD='Contraseña'
 
 7. Ejecutar la migración de todo el modelo de la base de datos:
 ![Alt Text](http://oi68.tinypic.com/2rmkxo7.jpg)
+
+En caso de que se quiera usar hay que:
+    * Agregar un control de proveedores
+    * Agregar un sistema de pago
