@@ -26,6 +26,7 @@ composer update
 7. Ejecutar la migración de todo el modelo de la base de datos:
 ```shell
 php artisan migrate
+php artisan key:generate
 ```
 En caso de que se quiera usar hay que:
 
