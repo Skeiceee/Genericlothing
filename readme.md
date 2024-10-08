@@ -1,4 +1,5 @@
 # Genericlothing 
+Este sistema es ultramente mejorable, tiene una version de Laravel que esta ultramente desactualziada, si deseas usarlo ten en cuenta que deberas refactorizar mucho codigo.
 Este sistema fue creado como proyecto final de unviersidad, esta creado en el framework Laravel, el sistema gestiona cualquier tienda de ropa ya sea vía online, con tiendas fisicas o ambas a la vez.
 
 # Instalación en el servidor.
